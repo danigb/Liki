@@ -11,10 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130426212922) do
+ActiveRecord::Schema.define(version: 20130426214007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: true do |t|
+    t.string   "name",          limit: 100
+    t.integer  "members_count",             default: 0
+    t.integer  "node_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groups", ["node_id"], name: "index_groups_on_node_id"
+
+  create_table "members", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.string   "auth_token",            limit: 50
+    t.datetime "auth_token_created_at"
+    t.boolean  "active",                           default: true
+    t.integer  "login_count",                      default: 0
+    t.datetime "last_login_at"
+    t.datetime "created_at"
+  end
+
+  add_index "members", ["group_id"], name: "index_members_on_group_id"
+  add_index "members", ["user_id"], name: "index_members_on_user_id"
 
   create_table "nodes", force: true do |t|
     t.string   "title",          limit: 300
@@ -22,6 +46,7 @@ ActiveRecord::Schema.define(version: 20130426212922) do
     t.string   "image",          limit: 300
     t.text     "body"
     t.integer  "user_id"
+    t.integer  "group_id"
     t.integer  "parent_id"
     t.integer  "position"
     t.integer  "children_count",             default: 0
@@ -29,6 +54,8 @@ ActiveRecord::Schema.define(version: 20130426212922) do
     t.datetime "updated_at"
   end
 
+  add_index "nodes", ["group_id", "parent_id"], name: "index_nodes_on_group_id_and_parent_id"
+  add_index "nodes", ["group_id"], name: "index_nodes_on_group_id"
   add_index "nodes", ["parent_id"], name: "index_nodes_on_parent_id"
   add_index "nodes", ["user_id"], name: "index_nodes_on_user_id"
 

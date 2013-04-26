@@ -6,13 +6,16 @@ class CreateNodes < ActiveRecord::Migration
       t.string :image, limit: 300
       t.text :body
       t.integer :user_id
+      t.integer :group_id
       t.integer :parent_id
       t.integer :position
       t.integer :children_count, default: 0
       t.timestamps
     end
 
+    add_index :nodes, :group_id
     add_index :nodes, :parent_id
+    add_index :nodes, [:group_id, :parent_id]
     add_index :nodes, :user_id
   end
 end

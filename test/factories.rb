@@ -7,8 +7,8 @@ FactoryGirl.define do
   end
 
   factory :node do
-    sequence(:title) {|n| "Title #{n}" }
     user
+    sequence(:title) {|n| "Title #{n}" }
   end
 
   factory :group do
