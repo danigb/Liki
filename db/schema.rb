@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130426212326) do
+ActiveRecord::Schema.define(version: 20130426212922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "nodes", force: true do |t|
+    t.string   "title",          limit: 300
+    t.string   "link_url",       limit: 500
+    t.string   "image",          limit: 300
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "parent_id"
+    t.integer  "position"
+    t.integer  "children_count",             default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "nodes", ["parent_id"], name: "index_nodes_on_parent_id"
+  add_index "nodes", ["user_id"], name: "index_nodes_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name",       limit: 100

@@ -6,6 +6,11 @@ FactoryGirl.define do
     email { "#{name}@email.com" }
   end
 
+  factory :node do
+    sequence(:title) {|n| "Title #{n}" }
+    user
+  end
+
   factory :group do
     sequence(:name) {|n| "group#{n}" }
   end
