@@ -1,7 +1,15 @@
 - title @node.title
-= link_to "Volver a '#{@node.parent.title}'", @node.parent if @node.parent
-= render 'children', node: @node, deep: 1
+= link_to raw("&larr; Volver a '#{@node.parent.title}'"), @node.parent if @node.parent
+= render 'node', node: @node, deep: 1
 div class="children"
-  = render partial: 'children', collection: @node.children, as: :node,
+  = render partial: 'node', collection: @node.children, as: :node,
     locals: { deep: 2 }
+
+div class="actions"
+  = link_to 'Añadir', '#', data: { action: 'add_children' }
+div class="add_children" style="display: none"
+  = form_tag add_children_node_path(@node)  do
+    = hidden_field_tag :parent_id, @node.id
+    = text_area_tag :text
+    = submit_tag 'Añadir', class: 'button'
 

@@ -1,9 +1,26 @@
+html, body {
+  background-color: #faf9f4;
+  font-family: 'Lucida Grande', Verdana, Helvetica, Arial;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  font-family: 'Noto Sans', MuseoSans, 'Helvetica Neue', Arial;
+  color: #444;
+}
 
 a {
   color: #333;
   text-decoration: none;
 
   &:hover { color: black; }
+}
+
+a.linkify {
+  border: 1px solid rgb(154, 148, 141);
+  background-color: white;
+  border-radius: 2px;
+  padding: 0 2px;
 }
 
 .actions {

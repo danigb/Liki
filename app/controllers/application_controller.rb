@@ -3,10 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :load_current_group
+  before_filter :load_current
 
   protected
-  def load_current_group
+  def load_current
     @current_group = Group.first
+    @current_user = User.first
   end
 end

@@ -11,6 +11,8 @@
  *= require 'normalize'
  *= require_self
  *= require 'elements'
+ *= require 'forms'
+ *= require 'buttons'
  *= require 'layout'
  *= require 'node'
  */

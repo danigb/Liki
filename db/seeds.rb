@@ -15,9 +15,11 @@ class SiteInitializer
   end
 
   def add_users(*args)
+    who = @group.nodes.find('quienes')
     args.each do |name|
       user = User.create(name: name)
-      Member.create(user: user, group: @group)
+      member = Member.create(user: user, group: @group)
+      member.node.update_attributes(parent_id: who.id)
     end
   end
 end

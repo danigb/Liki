@@ -3,15 +3,27 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.beta1'
 
+# INFRASTRUCTURE
 gem 'pg'
 gem 'newrelic_rpm'
 gem 'dalli'
 gem 'sidekiq'
 gem 'sinatra', require: false
-gem 'slim'
-#gem 'friendly_id'
+
+# MODELS
 gem 'friendly_id', :github => 'FriendlyId/friendly_id', :branch => 'rails4'
 gem 'acts_as_list'
+gem 'carrierwave'
+gem 'mime-types'
+gem "mini_magick"
+
+# VIEWS
+gem 'slim'
+gem 'simple_form'
+gem 'jquery-rails'
+gem 'turbolinks'
+gem 'jquery-turbolinks'
+gem 'jbuilder', '~> 1.0.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -24,14 +36,6 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.0.1'
 
 group :production do
   gem 'unicorn'
