@@ -1,14 +1,7 @@
 .node {
   margin: 10px 0 30px 0;
-
-  .header {
-    width: 100%; 
-    overflow: hidden;
-
-    .actions { float: right; }
-
-    h1, h2, h3, h4 { margin: 0 0 5px 0; }
-  }
+  
+  .title { margin: 10px }
 
   .node_image {
     display: block;
@@ -20,20 +13,26 @@
     width: 100%; overflow: hidden;
 
     .body {
+      margin: 10px;
       font-size: 80%;
       color: #555;
       p { margin: 3px 0; }
     }
   }
-
 }
 
-.node.deep-2 {
-  margin-bottom: 10px;
+.node_info {
+  margin: 0 10px;
+  font-size: 11px;
+  color: rgb(154, 148, 141);
+  .actions { float: right; }
+}
+
+.node.child {
+  margin: 25px 0 5px 0;
   border: 1px solid rgb(219, 218, 215);
-  padding: 10px;
   background-color: white;
-  border-radius: 2px;
+  border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 3px 0px;
 
   .node_image {

@@ -46,7 +46,7 @@ class NodesController < ApplicationController
 
   def add_children
     @parent = current_group.nodes.find(params[:parent_id])
-    AddChildrenNode.new(params[:text], @parent, current_user).save
+    NodeService.add_children(params[:text], @parent, current_user)
     redirect_to @parent
   end
 

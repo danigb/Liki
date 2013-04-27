@@ -30,5 +30,11 @@ describe Node do
     parent2 = create(:node, group: g)
     parent2.position.must_equal 3
   end
+
+  it 'can have not title' do
+    node = create(:node, title: nil, group: create(:group))
+    node.slug.must_equal nil
+    node.to_param.must_equal node.id.to_s
+  end
 end
 
