@@ -6,6 +6,11 @@ describe Group do
     group.name.must_be :present?
   end
 
+  it 'has node' do
+    group = create(:group)
+    group.node.must_be :present?
+  end
+
   it "has members and users" do
     group = create(:group)
     u1 = create(:user)

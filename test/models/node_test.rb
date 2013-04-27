@@ -12,7 +12,7 @@ describe Node do
     g = create(:group)
 
     parent1 = create(:node, group: g)
-    parent1.position.must_equal 1
+    parent1.position.must_equal 2 # first is group node
 
     c1 = create(:node, parent: parent1)
     c2 = create(:node, parent: parent1)
@@ -20,7 +20,7 @@ describe Node do
     c2.position.must_equal 2
 
     parent2 = create(:node, group: g)
-    parent2.position.must_equal 2
+    parent2.position.must_equal 3
   end
 end
 

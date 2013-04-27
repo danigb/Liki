@@ -18,4 +18,11 @@ describe Member do
     m = Member.create(user: user, group: group)
     m.save.must_equal false
   end
+
+  it 'members have nodes' do
+    g = create(:group)
+    u = create(:user)
+    m = Member.create(user: u, group: g)
+    m.node.must_be :present?
+  end
 end

@@ -20,15 +20,18 @@ ActiveRecord::Schema.define(version: 20130426214007) do
     t.string   "name",          limit: 100
     t.integer  "members_count",             default: 0
     t.integer  "node_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "groups", ["node_id"], name: "index_groups_on_node_id"
+  add_index "groups", ["user_id"], name: "index_groups_on_user_id"
 
   create_table "members", force: true do |t|
     t.integer  "group_id"
     t.integer  "user_id"
+    t.integer  "node_id"
     t.string   "auth_token",            limit: 50
     t.datetime "auth_token_created_at"
     t.boolean  "active",                           default: true
@@ -38,6 +41,7 @@ ActiveRecord::Schema.define(version: 20130426214007) do
   end
 
   add_index "members", ["group_id"], name: "index_members_on_group_id"
+  add_index "members", ["node_id"], name: "index_members_on_node_id"
   add_index "members", ["user_id"], name: "index_members_on_user_id"
 
   create_table "nodes", force: true do |t|

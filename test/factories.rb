@@ -12,6 +12,7 @@ FactoryGirl.define do
   end
 
   factory :group do
+    user
     sequence(:name) {|n| "group#{n}" }
   end
 end

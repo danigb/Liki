@@ -4,13 +4,16 @@ class CreateGroups < ActiveRecord::Migration
       t.string :name, limit: 100
       t.integer :members_count, default: 0
       t.integer :node_id
+      t.integer :user_id
       t.timestamps
     end
     add_index :groups, :node_id
+    add_index :groups, :user_id
 
     create_table :members do |t|
       t.integer :group_id
       t.integer :user_id
+      t.integer :node_id
       t.string :auth_token, limit: 50, unique: true
       t.datetime :auth_token_created_at
       t.boolean :active, default: true
@@ -20,5 +23,6 @@ class CreateGroups < ActiveRecord::Migration
     end
     add_index :members, :group_id
     add_index :members, :user_id
+    add_index :members, :node_id
   end
 end
