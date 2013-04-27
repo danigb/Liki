@@ -8,6 +8,14 @@ describe Node do
     children.group.must_equal parent.group
   end
 
+  it 'can have children' do
+    parent = create(:node, group: create(:group))
+    c1 = create(:node, parent: parent)
+    c2 = create(:node, parent: parent)
+    parent.children.must_include c1
+    parent.children.must_include c2
+  end
+
   it "children have order" do
     g = create(:group)
 

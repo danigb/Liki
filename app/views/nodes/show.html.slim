@@ -1,6 +1,7 @@
-= div_for @node do
-  div class="header"
-    div class="actions"
-      = link_to 'Editar', [:edit, @node]
-    = title @node.title
+- title @node.title
+= link_to "Volver a '#{@node.parent.title}'", @node.parent if @node.parent
+= render 'children', node: @node, deep: 1
+div class="children"
+  = render partial: 'children', collection: @node.children, as: :node,
+    locals: { deep: 2 }
 

@@ -1,4 +1,11 @@
 
+a {
+  color: #333;
+  text-decoration: none;
+
+  &:hover { color: black; }
+}
+
 .actions {
   a {
     color: rgb(154, 148, 141);

@@ -2,6 +2,7 @@ class CreateNodes < ActiveRecord::Migration
   def change
     create_table :nodes do |t|
       t.string :title, limit: 300
+      t.string :slug, limit: 300
       t.string :link_url, limit: 500
       t.string :image, limit: 300
       t.text :body
@@ -14,6 +15,7 @@ class CreateNodes < ActiveRecord::Migration
     end
 
     add_index :nodes, :group_id
+    add_index :nodes, :slug
     add_index :nodes, :parent_id
     add_index :nodes, [:group_id, :parent_id]
     add_index :nodes, :user_id

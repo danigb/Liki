@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20130426214007) do
 
   create_table "nodes", force: true do |t|
     t.string   "title",          limit: 300
+    t.string   "slug",           limit: 300
     t.string   "link_url",       limit: 500
     t.string   "image",          limit: 300
     t.text     "body"
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 20130426214007) do
   add_index "nodes", ["group_id", "parent_id"], name: "index_nodes_on_group_id_and_parent_id"
   add_index "nodes", ["group_id"], name: "index_nodes_on_group_id"
   add_index "nodes", ["parent_id"], name: "index_nodes_on_parent_id"
+  add_index "nodes", ["slug"], name: "index_nodes_on_slug"
   add_index "nodes", ["user_id"], name: "index_nodes_on_user_id"
 
   create_table "users", force: true do |t|

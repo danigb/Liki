@@ -1,17 +1,16 @@
 class Node < ActiveRecord::Base
-  belongs_to :parent, class_name: 'Node', counter_cache: :children_count
   belongs_to :user
   belongs_to :group
+  belongs_to :parent, class_name: 'Node', counter_cache: :children_count
+  has_many :children, foreign_key: 'parent_id', class_name: 'Node'
 
   validates_presence_of :user_id, :group_id, :title
 
   acts_as_list scope: [:group_id, :parent_id]
+  include FriendlyId
+  friendly_id :title, use: :scoped, scope: :group
 
   before_validation :set_group_id
-
-  def to_param
-    "#{id}-#{title.parameterize}"
-  end
 
   protected
   def set_group_id
