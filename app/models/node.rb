@@ -9,6 +9,10 @@ class Node < ActiveRecord::Base
 
   before_validation :set_group_id
 
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
+
   protected
   def set_group_id
     self.group_id = self.parent.group_id if self.parent
