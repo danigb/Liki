@@ -2,8 +2,8 @@ $(document). on 'click', 'a[data-action=add_children]', ->
   $('div.add_children').show()
   false
 
-mentions = /@([^\s^:^.^,^<^"^)^(]+)/g
-hashtag = /#([^\s^:^.^,^<^"^(^)]+)/g
+mentions = /\s@([^\s^:^.^,^<^"^)^(]+)/g
+hashtag = /\s#([^\s^:^.^,^<^"^(^)]+)/g
 linkify = ->
   $('.body').each ->
     html = $(this).html()
@@ -12,9 +12,9 @@ linkify = ->
     $(this).html(html)
 
 replacer = (name) ->
-  name = name[1..-1]
+  name = name[2..-1]
   url = toUrl(name)
-  "<a class='linkify' href='/p/#{url}'>#{name}</a>"
+  "&nbsp;<a class='linkify' href='/p/#{url}'>#{name}</a>"
 
 toUrl = (name) ->
   name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()

@@ -3,11 +3,20 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :load_current
+  helper_method :current_user, :current_group
 
   protected
-  def load_current
-    @current_group = Group.first
-    @current_user = User.first
+  def require_user
+    if session[:user_id].blank?
+      redirect_to new_session_path
+    end
+  end
+
+  def current_group
+    @current_group ||= Group.first
+  end
+
+  def current_user
+    @current_user ||= User.find_by_id session[:user_id]
   end
 end

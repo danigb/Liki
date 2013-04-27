@@ -12,10 +12,8 @@ header {
   background-color: white;
   border-bottom: 1px solid #dbdad7;
 
-  #current_group {
+  a.current {
     display: block;
-    float: left;
-    border-right: 1px solid #dbdad7;
     padding: 12px 17px;
     text-decoration: none;
     font-size: 14px;
@@ -24,6 +22,14 @@ header {
     &:hover {
       background-color: #dcdbd7;
     }
+  }
 
+  .current.group {
+    float: left;
+    border-right: 1px solid #dbdad7;
+  }
+  .current.user {
+    float: right;
+    border-left: 1px solid #dbdad7;
   }
 }

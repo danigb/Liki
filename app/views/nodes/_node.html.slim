@@ -6,12 +6,10 @@
       = link_to 'Borrar', node, method: :delete,
         data: { confirm: "¿Quieres borrar '#{node.title}'?" }
     = content_tag "h#{deep}" do
-      - if current_page?(node)
-        = node.title
-      - else
-        = link_to raw("#{node.title} &rarr;"), node
+      = link_to_unless_current node.title, node
   div class="content"
-    = image_tag node.image.url, class: 'node_image' if node.image?
+    - if node.image?
+      div.node_image = image_tag node.image.url
     = content_tag :div, simple_format(node.body), class: 'body' if node.body.present?
   div class="info"
 

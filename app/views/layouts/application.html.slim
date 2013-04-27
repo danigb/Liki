@@ -11,7 +11,10 @@ html
 
   body
     header
-      = link_to @current_group.name, root_path, id: 'current_group'
+      = link_to current_group.name, root_path, class: 'current group'
+      - if current_user
+        = link_to current_user.name, current_user, class: 'current user'
+      
 
     div id="main"
       == yield

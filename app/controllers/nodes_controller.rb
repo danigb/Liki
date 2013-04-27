@@ -1,8 +1,9 @@
 class NodesController < ApplicationController
+  before_filter :require_user
   respond_to :html
 
   def index
-    redirect_to @current_group.node
+    redirect_to current_group.node
   end
 
   def show
@@ -24,8 +25,8 @@ class NodesController < ApplicationController
   def create
     @node = Node.new
     @node.attributes = node_params
-    @node.group = @current_group
-    @node.user = @current_user
+    @node.group = current_group
+    @node.user = current_user
     @node.save
     respond_with @node
   end
@@ -44,14 +45,14 @@ class NodesController < ApplicationController
   end
 
   def add_children
-    @parent = @current_group.nodes.find(params[:parent_id])
-    AddChildrenNode.new(params[:text], @parent, @current_user).save
+    @parent = current_group.nodes.find(params[:parent_id])
+    AddChildrenNode.new(params[:text], @parent, current_user).save
     redirect_to @parent
   end
 
   private
   def load_node
-    @node = @current_group.nodes.find(params[:id])
+    @node = current_group.nodes.find(params[:id])
   end
 
   def node_params
