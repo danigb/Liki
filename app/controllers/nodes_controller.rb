@@ -33,6 +33,9 @@ class NodesController < ApplicationController
   def update
     node.attributes = node_params
     node.save
+    node.children.each_with_index do |n,i|
+      n.update_column(:position, i + 1)
+    end
     respond_with @node
   end
 

@@ -9,10 +9,10 @@
       div.body = simple_format(node.body)
 
 div.node_info
-  | Por 
-  = link_to node.user.name, node.user
-  |, hace 
-  = time_ago_in_words node.created_at
+  ' Por #{link_to node.user.name, node.user} 
+  ' el #{l node.created_at, format: :short} 
+  ' (#{node.position})
+
   div.actions
     =' link_to 'Editar', [:edit, node]
     =' link_to 'Borrar', node, method: :delete,
