@@ -3,7 +3,7 @@ class NodesController < ApplicationController
   respond_to :html
 
   def index
-    @nodes = current_group.nodes.order('updated_at DESC').limit(20)
+    @nodes = current_group.nodes.reorder('updated_at DESC').limit(20)
   end
 
   def show
@@ -34,7 +34,7 @@ class NodesController < ApplicationController
     node.attributes = node_params
     node.save
     node.children.each_with_index do |n,i|
-      n.update_column(:position, i + 1)
+      n.update_columns(position: i + 1)
     end
     respond_with @node
   end

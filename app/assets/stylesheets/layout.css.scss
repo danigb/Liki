@@ -11,13 +11,18 @@ header {
   height: 40px;
   background-color: white;
   border-bottom: 1px solid #dbdad7;
+  color: #444;
+
+  .links {
+    margin-top: 11px;
+    a { padding: 0px 10px; font-size: 12px; }
+  }
 
   a.current {
     display: block;
     padding: 12px 17px;
     text-decoration: none;
     font-size: 14px;
-    color: #444;
 
     &:hover {
       background-color: #dcdbd7;
