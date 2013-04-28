@@ -1,4 +1,5 @@
 = div_for node, class: "child" do
+  div.counter = node.children_count
   - if node.title?
     h2.title == link_to_unless_current node.title, node
 

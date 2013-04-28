@@ -3,11 +3,20 @@
   
   .title { margin: 10px }
 
+  .counter { 
+    float: right; 
+    font-size: 13px;
+    color:  rgb(154, 148, 141);
+    padding: 5px;
+    border-left: 1px solid  rgb(219, 218, 215);
+    border-bottom: 1px solid  rgb(219, 218, 215);
+  }
+
   .node_image {
     display: block;
     float: left;
-    width: 40%;
-    margin: 0 5% 10px 5%;
+    width: 42%;
+    margin: 0 5% 10px 10px;
     img { width: 100%;}
   }
 
@@ -16,9 +25,11 @@
 
     .body {
       margin: 10px;
+      line-height: 1.5em;
+      font-weight: 300;
       font-size: 80%;
       color: #555;
-      p { margin: 3px 0; }
+      p { margin: 0px 0 10px 0; }
     }
   }
 }
