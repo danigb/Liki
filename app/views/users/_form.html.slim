@@ -1,0 +1,8 @@
+= simple_form_for @user do |form|
+  = form.input :name
+  = form.input :email
+  - if current_user.admin?
+    div.admin 
+      | Eres administradora, usa tus poderes con cuidado
+      = form.input :admin
+  = form.submit class: 'button'
