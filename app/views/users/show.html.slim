@@ -1,6 +1,8 @@
 = title @user.name
 
-ul
-  li= @user.email
-  li= link_to login_url(@member.auth_token),
-  login_url(@member.auth_token)
+p.property
+  label Email:
+  = @user.email
+
+- @user.members.each do |member|
+  | En #{member.group.name} #{login_url(member.auth_token)}

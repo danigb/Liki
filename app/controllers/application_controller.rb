@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_group
-    @current_group ||= Group.first
+    session[:group_id] ||= 2
+    @current_group ||= Group.find session[:group_id]
   end
 
   def current_user
