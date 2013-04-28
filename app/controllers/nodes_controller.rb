@@ -3,7 +3,7 @@ class NodesController < ApplicationController
   respond_to :html
 
   def index
-    redirect_to current_group.node
+    @nodes = current_group.nodes.order('updated_at DESC').limit(20)
   end
 
   def show
@@ -37,7 +37,6 @@ class NodesController < ApplicationController
   end
 
   def destroy
-    load_node
     node.destroy
     redirect_to node.parent ? node.parent : root_path
   end

@@ -12,7 +12,7 @@ describe NodeService do
     end
 
     it 'adds first line as title if separated from rest' do
-      node = NodeService.add_children("a\n\nb", parent, user)
+      node = NodeService.add_children("a\r\n\r\nb", parent, user)
       node.title.must_equal 'a'
       node.body.must_equal 'b'
     end

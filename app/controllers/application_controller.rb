@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protected
   def require_user
     if session[:user_id].blank?
-      redirect_to new_session_path
+      redirect_to login_path
     end
   end
 

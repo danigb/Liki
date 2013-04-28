@@ -1,0 +1,6 @@
+= title @user.name
+
+ul
+  li= @user.email
+  li= link_to login_url(@member.auth_token),
+  login_url(@member.auth_token)

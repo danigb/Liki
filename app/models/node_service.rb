@@ -2,14 +2,17 @@
 class NodeService
   def self.add_children(text, parent, user)
     return if text.blank?
-    attrs = { parent: parent, user: user }
-    lines = text.split /\n/
-    if lines.count > 2 && lines[1] == ''
-      attrs[:title] = lines[0]
-      attrs[:body] = lines[2..-1].join "\n"
+    Node.create( { parent: parent, user: user }.
+                merge(parse(text)))
+  end
+
+  def self.parse(text)
+    lines = text.lines.to_a
+    if lines.count > 2 && lines[1].blank? && lines[0].length < 50
+      { title: lines[0].gsub(/\r\n|\r|\n/, ''),
+        body: lines[2..-1].join("\n")}
     else
-      attrs[:body] = text
+      { body: text }
     end
-    Node.create(attrs)
   end
 end

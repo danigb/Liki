@@ -1,5 +1,5 @@
 Liki::Application.routes.draw do
-  root to: 'nodes#index'
+  root to: 'groups#show'
 
   concern :position do
     put :up, on: :member
@@ -10,6 +10,9 @@ Liki::Application.routes.draw do
     post :add_children, on: :member
   end
   resources :users, path: 'u'
-  resources :sessions, path: 'sesion'
+
+  get 'entrar(/:id)' => 'sessions#new', as: :login
+  get 'salir' => 'sessions#destroy', as: :logout
   get 'enter/:id', to: 'sessions#enter'
+  get 'visit/:id', to: 'sessions#visit'
 end
