@@ -5,7 +5,9 @@
 
   .node_image {
     display: block;
-    width: 100%;
+    float: left;
+    width: 40%;
+    margin: 0 5% 10px 5%;
     img { width: 100%;}
   }
 
@@ -35,11 +37,6 @@
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 3px 0px;
 
-  .node_image {
-    float: left;
-    width: 45%;
-    margin-right: 5%;
-  }
 }
 
 // TO REMOVE

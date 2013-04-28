@@ -7,6 +7,7 @@
 
 
 # RESOURCES
+rsync -auv deployer@pelicana.es:apps/LaPelicana/shared/system/* public/system/
 
 If you need to keep local changes in file which tracked by #git, just do:
 git update-index --skip-worktree config/database.yml
