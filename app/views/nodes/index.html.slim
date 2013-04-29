@@ -1,4 +1,3 @@
 = title 'Últimas actualizaciones'
 
-div.children = render partial: 'child', collection: @nodes, 
-  as: :node
+div.children.stream = render partial: 'node', collection: @nodes

@@ -58,6 +58,9 @@
 
 .root {
   .counter { display: none; }
+}
+
+.root, .stream {
   [data-action="up"] { display: none; }
   [data-action="down"] { display: none; }
 }
