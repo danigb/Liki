@@ -36,5 +36,17 @@ describe Node do
     node.slug.must_equal nil
     node.to_param.must_equal node.id.to_s
   end
+
+  describe 'mentions' do
+    it 'have mentions' do
+      a = create(:node)
+      b = create(:node)
+      m = Mention.mention(a, b)
+      a.mentions.must_include m
+      b.mentioned.must_include m
+      a.mentioned_nodes.must_include b
+      b.mentioned_by_nodes.must_include a
+    end
+  end
 end
 

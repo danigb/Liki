@@ -3,6 +3,12 @@ class Node < ActiveRecord::Base
   belongs_to :group
   belongs_to :parent, class_name: 'Node', counter_cache: :children_count
   has_many :children, -> { order 'position ASC' }, foreign_key: 'parent_id', class_name: 'Node'
+  has_many :mentioned, foreign_key: 'to_id', class_name: 'Mention'
+  has_many :mentions, foreign_key: 'from_id'
+  has_many :mentioned_nodes, class_name: 'Node', through: :mentions,
+    source: :to
+  has_many :mentioned_by_nodes, class_name: 'Node', through: :mentioned,
+    source: :from
 
   validates_presence_of :user_id, :group_id
 

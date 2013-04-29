@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130426214007) do
+ActiveRecord::Schema.define(version: 20130428234020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,19 +44,30 @@ ActiveRecord::Schema.define(version: 20130426214007) do
   add_index "members", ["node_id"], name: "index_members_on_node_id"
   add_index "members", ["user_id"], name: "index_members_on_user_id"
 
+  create_table "mentions", force: true do |t|
+    t.integer "from_id"
+    t.integer "to_id"
+  end
+
+  add_index "mentions", ["from_id"], name: "index_mentions_on_from_id"
+  add_index "mentions", ["to_id"], name: "index_mentions_on_to_id"
+
   create_table "nodes", force: true do |t|
-    t.string   "title",          limit: 300
-    t.string   "slug",           limit: 300
-    t.string   "link_url",       limit: 500
-    t.string   "image",          limit: 300
+    t.string   "title",           limit: 300
+    t.string   "slug",            limit: 300
+    t.string   "link_url",        limit: 500
+    t.string   "image",           limit: 300
     t.text     "body"
     t.integer  "user_id"
     t.integer  "group_id"
     t.integer  "parent_id"
     t.integer  "position"
-    t.integer  "children_count",             default: 0
+    t.integer  "children_count",              default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "mentions_solved",             default: false
+    t.integer  "mentioned_count",             default: 0
+    t.integer  "mentions_count",              default: 0
   end
 
   add_index "nodes", ["group_id", "parent_id"], name: "index_nodes_on_group_id_and_parent_id"

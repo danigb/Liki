@@ -1,20 +1,11 @@
 - title @node.title
 = link_to raw("&larr; Volver a '#{@node.parent.title}'"), @node.parent if @node.parent
 
-div.node_info: div.actions
-  =' link_to 'Editar', [:edit, @node]
-  = link_to 'Borrar', @node, method: :delete,
-    data: { confirm: "¿Quieres borrar '#{@node.title}'?" }
-= div_for @node, class: 'deep-1' do
-  h1.title = @node.title
-  div.content
-    - if @node.image?
-      div.node_image = image_tag(@node.image.url)
-    - if @node.body?
-      div.body = simple_format(@node.body)
+div.root
+  = render 'node', node: @node
 
-div class="children"
-  = render partial: 'child', collection: @node.children, as: :node
+div.children
+  = render partial: 'node', collection: @node.children
 
 
 div.add_new = link_to 'Añadir', '#', data: { action: 'add_children' }

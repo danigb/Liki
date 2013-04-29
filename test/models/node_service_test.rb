@@ -16,6 +16,31 @@ describe NodeService do
       node.title.must_equal 'a'
       node.body.must_equal 'b'
     end
+  end
 
+  describe 'update mentions' do
+    it 'update mentions' do
+      u = create(:node, title: 'uno')
+      uu = create(:node, title: 'uno-uno')
+      node = create(:node, body: 'Esto es #Uno, #Dos y #UnoUno')
+      NodeService.update_mentions(node)
+      node.mentions.count.must_equal 2
+      node.mentioned_nodes.must_include u
+      node.mentioned_nodes.must_include uu
+      node.mentions_solved.must_equal false
+      d = create(:node, title: 'dos')
+      NodeService.update_mentions(node)
+      node.mentions.count.must_equal 3
+      node.mentions_solved.must_equal true
+    end
+  end
+
+  describe 'extract mentions' do
+    it 'extract mentions' do
+      mentions = NodeService.extract_mentions('A is #FirstLetter of @Alphabet.')
+      mentions.count.must_equal 2
+      mentions[0].must_equal '#FirstLetter'
+      mentions[1].must_equal '@Alphabet'
+    end
   end
 end

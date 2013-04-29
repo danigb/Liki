@@ -15,4 +15,21 @@ class NodeService
       { body: text }
     end
   end
+
+  def self.update_mentions(node)
+    node.mentions.destroy_all
+    extracted = extract_mentions(node.body)
+    extracted.each do |name|
+      slug = name[1..-1].underscore.gsub(/_/, '-')
+      mentioned = Node.find_by_slug slug
+      Mention.mention(node, mentioned) if mentioned
+    end
+    node.update_columns(mentions_solved: true) if node.mentions.count == extracted.size
+  end
+
+  MENTIONS = /\s(?:#|@)[^\s^:^.^,^<^"^(^)]+/
+  def self.extract_mentions(text)
+    return [] if text.blank?
+    text.scan(MENTIONS).map &:lstrip
+  end
 end

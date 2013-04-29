@@ -33,9 +33,11 @@ class NodesController < ApplicationController
   def update
     node.attributes = node_params
     node.save
+    NodeService.update_mentions(node)
     node.children.each_with_index do |n,i|
       n.update_columns(position: i + 1)
     end
+    MentionWorker.perform_async
     respond_with @node
   end
 

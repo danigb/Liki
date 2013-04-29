@@ -1,4 +1,5 @@
-= div_for node, class: "child" do
+= div_for node do
+  a name="#{node.to_param}"
   div.counter = node.children_count
   - if node.title?
     h2.title == link_to_unless_current node.title, node
@@ -9,15 +10,24 @@
     - if node.body?
       div.body = simple_format(node.body)
 
+  - if node.mentioned_count > 0
+    div.mentioned_by
+      p 
+        ' Mencionado en: 
+        - node.mentioned_by_nodes.each do |mn|
+          =' link_to truncate(mn.title), mn, class: 'linkify'
+
 div.node_info
   ' Por #{link_to node.user.name, node.user} 
   ' el #{l node.created_at, format: :short} 
-  ' (#{node.position})
+  ' (#{node.position}/#{node.mentions_count}/#{node.mentioned_count})
 
   div.actions
     =' link_to 'Editar', [:edit, node]
     =' link_to 'Borrar', node, method: :delete,
       data: { confirm: "¿Quieres borrar '#{node.title}'?" }
-    =' link_to 'Subir', [:up, node], method: :put
-    =' link_to 'Bajar', [:down, node], method: :put
+    =' link_to 'Subir', [:up, node], 
+      method: :put, data: { action: 'up' }
+    =' link_to 'Bajar', [:down, node], 
+      method: :put, data: { action: 'down' }
 

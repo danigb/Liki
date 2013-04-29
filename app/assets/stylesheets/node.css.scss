@@ -32,6 +32,13 @@
       p { margin: 0px 0 10px 0; }
     }
   }
+
+  .mentioned_by {
+    font-size: 12px;
+    padding: 0px 10px;
+    border-top: 1px solid rgb(219, 218, 215);
+    color: rgb(154, 148, 141);
+  }
 }
 
 .node_info {
@@ -41,14 +48,20 @@
   .actions { float: right; }
 }
 
-.node.child {
+.children .node {
   margin: 25px 0 5px 0;
   border: 1px solid rgb(219, 218, 215);
   background-color: white;
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 3px 0px;
-
 }
+
+.root {
+  .counter { display: none; }
+  [data-action="up"] { display: none; }
+  [data-action="down"] { display: none; }
+}
+
 
 // TO REMOVE
 .add_new { font-size: 12px; margin-top: 20px; }

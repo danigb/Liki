@@ -7,6 +7,7 @@ FactoryGirl.define do
   end
 
   factory :node do
+    group
     user
     sequence(:title) {|n| "Title #{n}" }
   end
