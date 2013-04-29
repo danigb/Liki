@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.0.1'
+gem 'font-awesome-sass-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

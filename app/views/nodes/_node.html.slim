@@ -19,15 +19,15 @@
 
 div.node_info
   ' Por #{link_to node.user.name, node.user} 
-  ' el #{l node.created_at, format: :short} 
+  ' #{icon(:calendar) } #{l node.created_at, format: :short} 
   ' (#{node.position}/#{node.mentions_count}/#{node.mentioned_count})
 
   div.actions
     =' link_to 'Editar', [:edit, node]
-    =' link_to 'Borrar', node, method: :delete,
+    =' link_to icon(:trash), node, method: :delete,
       data: { confirm: "¿Quieres borrar '#{node.title}'?" }
-    =' link_to 'Subir', [:up, node], 
+    =' link_to icon('arrow-up'), [:up, node], 
       method: :put, data: { action: 'up' }
-    =' link_to 'Bajar', [:down, node], 
+    =' link_to icon('arrow-down'), [:down, node], 
       method: :put, data: { action: 'down' }
 
