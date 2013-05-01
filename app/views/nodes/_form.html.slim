@@ -20,9 +20,12 @@
       = form.input :remove_image, as: :boolean
       = form.input :remove_document, as: :boolean
 
+      div.input.text
+        label Mover a:
+        = text_field_tag :move_to_parent_id
+
       div.input.boolean
         = check_box_tag :reorder
         label Reordenar
 
-      = form.input :parent_id
   = form.submit 'Guardar', class: 'button'
