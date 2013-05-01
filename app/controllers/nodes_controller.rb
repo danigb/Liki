@@ -81,8 +81,9 @@ class NodesController < ApplicationController
   end
 
   def node_params
-    params.require(:node).permit(:title, :link_url, 
-                                 :body, :image,
+    params.require(:node).permit(:title, :body,
+                                 :document, :image,
+                                 :remove_image, :remove_document,
                                  :parent_id)
   end
 end

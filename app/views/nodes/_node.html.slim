@@ -9,6 +9,8 @@
       div.node_image = image_tag node.image.url
     - if node.body?
       div.body = format_body(node.body)
+      = link_to(icon('download', File.basename(node.document.url)), 
+        node.document.url) if node.document?
 
   - if node.mentioned_count > 0
     div.mentioned_by

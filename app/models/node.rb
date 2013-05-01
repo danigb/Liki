@@ -16,6 +16,7 @@ class Node < ActiveRecord::Base
   include FriendlyId
   friendly_id :title, use: :scoped, scope: :group
   mount_uploader :image, ImageUploader
+  mount_uploader :document, DocumentUploader
 
   before_validation :set_group_id
 

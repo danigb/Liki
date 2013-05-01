@@ -17,6 +17,9 @@
         responsabilidad.
       p Si no sabes qué poner aquí, déjalo como está.
 
+      = form.input :remove_image, as: :boolean
+      = form.input :remove_document, as: :boolean
+
       div.input.boolean
         = check_box_tag :reorder
         label Reordenar
