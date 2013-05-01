@@ -1,3 +1,6 @@
-= title 'Últimas actualizaciones'
+- title 'Últimas actualizaciones'
+div.node 
+  = link_to icon('arrow-up', current_group.name), current_group.node
+  h1 = icon(:rss, 'Últimas actualizaciones')
 
 div.children.stream = render partial: 'node', collection: @nodes

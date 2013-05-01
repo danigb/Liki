@@ -1,5 +1,9 @@
 
 class NodeService
+  def self.move_to(node, parent_id)
+    parent_id = nil if parent_id == -1
+    node.update_attributes(parent_id: parent_id)
+  end
   def self.reorder_children(node)
     node.children.each_with_index do |n,i|
       n.update_columns(position: i + 1)
