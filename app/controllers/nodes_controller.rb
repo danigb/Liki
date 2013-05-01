@@ -2,6 +2,14 @@ class NodesController < ApplicationController
   before_filter :require_user
   respond_to :html
 
+  def search
+    @query = params[:q] if params[:q].present? && params[:q].length > 2
+    nodes = current_group.nodes
+    @query.present? ? 
+      @nodes = nodes.where(Node.arel_table[:title].matches("%#{@query}%")) :
+      @nodes = nodes.where('1 = 0')
+  end
+
   def index
     @nodes = current_group.nodes.reorder('updated_at DESC').limit(20)
   end

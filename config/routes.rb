@@ -11,6 +11,9 @@ Liki::Application.routes.draw do
   end
   resources :users, path: 'u'
 
+  get 'novedades' => 'nodes#index', as: :recent
+  get 'buscar' => 'nodes#search', as: :search
+
   get 'entrar(/:id)' => 'sessions#new', as: :login
   get 'salir' => 'sessions#destroy', as: :logout
   get 'enter/:id', to: 'sessions#enter', as: :enter

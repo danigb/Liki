@@ -1,7 +1,12 @@
 
-#main {
-  max-width: 640px;
-  margin: 80px auto;
+@media only screen and (min-device-width: 800px) {
+  #main {
+    max-width: 640px;
+    margin: 80px auto;
+  }
+}
+@media only screen and (max-device-width: 800px) {
+  #main { margin: 80px 10px; }
 }
 
 header {
@@ -14,8 +19,16 @@ header {
   color: #444;
 
   .links {
-    margin-top: 11px;
-    a { padding: 0px 10px; font-size: 12px; }
+    float: left;
+    margin-top: 10px;
+    a { 
+      display: block; float: left;
+      i { font-size: 18px; }
+      padding: 0px 0px 0px 10px;
+      font-size: 12px; 
+    }
+
+    form { float: left; width: 200px; margin-top: -3px; }
   }
 
   a.current {
@@ -40,10 +53,13 @@ header {
 }
 
 .alert {
-  border: 1px solid #00529B;
-  background-color: #BDE5F8; 
   border-radius: 5px;
   padding: 10px;
+
+  &.info {
+    border: 1px solid #00529B;
+    background-color: #BDE5F8; 
+  }
 
   p {
     margin: 3px 0;
