@@ -31,4 +31,11 @@ form {
   textarea {
     height: 6em; 
   }
+
+  .form_extra {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  .hidden_input { display: none; }
 }

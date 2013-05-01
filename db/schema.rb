@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130428234020) do
+ActiveRecord::Schema.define(version: 20130501210646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20130428234020) do
   create_table "nodes", force: true do |t|
     t.string   "title",           limit: 300
     t.string   "slug",            limit: 300
-    t.string   "link_url",        limit: 500
     t.string   "image",           limit: 300
     t.text     "body"
     t.integer  "user_id"
@@ -68,6 +67,7 @@ ActiveRecord::Schema.define(version: 20130428234020) do
     t.boolean  "mentions_solved",             default: false
     t.integer  "mentioned_count",             default: 0
     t.integer  "mentions_count",              default: 0
+    t.string   "document",        limit: 300
   end
 
   add_index "nodes", ["group_id", "parent_id"], name: "index_nodes_on_group_id_and_parent_id"

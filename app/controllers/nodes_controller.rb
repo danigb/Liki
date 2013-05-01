@@ -28,6 +28,10 @@ class NodesController < ApplicationController
     end
   end
 
+  def new
+    @node = Node.new
+  end
+
   def edit
     respond_with node
   end

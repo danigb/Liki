@@ -8,8 +8,10 @@ div.children
   = render partial: 'node', collection: @node.children
 
 
-div.add_new = link_to 'Añadir', '#', data: { action: 'add_children' }
+div.add_new = link_to 'Añadir', '#', data: { action: 'add_children',
+  toggle: 'add_children' }
 div class="add_children" style="display: none"
+  h4 Añadir a '#{@node.title}'
   = form_tag add_children_node_path(@node)  do
     = hidden_field_tag :parent_id, @node.id
     = text_area_tag :text

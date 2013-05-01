@@ -1,4 +1,8 @@
-div class="alert error"
-  | La página '#{@title}' no existe. ¿Quieres crearla?
+- title 'Añadir página'
+div
+  - if @title.present?
+    h1 La página '#{@title}' no existe. ¿Quieres crearla?
+  - else
+    h1 Añadir página
 
 = render 'form'

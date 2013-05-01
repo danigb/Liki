@@ -1,10 +1,18 @@
 = simple_form_for @node do |form|
   = form.input :title
-  = form.input :link_url
   = form.input :body
-  = form.input :image
+  = form.input(:parent_id, collection: current_group.node.children)
+  div.form_extra
+    =' link_to icon('camera-retro', 'Añadir imágen'), '#', data: { toggle: 'add_image' } 
+    = link_to icon('paper-clip', 'Añadir pdf'), '#', data: { toggle: 'add_document' } 
+  div.add_image.hidden_input
+    = form.input :image
+  div.add_document.hidden_input
+    = form.input :document
   - if current_user.admin?
-    div.alert
+    div.form_extra
+      = link_to(icon('wrench', 'Más...'), '#', data: { toggle: 'admin' })
+    div.alert.admin.hidden_input
       p Eres administradora. Un gran poder exige una gran
         responsabilidad.
       p Si no sabes qué poner aquí, déjalo como está.

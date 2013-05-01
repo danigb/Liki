@@ -16,6 +16,8 @@ gem 'acts_as_list'
 gem 'carrierwave'
 gem 'mime-types'
 gem "mini_magick"
+gem 'rinku'
+#gem 'postrank-uri'
 
 # VIEWS
 gem 'slim'

@@ -8,7 +8,7 @@
     - if node.image?
       div.node_image = image_tag node.image.url
     - if node.body?
-      div.body = simple_format(node.body)
+      div.body = format_body(node.body)
 
   - if node.mentioned_count > 0
     div.mentioned_by

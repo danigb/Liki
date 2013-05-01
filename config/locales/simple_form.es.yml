@@ -11,11 +11,6 @@ es:
     error_notification:
       default_message: "Some errors were found, please take a look:"
 
-    labels:
-      node:
-        title: 'Título'
-        body: 'Texto'
-        parent_id: 'En...'
-        image: 'Añadir imágen'
-        document: 'Añadir pdf'
+  default:
+    title: 'Título'
 

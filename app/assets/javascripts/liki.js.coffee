@@ -1,5 +1,7 @@
-$(document). on 'click', 'a[data-action=add_children]', ->
-  $('div.add_children').show()
+$(document). on 'click', 'a[data-toggle]', ->
+  css_class = $(this).data('toggle')
+  $("div.#{css_class}").show()
+  $(this).hide()
   false
 
 mentions = /\s@([^\s^:^.^,^<^"^)^(]+)/g
