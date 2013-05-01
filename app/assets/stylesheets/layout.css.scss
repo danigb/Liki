@@ -1,6 +1,6 @@
 
 #main {
-  width: 580px;
+  max-width: 640px;
   margin: 80px auto;
 }
 
@@ -36,5 +36,17 @@ header {
   .current.user {
     float: right;
     border-left: 1px solid #dbdad7;
+  }
+}
+
+.alert {
+  border: 1px solid #00529B;
+  background-color: #BDE5F8; 
+  border-radius: 5px;
+  padding: 10px;
+
+  p {
+    margin: 3px 0;
+    font-size: 12px;
   }
 }

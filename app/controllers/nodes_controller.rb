@@ -36,7 +36,7 @@ class NodesController < ApplicationController
   def update
     node.attributes = node_params
     node.save
-    NodeService.reorder_children(node)
+    NodeService.reorder_children(node) if params[:reorder]
     NodeService.update_mentions(node)
     MentionWorker.perform_async
     respond_with @node
@@ -47,7 +47,8 @@ class NodesController < ApplicationController
     redirect_to node.parent ? node.parent : root_path
   end
 
-  def up node.move_higher
+  def up 
+    node.move_higher
     redirect_to node.parent
   end 
 

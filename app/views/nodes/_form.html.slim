@@ -4,7 +4,14 @@
   = form.input :body
   = form.input :image
   - if current_user.admin?
-    | Eres administradora. Un gran poder exige una gran responsabilidad
-    | Si no sabes qué poner aquí, déjalo como está.
-    = form.input :parent_id
+    div.alert
+      p Eres administradora. Un gran poder exige una gran
+        responsabilidad.
+      p Si no sabes qué poner aquí, déjalo como está.
+
+      div.input.boolean
+        = check_box_tag :reorder
+        label Reordenar
+
+      = form.input :parent_id
   = form.submit 'Guardar', class: 'button'

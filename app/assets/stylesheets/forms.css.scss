@@ -10,6 +10,13 @@ form {
     }
   }
 
+  div.input.boolean {
+    input {
+      float: left;
+      margin-right: 5px;
+    }
+  }
+
   input[type=text], input[type=url], textarea {
     font-size: 12px;
     width: 100%;
