@@ -1,5 +1,11 @@
 
 class NodeService
+  def self.reorder_children(node)
+    node.children.each_with_index do |n,i|
+      n.update_columns(position: i + 1)
+    end
+  end
+
   def self.add_children(text, parent, user)
     return if text.blank?
     Node.create( { parent: parent, user: user }.

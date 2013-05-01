@@ -7,8 +7,11 @@ class NodesController < ApplicationController
   end
 
   def show
-    @node = Node.find_by_slug(params[:id])
-    if @node
+    if params[:id] =~ /^\d+$/
+      @node = Node.find(params[:id])
+      @node.parent ? redirect_to(@node.parent) : 
+        respond_with(@node)
+    elsif @node = Node.find_by_slug(params[:id])
       respond_with @node
     else
       @title = params[:id].camelcase.gsub /-/, ' '
@@ -33,10 +36,8 @@ class NodesController < ApplicationController
   def update
     node.attributes = node_params
     node.save
+    NodeService.reorder_children(node)
     NodeService.update_mentions(node)
-    node.children.each_with_index do |n,i|
-      n.update_columns(position: i + 1)
-    end
     MentionWorker.perform_async
     respond_with @node
   end
@@ -46,8 +47,7 @@ class NodesController < ApplicationController
     redirect_to node.parent ? node.parent : root_path
   end
 
-  def up
-    node.move_higher
+  def up node.move_higher
     redirect_to node.parent
   end 
 
@@ -68,7 +68,8 @@ class NodesController < ApplicationController
   end
 
   def node_params
-    params.require(:node).permit(:title, :link_url, :body, :image,
+    params.require(:node).permit(:title, :link_url, 
+                                 :body, :image,
                                  :parent_id)
   end
 end

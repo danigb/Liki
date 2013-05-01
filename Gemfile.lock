@@ -43,7 +43,7 @@ GEM
       uniform_notifier
     cane (2.5.2)
       parallel
-    capistrano (2.15.3)
+    capistrano (2.15.4)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)

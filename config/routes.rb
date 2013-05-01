@@ -13,6 +13,6 @@ Liki::Application.routes.draw do
 
   get 'entrar(/:id)' => 'sessions#new', as: :login
   get 'salir' => 'sessions#destroy', as: :logout
-  get 'enter/:id', to: 'sessions#enter'
-  get 'visit/:id', to: 'sessions#visit'
+  get 'enter/:id', to: 'sessions#enter', as: :enter
+  get 'visit/:id', to: 'sessions#visit', as: :visit
 end

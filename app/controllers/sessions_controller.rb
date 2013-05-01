@@ -2,16 +2,16 @@ class SessionsController < ApplicationController
   def new
     m = Member.find_by_auth_token(params[:id])
     if m 
-      session[:user_id] = m.user.id
       session[:group_id] = m.group.id
       m.update_attributes(last_login_at: Time.now, 
                                login_count: m.login_count + 1)
+      self.current_user = m.user.id
       redirect_to root_path
     end
   end
 
   def enter
-    session[:user_id] = params[:id]
+    self.current_user = params[:id]
     redirect_to root_path
   end
 
