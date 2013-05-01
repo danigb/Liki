@@ -1,35 +1,38 @@
 = div_for node do
-  a name="#{node.to_param}"
-  div.counter = node.children_count
-  - if node.title?
-    h2.title == link_to_unless_current node.title, node
+  div.parent = link_to(icon('arrow-up', "En '#{node.parent.title}'"), 
+    node.parent) if node.parent
+  div.node_main
+    a name="#{node.to_param}"
+    div.counter = node.children_count
+    - if node.title?
+      h2.title == link_to_unless_current node.title, node
 
-  div.content
-    - if node.image?
-      div.node_image = image_tag node.image.url
-    - if node.body?
-      div.body = format_body(node.body)
-      = link_to(icon('download', File.basename(node.document.url)), 
-        node.document.url) if node.document?
+    div.content
+      - if node.image?
+        div.node_image = image_tag node.image.url
+      - if node.body?
+        div.body = format_body(node.body)
+        = link_to(icon('download', File.basename(node.document.url)), 
+          node.document.url) if node.document?
 
-  - if node.mentioned_count > 0
-    div.mentioned_by
-      p 
-        ' Mencionado en: 
-        - node.mentioned_by_nodes.each do |mn|
-          =' link_to truncate(mn.title), mn, class: 'linkify'
+    - if node.mentioned_count > 0
+      div.mentioned_by
+        p 
+          ' Mencionado en: 
+          - node.mentioned_by_nodes.each do |mn|
+            =' link_to truncate(mn.title), mn, class: 'linkify'
 
-div.node_info
-  ' Por #{link_to node.user.name, node.user} 
-  ' #{icon(:calendar) } #{l node.created_at, format: :short} 
-  ' (#{node.position}/#{node.mentions_count}/#{node.mentioned_count})
+  div.node_info
+    ' Por #{link_to node.user.name, node.user} 
+    ' #{icon(:calendar) } #{l node.created_at, format: :short} 
+    ' (#{node.position}/#{node.mentions_count}/#{node.mentioned_count})
 
-  div.actions
-    =' link_to 'Editar', [:edit, node]
-    =' link_to icon(:trash), node, method: :delete,
-      data: { confirm: "¿Quieres borrar '#{node.title}'?" }
-    =' link_to icon('arrow-up'), [:up, node], 
-      method: :put, data: { action: 'up' }
-    =' link_to icon('arrow-down'), [:down, node], 
-      method: :put, data: { action: 'down' }
+    div.actions
+      =' link_to 'Editar', [:edit, node]
+      =' link_to icon(:trash), node, method: :delete,
+        data: { confirm: "¿Quieres borrar '#{node.title}'?" }
+      =' link_to icon('arrow-up'), [:up, node], 
+        method: :put, data: { action: 'up' }
+      =' link_to icon('arrow-down'), [:down, node], 
+        method: :put, data: { action: 'down' }
 

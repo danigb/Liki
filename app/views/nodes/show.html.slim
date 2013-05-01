@@ -1,10 +1,9 @@
 - title @node.title
-= link_to raw("&larr; Volver a '#{@node.parent.title}'"), @node.parent if @node.parent
 
 div.root
   = render 'node', node: @node
 
-div.children
+div class="children #{@node.style}"
   = render partial: 'node', collection: @node.children
 
 

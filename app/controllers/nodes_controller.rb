@@ -49,6 +49,7 @@ class NodesController < ApplicationController
     node.attributes = node_params
     node.save
     NodeService.reorder_children(node) if params[:reorder]
+    node.update_attributes(parent_id: params[:move_to_parent_id]) if params[:move_to_parent_id]
     NodeService.update_mentions(node)
     MentionWorker.perform_async
     respond_with @node
@@ -81,7 +82,7 @@ class NodesController < ApplicationController
   end
 
   def node_params
-    params.require(:node).permit(:title, :body,
+    params.require(:node).permit(:title, :body, :style,
                                  :document, :image,
                                  :remove_image, :remove_document,
                                  :parent_id)
