@@ -20,6 +20,14 @@ class Node < ActiveRecord::Base
 
   before_validation :set_group_id
 
+  def admin
+    @admin ||= AdminNode.new(self)
+  end
+
+  def mentioner
+    @mentioner ||= Mentioner.new(self)
+  end
+
   def profile?
     group.member(self.user).node_id == self.id
   end

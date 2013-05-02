@@ -64,9 +64,12 @@ class NodesController < ApplicationController
   def update
     node.attributes = node_params
     node.save
-    NodeService.reorder_children(node) if params[:reorder].present?
-    NodeService.move_to(node, params[:move_to_parent_id]) if params[:move_to_parent_id].present?
-    NodeService.update_mentions(node)
+    node.admin.reorder_children(node) if params[:reorder].present?
+    if params[:move_to_parent_id].present?
+      parent = Node.find params[:move_to_parent_id]
+      node.admin.move_to(parent)
+    end
+    node.mentioner.update_mentions
     MentionWorker.perform_async
     respond_with @node
   end

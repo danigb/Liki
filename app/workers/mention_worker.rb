@@ -3,7 +3,7 @@ class MentionWorker
 
   def perform
     Node.where(mentions_solved: false).find_each do |node|
-      NodeService.update_mentions(node)
+      node.mentioner.update_mentions
     end
   end
 end
