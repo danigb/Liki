@@ -1,6 +1,9 @@
 div.node
   - if @member
     = title 'Invitación enviada'
+    p Deberías tener en tu bandeja de entrada de tu correo
+      (#{@member.user.email}) un mensaje con un enlace.
+    p Pulsando en el enlace de ese mensaje entrarás en esta web.
   - else
     = title 'No tienes invitación'
     p Lo siento, no hemos encontrado ninguna invitación para ese email

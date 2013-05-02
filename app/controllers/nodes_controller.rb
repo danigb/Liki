@@ -12,9 +12,13 @@ class NodesController < ApplicationController
 
   def map
     all = current_group.nodes.where('title IS NOT NULL')
-    mentions = Mention.scoped
+    mentions = Mention.all
     ms = mentions.map do |mention|
-      [mention.from.title, mention.to.title, {color: '#EDC951'}]
+      if mention.from.blank? || mention.to.blank?
+        mention.destroy
+      else
+        [mention.from.title, mention.to.title, {color: '#EDC951'}] 
+      end
     end
     titles = all.map &:title
     all.each do |node|

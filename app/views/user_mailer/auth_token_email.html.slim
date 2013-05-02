@@ -1,6 +1,13 @@
 h1 Enlace para entrar a #{@group.name}
 
-p ¡Hola #{@user.name}!, has sido invitadx a participar en #{@group.name}
-p 
-  | Para entrar pulsa 
+p ¡Hola #{@user.name}!, has sido invitada/o a participar en el wiki de #{@group.name}
+p Esta wiki es accesible sólo mediante invitación 
+  (es decir, mediante este email). Eso quiere decir que toda
+  la información que contega será accesible sólo a lxs invitadxs y 
+  nunca aparecerá en google u otros buscadores.
+h3 
+  | Para acceder pulsa 
   = link_to 'este enlace', login_url(@member.auth_token)
+
+p Si has recibido este email por error, ignórarlo o escribe a
+  lapelicanacrianza@gmail.com
