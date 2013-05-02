@@ -18,7 +18,7 @@ class NodesController < ApplicationController
     end
     titles = all.map &:title
     all.each do |node|
-        ms << [node.parent.title, node.title, {color: '#CC333F'}] if node.parent
+      ms << [node.parent.title, node.title, {color: '#CC333F'}] if node.parent
     end
     @data = Jbuilder.encode do |json|
       json.nodes titles
@@ -86,12 +86,6 @@ class NodesController < ApplicationController
     redirect_to node.parent
   end
 
-  def add_children
-    @parent = current_group.nodes.find(params[:parent_id])
-    NodeService.add_children(params[:text], @parent, current_user)
-    redirect_to @parent
-  end
-
   private
   def node
     @node ||= current_group.nodes.find(params[:id])
@@ -99,7 +93,7 @@ class NodesController < ApplicationController
 
   def node_params
     params.require(:node).permit(:title, :body, :style,
-                                 :document, :image,
+                                 :document, :image, :subtitle,
                                  :remove_image, :remove_document,
                                  :parent_id)
   end

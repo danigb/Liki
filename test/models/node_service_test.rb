@@ -33,6 +33,11 @@ describe NodeService do
       node.mentions.count.must_equal 3
       node.mentions_solved.must_equal true
     end
+
+    it 'add mentions from subtitle' do
+      u = create(:node, title: 'uno')
+      node = create(:node, subtitle: 'Esto es #uno')
+    end
   end
 
   describe 'extract mentions' do

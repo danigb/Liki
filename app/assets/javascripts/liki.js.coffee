@@ -7,7 +7,7 @@ $(document). on 'click', 'a[data-toggle]', ->
 mentions = /\s@([^\s^:^.^,^<^"^)^(]+)/g
 hashtag = /\s#([^\s^:^.^,^<^"^(^)]+)/g
 linkify = ->
-  $('.body').each ->
+  $('.hashtags').each ->
     html = $(this).html()
     html = html.replace hashtag, replacer
     html = html.replace mentions, replacer

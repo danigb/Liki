@@ -1,7 +1,8 @@
-= simple_form_for @node do |form|
+= simple_form_for node do |form|
   = form.input :title
+  = form.input :subtitle
   = form.input :body
-  = form.input(:parent_id, collection: current_group.node.children) if @node.parent_id.blank?
+  = form.input(:parent_id, collection: current_group.node.children) if node.parent_id.blank?
   div.form_extra
     =' link_to icon('camera-retro', 'Añadir imágen'), '#', data: { toggle: 'add_image' } 
     = link_to icon('paper-clip', 'Añadir pdf'), '#', data: { toggle: 'add_document' } 
@@ -24,8 +25,9 @@
       = form.input :remove_document, as: :boolean
 
       div.input.text
-        - if @node.parent
-          p Ahora está en: #{@node.parent.title} #{@node.parent.id}
+        - if node.parent
+          p Ahora está en: #{node.parent.title} #{node.parent.id}
+          = form.input :parent_id, as: :hidden
         label Mover a:
         = text_field_tag :move_to_parent_id
 

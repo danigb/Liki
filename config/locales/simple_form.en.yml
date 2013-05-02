@@ -14,6 +14,7 @@ es:
     labels:
       node:
         title: 'Título'
+        subtitle: 'Subtítulo'
         body: 'Texto'
         parent_id: 'En...'
         image: 'Añadir imágen'

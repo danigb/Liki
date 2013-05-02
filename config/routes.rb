@@ -6,9 +6,7 @@ Liki::Application.routes.draw do
     put :down, on: :member
   end
 
-  resources :nodes, concerns: :position, path: 'p' do
-    post :add_children, on: :member
-  end
+  resources :nodes, concerns: :position, path: 'p'
   resources :users, path: 'u'
 
   get 'novedades' => 'nodes#index', as: :recent

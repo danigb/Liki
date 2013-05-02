@@ -3,10 +3,12 @@
   div.node_main
     a name="#{node.to_param}"
     div.counter = node.children_count
-    - if node.profile?
-      h2.title == link_to_unless_current icon(:user, node.title), node
-    - elsif node.title?
-      h2.title == link_to_unless_current node.title, node
+    div.title
+      - if node.profile?
+        h2 == link_to_unless_current icon(:user, node.title), node
+      - elsif node.title?
+        h2 == link_to_unless_current node.title, node
+      = content_tag(:h4, node.subtitle, class: 'hashtags') if node.subtitle?
 
     div.content
       div class="node_image #{node.style} #{'no-' unless node.image?}image"
@@ -16,7 +18,7 @@
           img src="http://cambelt.co/320x320/Foto"
       
       - if node.body?
-        div.body = format_body(node.body)
+        div.body.hashtags = format_body(node.body)
         = link_to(icon('download', File.basename(node.document.url)), node.document.url) if node.document?
 
     - if node.mentioned_count > 0
@@ -33,7 +35,7 @@
     span.mentions_solved  #{'*' unless node.mentions_solved}
 
     div.actions
-      =' link_to 'Editar', [:edit, node]
+      =' link_to icon(:pencil, 'Editar'), [:edit, node]
       =' link_to icon(:trash), node, method: :delete, data: { confirm: "¿Quieres borrar '#{node.title}'?" }
       =' link_to icon('arrow-up'), [:up, node], method: :put, data: { action: 'up' }
       =' link_to icon('arrow-down'), [:down, node], method: :put, data: { action: 'down' }

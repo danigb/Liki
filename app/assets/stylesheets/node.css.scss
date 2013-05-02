@@ -2,7 +2,10 @@
   margin: 10px auto 30px auto;
   max-width: 640px;
   
-  .title { margin: 10px }
+  .title { 
+    margin: 10px;
+    h4 { margin: -15px 0 0 0; }
+  }
 
   .counter { 
     float: right; 
