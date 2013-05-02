@@ -3,7 +3,9 @@
   div.node_main
     a name="#{node.to_param}"
     div.counter = node.children_count
-    - if node.title?
+    - if node.profile?
+      h2.title == link_to_unless_current icon(:user, node.title), node
+    - elsif node.title?
       h2.title == link_to_unless_current node.title, node
 
     div.content
@@ -18,7 +20,7 @@
         = link_to(icon('download', File.basename(node.document.url)), node.document.url) if node.document?
 
     - if node.mentioned_count > 0
-      div.mentioned_by
+      div.node_extra.mentioned_by
         p 
           ' Mencionado en: 
           - node.mentioned_by_nodes.each do |mn|

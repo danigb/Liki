@@ -20,6 +20,10 @@ class Node < ActiveRecord::Base
 
   before_validation :set_group_id
 
+  def profile?
+    group.member(self.user).node_id == self.id
+  end
+
   protected
   def set_group_id
     self.group_id = self.parent.group_id if self.parent

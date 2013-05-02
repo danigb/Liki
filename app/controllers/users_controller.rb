@@ -11,9 +11,22 @@ class UsersController < ApplicationController
     respond_with user
   end
 
+  def new
+    @user = User.new
+    respond_with @user
+  end
+
   def update
     user.attributes = user_params
     user.save
+    respond_with user
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      Member.create(group: current_group, user: @user)
+    end
     respond_with user
   end
 
