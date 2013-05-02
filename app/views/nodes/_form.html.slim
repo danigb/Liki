@@ -31,8 +31,11 @@
         label Mover a:
         = text_field_tag :move_to_parent_id
 
-      div.input.boolean
-        = check_box_tag :reorder
-        label Reordenar
+      div.input.text
+        label Owner:
+        = text_field_tag :change_owner
+
+      = boolean_input(:reorder, 'Reordenar')
+      = boolean_input(:reorder_alphabetically, 'Reordenar alfabéticamente')
 
   = form.submit 'Guardar', class: 'button'

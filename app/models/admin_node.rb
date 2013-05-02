@@ -17,8 +17,14 @@ class AdminNode
     end
   end
 
+  def reorder_alphabetically
+    @node.children.reorder('title ASC').each_with_index do |n,i|
+      n.update_columns(position: i + 1)
+    end
+  end
+
   def change_owner(owner_id)
-    user = User.find(owner_id)
+    user = User.find(owner_id.parameterize)
     @node.update_attributes(user_id: user.id)
   end
 end

@@ -13,6 +13,16 @@ describe AdminNode do
     c.position.must_equal 2
   end
 
+  it 'reorder alphabetically' do
+    p = create(:node)
+    b = create(:node, title: 'b', parent: p)
+    a = create(:node, title: 'a', parent: p)
+    b.position.must_equal 1
+    p.admin.reorder_alphabetically
+    b.reload
+    b.position.must_equal 2
+  end
+
   it 'move item' do
     p1 = create(:node)
     a = create(:node, parent: p1)

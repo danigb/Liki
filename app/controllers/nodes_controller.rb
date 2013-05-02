@@ -66,8 +66,9 @@ class NodesController < ApplicationController
     node.save
     if current_user.admin?
       node.admin.reorder_children(node) if params[:reorder].present?
-      node.admin.move_to(parent) if params[:move_to_parent_id].present?
+      node.admin.move_to(params[:move_to_parent_id]) if params[:move_to_parent_id].present?
       node.admin.change_owner(params[:change_owner]) if params[:change_owner].present?
+      node.admin.reorder_alphabetically if params[:reorder_alphabetically].present?
     end
     node.mentioner.update_mentions
     MentionWorker.perform_async
