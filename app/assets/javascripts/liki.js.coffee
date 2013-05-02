@@ -19,7 +19,7 @@ replacer = (name) ->
   "&nbsp;<a class='linkify' href='/p/#{url}'>#{name}</a>"
 
 toUrl = (name) ->
-  name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+  removeDiacritics(name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase())
 
 $(document).ready linkify
 $(window).bind 'page:load', linkify

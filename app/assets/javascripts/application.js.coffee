@@ -3,5 +3,6 @@
 //= require turbolinks
 //= require springy
 //= require springyui
+//= require accents
 //= require liki
 //= require map
