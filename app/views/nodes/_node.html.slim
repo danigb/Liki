@@ -25,9 +25,10 @@
             =' link_to truncate(mn.title), mn, class: 'linkify'
 
   div.node_info
-    ' Por #{link_to node.user.name, node.user} 
-    ' #{icon(:calendar) } #{l node.created_at, format: :short} 
-    ' (#{node.position}/#{node.mentions_count}/#{node.mentioned_count})
+    span.user  Por #{link_to node.user.name, node.user} 
+    span.created_at  #{icon(:calendar) } #{l node.created_at, format: :short} 
+    span.stats (#{node.position}/#{node.mentions_count}/#{node.mentioned_count})
+    span.mentions_solved  #{'*' unless node.mentions_solved}
 
     div.actions
       =' link_to 'Editar', [:edit, node]

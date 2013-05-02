@@ -34,7 +34,7 @@ class NodeService
       mentioned = Node.find_by_slug slug
       Mention.mention(node, mentioned) if mentioned
     end
-    node.update_columns(mentions_solved: true) if node.mentions.count == extracted.size
+    node.update_columns(mentions_solved: node.mentions.count == extracted.size)
   end
 
   MENTIONS = /\s(?:#|@)[^\s^:^.^,^<^"^(^)]+/
