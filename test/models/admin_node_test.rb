@@ -17,10 +17,10 @@ describe AdminNode do
     p1 = create(:node)
     a = create(:node, parent: p1)
     b = create(:node, parent: p1)
-    p2 = create(:node)
+    p2 = create(:node, title: 'dos')
     c = create(:node, parent: p2)
 
-    a.admin.move_to(p2)
+    a.admin.move_to('dos')
     b.reload
     b.position.must_equal 1
     a.reload
@@ -28,4 +28,12 @@ describe AdminNode do
     a.position.must_equal 2
   end
 
+  it 'changes owner' do
+    p1 = create(:node)
+    u = create(:user)
+
+    p1.admin.change_owner(u.slug)
+    p1.reload
+    p1.user.must_equal u
+  end
 end

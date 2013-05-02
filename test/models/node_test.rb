@@ -41,7 +41,10 @@ describe Node do
     it 'can not delete if children' do
       p = create(:node)
       c = create(:node, parent: p)
-      p.destroy.must_equal false
+      p.reload
+      p.children.size.must_equal 1
+      p.destroy
+      p.destroyed?.must_equal false
     end
   end
 

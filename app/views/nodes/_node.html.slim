@@ -31,7 +31,7 @@
   div.node_info
     span.user  Por #{link_to node.user.name, node.user} 
     span.created_at  #{icon(:calendar) } #{l node.created_at, format: :short} 
-    span.stats (#{node.position}/#{node.mentions_count}/#{node.mentioned_count})
+    span.stats = "(#{node.position}/#{node.mentions_count}/#{node.mentioned_count})"
     span.mentions_solved  #{'*' unless node.mentions_solved}
 
     div.actions

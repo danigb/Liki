@@ -2,9 +2,11 @@ class Node < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
   belongs_to :parent, class_name: 'Node', counter_cache: :children_count
-  has_many :children, -> { order 'position ASC' }, foreign_key: 'parent_id', class_name: 'Node'
-  has_many :mentioned, foreign_key: 'to_id', class_name: 'Mention'
-  has_many :mentions, foreign_key: 'from_id'
+  has_many :children, -> { order 'position ASC' }, foreign_key: 'parent_id', 
+    class_name: 'Node', dependent: :restrict_with_exception
+  has_many :mentioned, foreign_key: 'to_id', class_name: 'Mention',
+    dependent: :delete_all
+  has_many :mentions, foreign_key: 'from_id', dependent: :delete_all
   has_many :mentioned_nodes, class_name: 'Node', through: :mentions,
     source: :to
   has_many :mentioned_by_nodes, class_name: 'Node', through: :mentioned,
@@ -29,7 +31,7 @@ class Node < ActiveRecord::Base
   end
 
   def profile?
-    group.member(self.user).node_id == self.id
+    group.member(self.user).try(:node_id) == self.id
   end
 
   protected

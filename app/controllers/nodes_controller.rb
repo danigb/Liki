@@ -64,10 +64,10 @@ class NodesController < ApplicationController
   def update
     node.attributes = node_params
     node.save
-    node.admin.reorder_children(node) if params[:reorder].present?
-    if params[:move_to_parent_id].present?
-      parent = Node.find params[:move_to_parent_id]
-      node.admin.move_to(parent)
+    if current_user.admin?
+      node.admin.reorder_children(node) if params[:reorder].present?
+      node.admin.move_to(parent) if params[:move_to_parent_id].present?
+      node.admin.change_owner(params[:change_owner]) if params[:change_owner].present?
     end
     node.mentioner.update_mentions
     MentionWorker.perform_async
