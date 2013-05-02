@@ -13,7 +13,7 @@
     border-bottom: 1px solid  rgb(219, 218, 215);
   }
 
-  .node_image {
+  .node_image.image, .node_image.profile {
     display: block;
     float: left;
     width: 42%;
