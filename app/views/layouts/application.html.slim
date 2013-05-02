@@ -17,7 +17,7 @@ html
       div.links 
         = link_to icon(:rss), recent_path
         = link_to icon(:plus), new_node_path
-        = link_to icon('map-marker'), root_path
+        = link_to icon('map-marker'), map_path
         = link_to icon(:search), search_path
         = form_tag search_path, method: :get do
           = text_field_tag :q

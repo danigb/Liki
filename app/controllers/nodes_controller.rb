@@ -7,7 +7,23 @@ class NodesController < ApplicationController
     nodes = current_group.nodes
     @query.present? ? 
       @nodes = nodes.where(Node.arel_table[:title].matches("%#{@query}%")) :
-      @nodes = nodes.where('1 = 0')
+    @nodes = nodes.where('1 = 0')
+  end
+
+  def map
+    all = current_group.nodes.where('title IS NOT NULL')
+    mentions = Mention.scoped
+    ms = mentions.map do |mention|
+      [mention.from.title, mention.to.title, {color: '#EDC951'}]
+    end
+    titles = all.map &:title
+    all.each do |node|
+        ms << [node.parent.title, node.title, {color: '#CC333F'}] if node.parent
+    end
+    @data = Jbuilder.encode do |json|
+      json.nodes titles
+      json.edges ms
+    end
   end
 
   def index
