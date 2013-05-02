@@ -10,7 +10,7 @@ class Group < ActiveRecord::Base
   after_create :create_group_node
 
   def member(user)
-    Member.where(group_id: self.id, user_id: user.id).first
+    Member.where(group_id: self.id, user_id: user.id).first if user
   end
 
   protected

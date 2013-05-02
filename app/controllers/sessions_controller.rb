@@ -25,4 +25,14 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def send_token
+    @user = User.find_by_email params[:email] if params[:email].present?
+    @member = current_group.member(@user)
+    if @member
+      @member.generate_auth_token
+      @member.save
+      UserMailer.auth_token_email(@member).deliver
+    end
+  end
+
 end

@@ -1,0 +1,6 @@
+h1 Enlace para entrar a #{@group.name}
+
+p ¡Hola #{@user.name}!, has sido invitadx a participar en #{@group.name}
+p 
+  | Para entrar pulsa 
+  = link_to 'este enlace', login_url(@member.auth_token)

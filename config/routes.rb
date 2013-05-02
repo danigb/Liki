@@ -8,6 +8,7 @@ Liki::Application.routes.draw do
 
   resources :nodes, concerns: :position, path: 'p'
   resources :users, path: 'u'
+  resources :members, path: 'm'
 
   get 'novedades' => 'nodes#index', as: :recent
   get 'buscar' => 'nodes#search', as: :search
@@ -17,4 +18,5 @@ Liki::Application.routes.draw do
   get 'salir' => 'sessions#destroy', as: :logout
   get 'enter/:id', to: 'sessions#enter', as: :enter
   get 'visit/:id', to: 'sessions#visit', as: :visit
+  post 'invitacion', to: 'sessions#send_token', as: :send_token
 end

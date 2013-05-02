@@ -1,0 +1,23 @@
+div.node
+  = title 'Participantes'
+
+
+  div.children
+    - @members.each do |member|
+      div.node
+        div.node_main
+          div.title
+            h2 == "#{member.user.name} #{icon(:certificate) if member.user.admin?}"
+
+          div.content
+            div.body
+              p Email: #{member.user.email}
+              p Token: #{login_url(member.auth_token)}
+              p Perfil: #{link_to member.node.title, member.node}
+              p Ha entrado #{member.login_count} veces
+              p = l member.last_login_at if member.last_login_at
+
+        div.node_info
+          div.actions
+            =' link_to icon('eye-open', 'Ver'), user_path(member.user) 
+            = link_to icon(:pencil, 'Editar'), edit_user_path(member.user)

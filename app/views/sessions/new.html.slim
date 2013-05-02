@@ -1,2 +1,9 @@
-div.alert
-  | ¡Hola! A este lugar se accede mediante invitación.
+div.node
+  = title 'Bienvenida'
+  p ¡Hola! A este lugar se accede mediante invitación.
+  p Si ya has sido invitado, puedes recibir tu invitación escribiendo tu email
+  = form_tag send_token_path do
+    div.input.email
+      label Escribe tu correo electrónico
+      = email_field_tag :email
+    = submit_tag 'Enviar', class: 'button'

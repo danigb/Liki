@@ -1,16 +1,4 @@
 div.node
-  = title @user.name
+  - title @user.name
+  h1 = link_to @member.node.title, @member.node
 
-  p.property
-    label Email:
-    = @user.email
-
-div.children.stream
-  - @user.members.each do |member|
-    div.node
-      div.node_main
-        h2.title En #{member.group.name} 
-        div.content 
-          div.body = link_to member.node.title, member.node
-        div.node_extra
-          span.link #{login_url(member.auth_token)}
