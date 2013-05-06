@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   respond_to :html
-  before_filter :require_super
+  before_filter :require_user, :require_super
 
   def index
     @groups = Group.all
@@ -33,7 +33,7 @@ class GroupsController < ApplicationController
   end
 
   def require_super
-    unless current_user && current_user.admin?
+    unless current_user.admin?
       redirect_to root_path
     end
   end
