@@ -11,18 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130502110118) do
+ActiveRecord::Schema.define(version: 20130502211004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "groups", force: true do |t|
-    t.string   "name",          limit: 100
-    t.integer  "members_count",             default: 0
+    t.string   "name",           limit: 100
+    t.integer  "members_count",              default: 0
     t.integer  "node_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "nodes_count",                default: 0
+    t.integer  "mentions_count",             default: 0
   end
 
   add_index "groups", ["node_id"], name: "index_groups_on_node_id"
@@ -47,9 +49,11 @@ ActiveRecord::Schema.define(version: 20130502110118) do
   create_table "mentions", force: true do |t|
     t.integer "from_id"
     t.integer "to_id"
+    t.integer "group_id"
   end
 
   add_index "mentions", ["from_id"], name: "index_mentions_on_from_id"
+  add_index "mentions", ["group_id"], name: "index_mentions_on_group_id"
   add_index "mentions", ["to_id"], name: "index_mentions_on_to_id"
 
   create_table "nodes", force: true do |t|
@@ -79,12 +83,13 @@ ActiveRecord::Schema.define(version: 20130502110118) do
   add_index "nodes", ["user_id"], name: "index_nodes_on_user_id"
 
   create_table "users", force: true do |t|
-    t.string   "name",       limit: 100
-    t.string   "slug",       limit: 100
-    t.string   "email",      limit: 200
-    t.boolean  "admin",                  default: false
+    t.string   "name",        limit: 100
+    t.string   "slug",        limit: 100
+    t.string   "email",       limit: 200
+    t.boolean  "admin",                   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "nodes_count",             default: 0
   end
 
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true

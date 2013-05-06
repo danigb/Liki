@@ -9,6 +9,7 @@ Liki::Application.routes.draw do
   resources :nodes, concerns: :position, path: 'p'
   resources :users, path: 'u'
   resources :members, path: 'm'
+  resources :groups, path: 'g'
 
   get 'novedades' => 'nodes#index', as: :recent
   get 'buscar' => 'nodes#search', as: :search

@@ -1,0 +1,14 @@
+div.node
+  = title 'Grupos'
+
+  div.children
+    - @groups.each do |group|
+      div.node.group
+        h2 = group.name
+        p Members: #{group.members_count}
+        p Nodes: #{group.nodes_count}
+        p Mentions: #{group.mentions_count}
+        div.node_extra
+          div.actions
+            = link_to icon(:pencil, 'Editar'), edit_group_path(group)
+

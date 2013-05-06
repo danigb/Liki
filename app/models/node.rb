@@ -1,6 +1,6 @@
 class Node < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :group
+  belongs_to :user, counter_cache: true
+  belongs_to :group, counter_cache: true
   belongs_to :parent, class_name: 'Node', counter_cache: :children_count
   has_many :children, -> { order 'position ASC' }, foreign_key: 'parent_id', 
     class_name: 'Node', dependent: :restrict_with_exception

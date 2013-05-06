@@ -1,0 +1,9 @@
+div.node
+  = title "Editar #{@group.name}"
+
+  = simple_form_for @group do |form|
+    = form.input :name
+
+    = boolean_input(:regenerate_counters, 'Regenerar estadísticas')
+    = boolean_input(:regenerate_mentions, 'Regenerar menciones')
+    = form.submit class: 'button'

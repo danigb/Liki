@@ -1,10 +1,5 @@
 # CHANGELOG
 
-26/4/2013
-- Rails4 app setup
-- 
-
-
 
 # RESOURCES
 rsync -auv deployer@pelicana.es:apps/LaPelicana/shared/system/* public/system/
