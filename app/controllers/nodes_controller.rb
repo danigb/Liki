@@ -15,7 +15,7 @@ class NodesController < ApplicationController
     mentions = current_group.mentions
     ms = mentions.map do |mention|
       if mention.from.title.present? && mention.to.title.present?
-        [mention.from.title, mention.to.title, {color: '#EDC951'}] 
+      [mention.from.title, mention.to.title, {color: '#EDC951'}] 
       end
     end.compact()
     titles = all.map &:title

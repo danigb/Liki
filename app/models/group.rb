@@ -15,9 +15,10 @@ class Group < ActiveRecord::Base
   end
 
   def regenerate_counters
-    Group.reset_counters(self.id, :nodes)
-    Group.reset_counters(self.id, :mentions)
-    Group.reset_counters(self.id, :members)
+    Group.reset_counters(self.id, :nodes, :mentions, :members)
+    self.nodes.pluck(:id).each do |node_id|
+      Node.reset_counters node_id, :children
+    end
   end
 
   def regenerate_mentions

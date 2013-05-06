@@ -19,7 +19,8 @@
       
       - if node.body?
         div.body.hashtags = format_body(node.body)
-        = link_to(icon('download', File.basename(node.document.url)), node.document.url) if node.document?
+      - if node.document?
+        div.download = link_to(icon('download', 'Descargar PDF'), node.document.url) 
 
     - if node.mentioned_count > 0
       div.node_extra.mentioned_by
