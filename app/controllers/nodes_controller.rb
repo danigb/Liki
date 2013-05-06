@@ -2,6 +2,11 @@ class NodesController < ApplicationController
   before_filter :require_user
   respond_to :html
 
+  def root
+    @node = current_group.node
+    render action: 'show'
+  end
+
   def search
     @query = params[:q] if params[:q].present? && params[:q].length > 2
     nodes = current_group.nodes

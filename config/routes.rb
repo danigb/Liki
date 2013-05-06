@@ -1,5 +1,5 @@
 Liki::Application.routes.draw do
-  root to: 'groups#show'
+  root to: 'nodes#root'
 
   concern :position do
     put :up, on: :member
