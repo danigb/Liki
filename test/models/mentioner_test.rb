@@ -16,12 +16,4 @@ describe Mentioner do
     node.mentions_solved.must_equal true
   end
 
-  it 'add mentions from subtitle' do
-    u = create(:node, title: 'uno')
-    node = create(:node, subtitle: 'Esto es #uno')
-    node.mentioner.update_mentions
-    node.mentions.count.must_equal 1
-  end
-
-
 end

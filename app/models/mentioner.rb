@@ -5,7 +5,7 @@ class Mentioner
 
   def update_mentions
     @node.mentions.destroy_all
-    extracted = extract_mentions("#{@node.subtitle} #{@node.body}")
+    extracted = extract_mentions(@node.body)
     extracted.each do |name|
       slug = name[1..-1].underscore.gsub(/_/, '-')
       mentioned = Node.find_by_slug slug
