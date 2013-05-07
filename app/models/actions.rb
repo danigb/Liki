@@ -25,7 +25,7 @@ class Actions
       node.admin.change_owner(params[:change_owner]) if admin_params[:change_owner].present?
       node.admin.reorder_alphabetically if admin_params[:reorder_alphabetically].present?
     end
-    Notifier.new.perform(:update, 'Node', @current_user.id, node.id)
+    Notifier.perform_async(:update, 'Node', @current_user.id, node.id)
     MentionWorker.perform_async
     node
   end
