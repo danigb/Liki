@@ -11,6 +11,9 @@ class Node < ActiveRecord::Base
     source: :to
   has_many :mentioned_by_nodes, class_name: 'Node', through: :mentioned,
     source: :from
+  has_many :followings, as: :followed, dependent: :delete_all
+  has_many :followers, through: :followings, source: :user, class_name: 'User'
+
 
   validates_presence_of :user_id, :group_id, :body
 

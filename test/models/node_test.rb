@@ -60,5 +60,15 @@ describe Node do
       b.mentioned_by_nodes.must_include a
     end
   end
+
+  describe 'followers' do
+    it 'have followers' do
+      n = create(:node)
+      u = create(:user)
+      f = Following.follow(n, u)
+      n.followings.must_include f
+      n.followers.must_include u
+    end
+  end
 end
 

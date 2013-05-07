@@ -5,6 +5,8 @@ class Group < ActiveRecord::Base
   has_many :mentions
   has_many :users, through: :members
   has_many :nodes
+  has_many :followings, as: :followed, dependent: :delete_all
+  has_many :followers, through: :followings, source: :user, class_name: 'User'
 
   validates_presence_of :name, :user_id
 

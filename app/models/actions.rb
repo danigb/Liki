@@ -10,6 +10,8 @@ class Actions
     node.group = @current_group
     node.user = @current_user
     node.save
+    Following.follow(node, @current_user)
+    Notifier.perform_async(:create, 'Node', @current_user.id, node.id)
     node
   end
 
@@ -23,6 +25,7 @@ class Actions
       node.admin.change_owner(params[:change_owner]) if admin_params[:change_owner].present?
       node.admin.reorder_alphabetically if admin_params[:reorder_alphabetically].present?
     end
+    Notifier.new.perform(:update, 'Node', @current_user.id, node.id)
     MentionWorker.perform_async
     node
   end

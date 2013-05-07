@@ -24,13 +24,14 @@ describe NodesController do
 
   it 'creates nodes' do
     create(:group)
-    login(create(:user))
+    user = login(create(:user))
     visit new_node_path
     fill_in 'node_title', with: 'The title'
     fill_in 'node_body', with: 'The body'
     click_submit
     page.body.must_match 'The title'
     page.body.must_match 'The body'
+    Node.last.followers.must_include user
   end
 
   it 'update metions when updated' do

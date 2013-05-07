@@ -25,5 +25,13 @@ describe Group do
     group.reload
     group.members_count.must_equal 2
   end
+
+  it 'has followers' do
+    g = create(:group)
+    u = create(:user)
+    f = Following.follow(g, u)
+    g.followings.must_include f
+    g.followers.must_include u
+  end
 end
 
