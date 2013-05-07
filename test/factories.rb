@@ -10,6 +10,7 @@ FactoryGirl.define do
     group
     user
     sequence(:title) {|n| "Title #{n}" }
+    body { "#{title} body" }
   end
 
   factory :group do

@@ -12,7 +12,7 @@ class Node < ActiveRecord::Base
   has_many :mentioned_by_nodes, class_name: 'Node', through: :mentioned,
     source: :from
 
-  validates_presence_of :user_id, :group_id
+  validates_presence_of :user_id, :group_id, :body
 
   acts_as_list scope: [:group_id, :parent_id]
   include FriendlyId
