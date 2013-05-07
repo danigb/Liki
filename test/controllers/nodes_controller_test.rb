@@ -22,7 +22,18 @@ describe NodesController do
     current_path.must_equal node_path(parent)
   end
 
-  it 'shows mentions' do
+  it 'creates nodes' do
+    create(:group)
+    login(create(:user))
+    visit new_node_path
+    fill_in 'node_title', with: 'The title'
+    fill_in 'node_body', with: 'The body'
+    click_submit
+    page.body.must_match 'The title'
+    page.body.must_match 'The body'
+  end
+
+  it 'update metions when updated' do
     g = create(:group)
     login(create(:user))
     uno = create(:node, title: 'Uno', group: g)

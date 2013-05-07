@@ -61,26 +61,15 @@ class NodesController < ApplicationController
   end
 
   def create
-    @node = Node.new
-    @node.attributes = node_params
-    @node.group = current_group
-    @node.user = current_user
-    @node.save
-    respond_with @node
+    actions = Actions.new(current_user, current_group)
+    node = actions.create_node(node_params)
+    respond_with node
   end
 
   def update
-    node.attributes = node_params
-    node.save
-    node.mentioner.update_mentions 
-    if current_user.admin?
-      node.admin.reorder_children(node) if params[:reorder].present?
-      node.admin.move_to(params[:move_to_parent_id]) if params[:move_to_parent_id].present?
-      node.admin.change_owner(params[:change_owner]) if params[:change_owner].present?
-      node.admin.reorder_alphabetically if params[:reorder_alphabetically].present?
-    end
-    MentionWorker.perform_async
-    respond_with @node
+    actions = Actions.new(current_user, current_group)
+    actions.update_node(node, node_params, params)
+    respond_with node
   end
 
   def destroy

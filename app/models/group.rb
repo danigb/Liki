@@ -34,7 +34,8 @@ class Group < ActiveRecord::Base
 
   protected
   def create_group_node
-    self.node = Node.create(title: self.name, user: self.user, group: self)
+    self.node = Node.create(title: self.name, body: self.name,
+                            user: self.user, group: self)
     self.save
   end
 end
