@@ -28,6 +28,10 @@ class Group < ActiveRecord::Base
     end
   end
 
+  def label
+    name
+  end
+
   protected
   def create_group_node
     self.node = Node.create(title: self.name, user: self.user, group: self)

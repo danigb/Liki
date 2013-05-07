@@ -4,11 +4,19 @@ div.node
   div.children
     - @groups.each do |group|
       div.node.group
-        h2 = group.name
-        p Members: #{group.members_count}
-        p Nodes: #{group.nodes_count}
-        p Mentions: #{group.mentions_count}
-        div.node_extra
-          div.actions
-            = link_to icon(:pencil, 'Editar'), edit_group_path(group)
+        div.node_main : div.node.content : div.node.body
+          h2 = group.name
+          p
+            ' Páginas: #{group.nodes_count} 
+            ' / Menciones: #{group.mentions_count}
+            ' / Participantes: #{group.members_count}
+            ' / Seguidores: #{group.followers_count}
+          - if following = Following.following(group, current_user)
+            = link_to icon('eye-close', 'Dejar de seguir'), following,
+              method: :delete, data: { confirm: '¡¿Seguro?!' }
+          - else
+            = link_to icon('eye-open', 'Seguir'), 
+              followings_path(g: group.id), method: :post
+        div.actions
+          = link_to icon(:pencil, 'Editar'), edit_group_path(group)
 

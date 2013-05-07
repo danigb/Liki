@@ -2,3 +2,10 @@ div.node
   - title @user.name
   h1 = link_to @member.node.title, @member.node
 
+div.node.children
+  h3 Sigues #{@user.followings_count} páginas
+  - @user.followings.each do |following|
+    div.following
+      = link_to following.followed.label, following.followed
+
+

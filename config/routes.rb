@@ -10,6 +10,7 @@ Liki::Application.routes.draw do
   resources :users, path: 'u'
   resources :members, path: 'm'
   resources :groups, path: 'g'
+  resources :followings, path: 'f'
 
   get 'novedades' => 'nodes#index', as: :recent
   get 'buscar' => 'nodes#search', as: :search
