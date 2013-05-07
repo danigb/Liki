@@ -4,10 +4,8 @@ class Mentioner
   end
 
   def update_mentions
-    puts "MENTIONER"
     @node.mentions.destroy_all
     extracted = Mentioner.extract_mentions(@node.body)
-    puts "MENTIONER: #{@node.body} #{extracted}"
     extracted.each do |name|
       slug = name[1..-1].underscore.gsub(/_/, '-')
       mentioned = Node.find_by_slug slug

@@ -54,6 +54,11 @@
   }
 }
 
+.node.profile {
+  .mentioned_by { display: none; }
+}
+
+
 .node_info {
   margin: 0 10px;
   font-size: 11px;
@@ -99,5 +104,3 @@
 }
 
 
-// TO REMOVE
-.add_new { font-size: 12px; margin-top: 20px; }

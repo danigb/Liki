@@ -40,7 +40,8 @@ class NodesController < ApplicationController
   def show
     if params[:id] =~ /^\d+$/
       @node = Node.find(params[:id])
-      @node.parent ? redirect_to(@node.parent) : 
+      @node.parent ? 
+        redirect_to(node_path(@node.parent, anchor: @node.to_param)) : 
         respond_with(@node)
     elsif @node = Node.find_by_slug(params[:id])
       respond_with @node
