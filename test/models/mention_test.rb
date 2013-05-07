@@ -3,7 +3,7 @@ require 'test_helper'
 describe Mention do
   it 'can mention' do
     n1 = create(:node)
-    n2 = create(:node)
+    n2 = create(:node, group: n1.group)
     m = Mention.mention(n1, n2)
     m.from.must_equal n1
     m.to.must_equal n2
@@ -12,7 +12,7 @@ describe Mention do
 
   it 'nodes have mentioned and mentions' do
     a = create(:node)
-    b = create(:node)
+    b = create(:node, group: a.group)
     m = Mention.mention(a, b)
     a.mentions.must_include m
     b.mentioned.must_include m

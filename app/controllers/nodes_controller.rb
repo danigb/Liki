@@ -71,13 +71,13 @@ class NodesController < ApplicationController
   def update
     node.attributes = node_params
     node.save
+    node.mentioner.update_mentions 
     if current_user.admin?
       node.admin.reorder_children(node) if params[:reorder].present?
       node.admin.move_to(params[:move_to_parent_id]) if params[:move_to_parent_id].present?
       node.admin.change_owner(params[:change_owner]) if params[:change_owner].present?
       node.admin.reorder_alphabetically if params[:reorder_alphabetically].present?
     end
-    node.mentioner.update_mentions
     MentionWorker.perform_async
     respond_with @node
   end
@@ -104,7 +104,7 @@ class NodesController < ApplicationController
 
   def node_params
     params.require(:node).permit(:title, :body, :style,
-                                 :document, :image, 
+                                 :document, :image, :slug,
                                  :remove_image, :remove_document,
                                  :parent_id)
   end

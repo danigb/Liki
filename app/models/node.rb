@@ -30,6 +30,10 @@ class Node < ActiveRecord::Base
     @mentioner ||= Mentioner.new(self)
   end
 
+  def label
+    title? ? title : "##{id}"
+  end
+
   def profile?
     group.member(self.user).try(:node_id) == self.id
   end

@@ -12,6 +12,10 @@ class ActiveSupport::TestCase
 
   include FactoryGirl::Syntax::Methods
 
+  def click_submit(name = 'commit')
+    page.find("input[name=\"#{name}\"]").click
+  end
+
   def login(user)
     if user
       visit enter_path(user)

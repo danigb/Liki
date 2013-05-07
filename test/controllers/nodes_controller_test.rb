@@ -22,4 +22,18 @@ describe NodesController do
     current_path.must_equal node_path(parent)
   end
 
+  it 'shows mentions' do
+    g = create(:group)
+    login(create(:user))
+    uno = create(:node, title: 'Uno', group: g)
+    dos = create(:node, title: 'Dos', group: g)
+    visit edit_node_path(dos)
+    fill_in 'node_body', with: '#Uno linkeado'
+    click_submit
+    page.body.must_match 'Uno linkeado'
+
+    visit node_path(uno)
+    page.find('.mentioned_by').text.must_match 'Dos'
+  end
+
 end

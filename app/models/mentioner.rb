@@ -4,8 +4,10 @@ class Mentioner
   end
 
   def update_mentions
+    puts "MENTIONER"
     @node.mentions.destroy_all
-    extracted = extract_mentions(@node.body)
+    extracted = Mentioner.extract_mentions(@node.body)
+    puts "MENTIONER: #{@node.body} #{extracted}"
     extracted.each do |name|
       slug = name[1..-1].underscore.gsub(/_/, '-')
       mentioned = Node.find_by_slug slug
@@ -14,9 +16,8 @@ class Mentioner
     @node.update_columns(mentions_solved: @node.mentions.count == extracted.size)
   end
 
-  protected
-  MENTIONS = /\s(?:#|@)[^\s^:^.^,^<^"^(^)]+/
-  def extract_mentions(text)
+  MENTIONS = /(?:^|\s)(?:#)[^\s^:^.^,^<^"^(^)]+/
+  def self.extract_mentions(text)
     return [] if text.blank?
     text.scan(MENTIONS).map &:lstrip
   end

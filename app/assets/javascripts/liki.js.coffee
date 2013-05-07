@@ -4,19 +4,20 @@ $(document). on 'click', 'a[data-toggle]', ->
   $(this).hide()
   false
 
-mentions = /\s@([^\s^:^.^,^<^"^)^(]+)/g
-hashtag = /\s#([^\s^:^.^,^<^"^(^)]+)/g
+hashtag = /(?:\s|>)#([^\s^:^.^,^<^"^(^)]+)/g
 linkify = ->
   $('.hashtags').each ->
     html = $(this).html()
+    console.log("parse #{html}")
     html = html.replace hashtag, replacer
-    html = html.replace mentions, replacer
     $(this).html(html)
 
-replacer = (name) ->
-  name = name[2..-1]
+replacer = (string) ->
+  index = string.indexOf('#')
+  name = string[index + 1..-1]
+  prefix = string[0..index - 1]
   url = toUrl(name)
-  "&nbsp;<a class='linkify' href='/p/#{url}'>#{name}</a>"
+  "#{prefix}<a class='linkify' href='/p/#{url}'>#{name}</a>"
 
 toUrl = (name) ->
   removeDiacritics(name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase())

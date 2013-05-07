@@ -8,6 +8,8 @@
         h2 == link_to_unless_current icon(:user, node.title), node
       - elsif node.title?
         h2 == link_to_unless_current node.title, node
+      - else
+        h5 ##{node.id}
 
     div.content
       div class="node_image #{node.style} #{'no-' unless node.image?}image"
@@ -26,7 +28,7 @@
         p 
           ' Mencionado en: 
           - node.mentioned_by_nodes.each do |mn|
-            =' link_to truncate(mn.title), mn, class: 'linkify'
+            =' link_to truncate(mn.label), mn, class: 'linkify'
 
   div.node_info
     span.user  Por #{link_to node.user.name, node.user} 
