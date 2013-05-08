@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   def require_owner_or_admin
     unless current_user && (current_user.admin? || current_user == user)
-      member = current_group.member(user)
+      member = current_group.member(current_user)
       redirect_to member ? member.node : root_path
     end
   end

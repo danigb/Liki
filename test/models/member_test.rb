@@ -23,6 +23,6 @@ describe Member do
     g = create(:group)
     u = create(:user)
     m = Member.create(user: u, group: g)
-    m.node.must_be :present?
+    m.node_id.must_be :present?
   end
 end
