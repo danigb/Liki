@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def require_user
-    if session[:user_id].blank?
+    if current_user.blank?
       redirect_to login_path
     end
   end

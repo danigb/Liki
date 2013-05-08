@@ -3,8 +3,8 @@
   = form.input :body
   = form.input(:parent_id, collection: current_group.node.children) if node.parent_id.blank?
   div.form_extra
-    =' link_to icon('camera-retro', 'Añadir imágen'), '#', data: { toggle: 'add_image' } 
-    = link_to icon('paper-clip', 'Añadir pdf'), '#', data: { toggle: 'add_document' } 
+    =' link_to icon('camera-retro', 'Subir una imágen'), '#', data: { toggle: 'add_image' } 
+    = link_to icon('paper-clip', 'Subir un pdf'), '#', data: { toggle: 'add_document' } 
   div.add_image.hidden_input
     = form.input :image
   div.add_document.hidden_input

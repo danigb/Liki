@@ -48,4 +48,20 @@ describe NodesController do
     page.find('.mentioned_by').text.must_match 'Dos'
   end
 
+  it 'reorder nodes' do
+    g = create(:group)
+    login(create(:user, admin: true))
+    p = create(:node, group: g)
+    b = create(:node, title: 'b', parent: p)
+    a = create(:node, title: 'a', parent: p)
+    a.position.must_equal 2
+    b.position.must_equal 1
+    visit edit_node_path(p)
+    check 'reorder_alphabetically'
+    click_submit
+    a.position.must_equal 1
+    b.position.must_equal 2
+
+  end
+
 end

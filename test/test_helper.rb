@@ -22,5 +22,6 @@ class ActiveSupport::TestCase
     else 
       visit logout_path
     end
+    user
   end
 end

@@ -16,9 +16,13 @@ es:
         title: 'Título'
         body: 'Texto'
         parent_id: 'En...'
-        image: 'Añadir imágen'
-        document: 'Añadir pdf'
+        image: 'Subir una imágen'
+        document: 'Subir un PDF'
         remove_image: 'Borrar imágen actual'
         remove_document: 'Borrar el documento actual'
+
+    hints:
+      node:
+        image: 'La imágen debe tener 1MB máximo o unos 600 pixels'
   
 

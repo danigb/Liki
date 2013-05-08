@@ -9,9 +9,9 @@ div class="children #{@node.style}"
 
 
 div.node
-  div.add_new = link_to icon(:plus, "Añadir a '#{@node.title}'"), '#', data: { action: 'add_children', toggle: 'add_children' }
+  div.add_new = link_to icon(:plus, "Añadir"), '#', 
+    data: { action: 'add_children', toggle: 'add_children' }
   div class="add_children separator" style="display: none"
-    h4 Añadir a '#{@node.title}'
     = render 'nodes/form', node: @node.children.build
 
 div.node.followers.separator

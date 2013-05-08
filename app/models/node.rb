@@ -15,7 +15,7 @@ class Node < ActiveRecord::Base
   has_many :followers, through: :followings, source: :user, class_name: 'User'
 
 
-  validates_presence_of :user_id, :group_id, :body
+  validates_presence_of :user_id, :group_id
 
   acts_as_list scope: [:group_id, :parent_id]
   include FriendlyId

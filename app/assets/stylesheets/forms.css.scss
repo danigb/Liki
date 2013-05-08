@@ -3,11 +3,14 @@ form {
 
   div.input {
     margin: 10px 0;
-    label { 
+    label, .hint { 
       font-size: 13px;
       color: #9a948d;
       display: block;
+      padding: 2px 0;
     }
+    .hint { font-size: 11px; }
+
   }
 
   div.input.boolean {
