@@ -55,7 +55,7 @@
 
 .node.profile {
   .created_at { display: none; }
-  .mentioned_by { display: none; }
+  .mentioned_by, .mentions_to { display: none; }
 }
 
 
@@ -88,6 +88,7 @@
     margin-right: 30px;
     .node_image { width: 90%; min-height: 235px; }
     .created_at { display: none; }
+    .mentions_to { display: none; }
   }
 
   &.stream .parent { display: block; margin-bottom: -20px; }
@@ -104,7 +105,7 @@
 }
 
 .user_level_0 {
-  .user, .created_at, .stats, .mentions_solved { 
+  .user, .created_at, .stats, .mentions_solved, .mentions_to { 
     display: inline; 
   }
 }
