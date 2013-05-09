@@ -3,11 +3,18 @@
   = form.input :body
   = form.input(:parent_id, collection: current_group.node.children) if node.parent_id.blank?
   div.form_extra
-    =' link_to icon('camera-retro', 'Subir una imágen'), '#', data: { toggle: 'add_image' } 
+    =' link_to icon('camera-retro', node.image? ? 'Cambiar imágen' : 'Subir una imágen'), 
+      '#', data: { toggle: 'add_image' } 
     = link_to icon('paper-clip', 'Subir un pdf'), '#', data: { toggle: 'add_document' } 
   div.add_image.hidden_input
+    h4 Imágen
+    - if node.image?
+      = image_tag(node.image.thumb.url)
     = form.input :image
   div.add_document.hidden_input
+    h4 Documento adjunto
+    - if node.document?
+      div = link_to icon(:download, 'Descargar PDF'), node.document.url
     = form.input :document
   - if current_user.admin?
     div.form_extra
@@ -38,4 +45,6 @@
       = boolean_input(:reorder, 'Reordenar')
       = boolean_input(:reorder_alphabetically, 'Reordenar alfabéticamente')
 
-  = form.submit 'Guardar', class: 'button'
+  div.buttons = form.submit 'Guardar', class: 'button'
+
+

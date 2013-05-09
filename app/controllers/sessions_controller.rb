@@ -10,6 +10,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  def user_level
+    session[:current_user_level] = params[:id]
+    redirect_to root_path
+  end
+
   def enter
     self.current_user = params[:id]
     redirect_to root_path

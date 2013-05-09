@@ -64,6 +64,10 @@
   font-size: 11px;
   color: rgb(154, 148, 141);
   .actions { float: right; }
+
+  .user, .stats, .mentions_solved { 
+    display: none; 
+  }
 }
 
 .children {
@@ -98,5 +102,9 @@
   [data-action="down"] { display: none; }
 }
 
-
+.user_level_0 {
+  .user, .created_at, .stats, .mentions_solved { 
+    display: inline; 
+  }
+}
 

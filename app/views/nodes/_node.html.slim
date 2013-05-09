@@ -32,13 +32,14 @@
     span.user  Por #{link_to node.user.name, node.user} 
     span.created_at  #{icon(:calendar) } #{l node.created_at, format: :short} 
     span.stats 
-      | (#{node.position}/#{node.mentions_count}/#{node.mentioned_count}
-      | /#{node.followers_count})
+      =' icon('list-ol',node.position) 
+      =' icon(:link, node.mentions_count) 
+      =' icon('quote-left', node.mentioned_count) 
+      =' icon('eye-open', node.followers_count) 
     span.mentions_solved  #{'*' unless node.mentions_solved}
 
     div.actions
       =' link_to icon(:pencil, 'Editar'), [:edit, node]
-      =' link_to icon(:trash), node, method: :delete, data: { confirm: "¿Quieres borrar '#{node.title}'?" }
       =' link_to icon('arrow-up'), [:up, node], method: :put, data: { action: 'up' }
       =' link_to icon('arrow-down'), [:down, node], method: :put, data: { action: 'down' }
 

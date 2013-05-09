@@ -55,12 +55,13 @@ header {
 }
 
 .alert {
-  border-radius: 5px;
   padding: 10px;
 
   &.info {
     border: 1px solid #00529B;
     background-color: #BDE5F8; 
+  }
+  &.danger {
   }
 
   p {

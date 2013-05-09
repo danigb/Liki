@@ -22,7 +22,7 @@ div.node.followers.separator
       data: { confirm: "¿Quieres dejar de seguir #{@node.label}?",
       action: 'unfollow' }, class: 'unfollow'
   - else
-    =' link_to icon('eye-open', 'Hazte seguidor de esta página'), 
+    =' link_to icon('eye-open', 'Hazte seguidor/a de esta página'), 
       followings_path(n: @node.id), method: :post,
       class: 'follow' 
     | si quieres recibir emails cuando alguien haga cambios.

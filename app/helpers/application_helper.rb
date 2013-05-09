@@ -19,4 +19,5 @@ module ApplicationHelper
       check_box_tag(name) + content_tag(:label, label)
     end
   end
+
 end

@@ -9,7 +9,7 @@ html
       'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  body
+  body class="user_level_#{current_user_level}"
     header
       = link_to current_group.name, root_path, class: 'current group'
       - if current_user

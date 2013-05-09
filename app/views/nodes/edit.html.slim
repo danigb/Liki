@@ -1,3 +1,12 @@
 div.node
   = title 'Editar'
+  p = link_to icon('arrow-left', "Cancelar, y volver a '#{@node.title}'"), @node
   = render 'form', node: @node
+
+div.node.alert.separator
+  p Puedes borrar esta página, pero espero que sea por un buen
+    motivo
+  div.buttons = link_to icon(:trash, 'Borrar'), @node, method: :delete, 
+    data: { confirm: "¿Quieres borrar '#{@node.title}'?" },
+    class: 'button danger'
+
