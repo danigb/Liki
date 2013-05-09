@@ -12,7 +12,7 @@
     div.content
       div class="node_image #{node.style} #{'no-' unless node.image?}image"
         - if node.image?
-          = image_tag node.image.url
+          = image_tag node.image.url, class: 'lightbox'
         - elsif node.style == 'profile'
           img src="http://cambelt.co/320x320/Foto"
       

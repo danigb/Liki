@@ -6,3 +6,4 @@
 //= require accents
 //= require liki
 //= require map
+//= require lightbox
