@@ -18,9 +18,9 @@ describe Mentioner do
   end
 
   it 'extract mentions' do
-    m = Mentioner.extract_mentions('#Uno #dos')
-    puts m
-
-
+    a = create(:node, title: 'Ángela')
+    b = create(:node, group: a.group, body: '#Ángela')
+    b.mentioner.update_mentions
+    b.mentioned_nodes.must_include a
   end
 end
