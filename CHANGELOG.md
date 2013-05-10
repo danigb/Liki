@@ -1,5 +1,12 @@
 # CHANGELOG
 
+# TODO
+- Se crea un slug cuando el nodo no tiene título
+- Mostrar los vídeos http://dimsemenov.com/plugins/magnific-popup
+- Mover los items con javascript
+- Añadir un usuario a un espacio
+- User leves?
+
 
 # RESOURCES
 rsync -auv deployer@pelicana.es:apps/LaPelicana/shared/system/* public/system/

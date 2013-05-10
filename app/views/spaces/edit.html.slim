@@ -1,10 +1,4 @@
 div.node
   = title "Editar #{@space.name}"
+  = render 'form'
 
-  = simple_form_for @space do |form|
-    = form.input :name
-    = form.input :host
-
-    = boolean_input(:regenerate_counters, 'Regenerar estadísticas')
-    = boolean_input(:regenerate_mentions, 'Regenerar menciones')
-    = form.submit class: 'button'

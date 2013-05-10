@@ -7,8 +7,21 @@ class SpacesController < ApplicationController
     respond_with @spaces
   end
 
+  def new
+    @space = Space.new
+    respond_with @space
+  end
+
   def edit
     respond_with space
+  end
+
+  def create
+    @space = Space.new(space_params)
+    @space.user = current_user
+    @space.save
+    @space.member(current_user)
+    respond_with @space, location: spaces_path
   end
 
   def update
