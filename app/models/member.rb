@@ -3,11 +3,11 @@ require 'securerandom'
 class Member < ActiveRecord::Base
   belongs_to :user
   belongs_to :node
-  belongs_to :group, counter_cache: true
+  belongs_to :space, counter_cache: true
 
-  validates_presence_of :user_id, :group_id
+  validates_presence_of :user_id, :space_id
   validates_presence_of :auth_token, :auth_token_created_at
-  validates_uniqueness_of :user_id, scope: :group_id
+  validates_uniqueness_of :user_id, scope: :space_id
 
   before_validation :generate_auth_token
   after_create :create_member_node
@@ -21,7 +21,7 @@ class Member < ActiveRecord::Base
 
   protected
   def create_member_node
-    self.node = Node.create!(title: user.name, user: self.user, group: self.group,
+    self.node = Node.create!(title: user.name, user: self.user, space: self.space,
                             body: "Email: #{user.email}")
     self.save
   end

@@ -3,7 +3,7 @@ class FollowingsController < ApplicationController
 
   def create
     model = Node.find(params[:n]) if params[:n].present?
-    model = Group.find(params[:g]) if params[:g].present?
+    model = Space.find(params[:s]) if params[:s].present?
     Following.follow(model, current_user)
     redirect_to model, notice: "Ahora sigues '#{model.label}'"
   end

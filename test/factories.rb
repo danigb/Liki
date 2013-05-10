@@ -7,14 +7,14 @@ FactoryGirl.define do
   end
 
   factory :node do
-    group
+    space 
     user
     sequence(:title) {|n| "Title #{n}" }
     body { "#{title} body" }
   end
 
-  factory :group do
+  factory :space do
     user
-    sequence(:name) {|n| "group#{n}" }
+    sequence(:name) {|n| "Space#{n}" }
   end
 end

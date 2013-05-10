@@ -2,7 +2,7 @@ class MembersController < ApplicationController
   before_filter :require_admin
 
   def index
-    @members = current_group.members
+    @members = current_space.members
   end
 
   def require_admin

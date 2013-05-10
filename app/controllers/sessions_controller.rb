@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def new
     m = Member.find_by_auth_token(params[:id])
     if m 
-      session[:group_id] = m.group.id
+      session[:space_id] = m.space.id
       m.update_attributes(last_login_at: Time.now, 
                                login_count: m.login_count + 1)
       self.current_user = m.user.id
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def visit
-    session[:group_id] = params[:id]
+    session[:space_id] = params[:id]
     redirect_to root_path
   end
 
@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
 
   def send_token
     @user = User.find_by_email params[:email] if params[:email].present?
-    @member = current_group.member(@user)
+    @member = current_space.member(@user)
     if @member
       @member.generate_auth_token
       @member.save

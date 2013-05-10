@@ -1,8 +1,9 @@
 div.node
-  = title "Editar #{@group.name}"
+  = title "Editar #{@space.name}"
 
-  = simple_form_for @group do |form|
+  = simple_form_for @space do |form|
     = form.input :name
+    = form.input :host
 
     = boolean_input(:regenerate_counters, 'Regenerar estadísticas')
     = boolean_input(:regenerate_mentions, 'Regenerar menciones')

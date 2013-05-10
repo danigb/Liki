@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :require_owner_or_admin
 
   def show
-    @member = current_group.member(user)
+    @member = current_space.member(user)
     respond_with user
   end
 
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      Member.create(group: current_group, user: @user)
+      Member.create(space: current_space, user: @user)
     end
     respond_with user
   end
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   def require_owner_or_admin
     unless current_user && (current_user.admin? || current_user == user)
-      member = current_group.member(current_user)
+      member = current_space.member(current_user)
       redirect_to member ? member.node : root_path
     end
   end

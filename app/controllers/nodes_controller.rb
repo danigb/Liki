@@ -3,21 +3,21 @@ class NodesController < ApplicationController
   respond_to :html
 
   def root
-    @node = current_group.node
+    @node = current_space.node
     render action: 'show'
   end
 
   def search
     @query = params[:q] if params[:q].present? && params[:q].length > 2
-    nodes = current_group.nodes
+    nodes = current_space.nodes
     @query.present? ? 
       @nodes = nodes.where(Node.arel_table[:title].matches("%#{@query}%")) :
     @nodes = nodes.where('1 = 0')
   end
 
   def map
-    all = current_group.nodes.where('title IS NOT NULL')
-    mentions = current_group.mentions
+    all = current_space.nodes.where('title IS NOT NULL')
+    mentions = current_space.mentions
     ms = mentions.map do |mention|
       if mention.from.title.present? && mention.to.title.present?
       [mention.from.title, mention.to.title, {color: '#EDC951'}] 
@@ -34,7 +34,7 @@ class NodesController < ApplicationController
   end
 
   def index
-    @nodes = current_group.nodes.reorder('updated_at DESC').limit(20)
+    @nodes = current_space.nodes.reorder('updated_at DESC').limit(20)
   end
 
   def show
@@ -61,13 +61,13 @@ class NodesController < ApplicationController
   end
 
   def create
-    actions = Actions.new(current_user, current_group)
+    actions = Actions.new(current_user, current_space)
     node = actions.create_node(node_params)
     respond_with node
   end
 
   def update
-    actions = Actions.new(current_user, current_group)
+    actions = Actions.new(current_user, current_space)
     actions.update_node(node, node_params, params)
     respond_with node
   end
@@ -89,7 +89,7 @@ class NodesController < ApplicationController
 
   private
   def node
-    @node ||= current_group.nodes.find(params[:id])
+    @node ||= current_space.nodes.find(params[:id])
   end
 
   def node_params

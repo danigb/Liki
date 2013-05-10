@@ -23,7 +23,7 @@ describe NodesController do
   end
 
   it 'creates nodes' do
-    create(:group)
+    create(:space)
     user = login(create(:user))
     visit new_node_path
     fill_in 'node_title', with: 'The title'
@@ -35,10 +35,10 @@ describe NodesController do
   end
 
   it 'update metions when updated' do
-    g = create(:group)
+    g = create(:space)
     login(create(:user))
-    uno = create(:node, title: 'Uno', group: g)
-    dos = create(:node, title: 'Dos', group: g)
+    uno = create(:node, title: 'Uno', space: g)
+    dos = create(:node, title: 'Dos', space: g)
     visit edit_node_path(dos)
     fill_in 'node_body', with: '#Uno linkeado'
     click_submit
@@ -49,9 +49,9 @@ describe NodesController do
   end
 
   it 'reorder nodes' do
-    g = create(:group)
+    g = create(:space)
     login(create(:user, admin: true))
-    p = create(:node, group: g)
+    p = create(:node, space: g)
     b = create(:node, title: 'b', parent: p)
     a = create(:node, title: 'a', parent: p)
     a.position.must_equal 2

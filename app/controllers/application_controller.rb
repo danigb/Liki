@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_user, :current_group, :current_user_level
+  helper_method :current_user, :current_space, :current_user_level
 
   protected
   def require_user
@@ -22,8 +22,8 @@ class ApplicationController < ActionController::Base
   end
 
   if Rails.env.test?
-    def current_group
-      Group.first
+    def current_space
+      Space.first
     end
 
     def current_user
@@ -35,9 +35,9 @@ class ApplicationController < ActionController::Base
     end
 
   else
-    def current_group
-      session[:group_id] ||= 2
-      @current_group ||= Group.find session[:group_id]
+    def current_space
+      session[:space_id] ||= 2
+      @current_space ||= Space.find session[:space_id]
     end
 
     def current_user

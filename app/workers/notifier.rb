@@ -11,7 +11,7 @@ class Notifier
   private
   def node_created(node_id, options)
     node = Node.find(node_id)
-    node.group.followers.each do |user|
+    node.space.followers.each do |user|
       NotifyMailer.node_created(user, node).deliver
     end
 
@@ -24,8 +24,8 @@ class Notifier
 
   def node_updated(node_id, options) 
     node = Node.find(node_id)
-    node.group.followers.each do |user|
-      NotifyMailer.group_follower_node_updated(user, node).deliver
+    node.space.followers.each do |user|
+      NotifyMailer.space_follower_node_updated(user, node).deliver
     end
   end
 end

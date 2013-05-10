@@ -1,0 +1,23 @@
+div.node
+  = title 'Espacios'
+
+  div.children
+    - @spaces.each do |space|
+      div.node.space
+        div.node_main : div.node.content : div.node.body
+          h2 = space.name
+          h4 = space.host
+          p
+            ' Páginas: #{space.nodes_count} 
+            ' / Menciones: #{space.mentions_count}
+            ' / Participantes: #{space.members_count}
+            ' / Seguidores: #{space.followers_count}
+          - if following = Following.following(space, current_user)
+            = link_to icon('eye-close', 'Dejar de seguir'), following,
+              method: :delete, data: { confirm: '¡¿Seguro?!' }
+          - else
+            = link_to icon('eye-open', 'Seguir'), 
+              followings_path(s: space.id), method: :post
+        div.actions
+          = link_to icon(:pencil, 'Editar'), edit_space_path(space)
+

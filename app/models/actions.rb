@@ -1,15 +1,15 @@
 class Actions
-  attr_reader :current_user, :current_group
+  attr_reader :current_user, :current_space
 
-  def initialize(current_user, current_group)
+  def initialize(current_user, current_space)
     @current_user = current_user
-    @current_group = current_group
+    @current_space = current_space
   end
 
   def create_node(node_params)
     node = Node.new
     node.attributes = node_params
-    node.group = @current_group
+    node.space = @current_space
     node.user = @current_user
     node.save
     Following.follow(node, @current_user)

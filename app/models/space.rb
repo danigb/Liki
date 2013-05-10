@@ -1,4 +1,4 @@
-class Group < ActiveRecord::Base
+class Space < ActiveRecord::Base
   belongs_to :user
   belongs_to :node
   has_many :members
@@ -10,14 +10,14 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :name, :user_id
 
-  after_create :create_group_node
+  after_create :create_space_node
 
   def member(user)
-    Member.where(group_id: self.id, user_id: user.id).first if user
+    Member.where(space_id: self.id, user_id: user.id).first if user
   end
 
   def regenerate_counters
-    Group.reset_counters(self.id, :nodes, :mentions, :members)
+    Space.reset_counters(self.id, :nodes, :mentions, :members)
     self.nodes.pluck(:id).each do |node_id|
       Node.reset_counters node_id, :children
     end
@@ -35,9 +35,9 @@ class Group < ActiveRecord::Base
   end
 
   protected
-  def create_group_node
+  def create_space_node
     self.node = Node.create(title: self.name, body: self.name,
-                            user: self.user, group: self)
+                            user: self.user, space: self)
     self.save
   end
 end

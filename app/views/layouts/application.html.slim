@@ -12,7 +12,7 @@ html
 
   body class="user_level_#{current_user_level}"
     header
-      = link_to current_group.name, root_path, class: 'current group'
+      = link_to current_space.name, root_path, class: 'current space'
       - if current_user
         = link_to current_user.name, current_user, class: 'current user'
         div.links 

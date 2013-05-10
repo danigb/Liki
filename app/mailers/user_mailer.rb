@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   def auth_token_email(member)
     @member = member
     @user = member.user
-    @group = member.group
-    mail to: @user.email, subject: "Enlace para entrar a #{@group.name}"
+    @space= member.space
+    mail to: @user.email, subject: "Enlace para entrar a #{@space.name}"
   end
 end
