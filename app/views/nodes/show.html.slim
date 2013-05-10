@@ -1,4 +1,6 @@
 - title @node.title
+div#host style="display:none"
+  = debug request.env['HTTP_HOST']
 
 div.root
   = render 'node', node: @node
