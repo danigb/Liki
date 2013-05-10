@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_level
-    session[:current_user_level] ||= current_user.admin? ? 0 : 4
+    session[:current_user_level] ||= current_user.try(:admin?) ? 0 : 4
     session[:current_user_level]
   end
 
