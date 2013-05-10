@@ -36,13 +36,11 @@ class ApplicationController < ActionController::Base
 
   else
     def current_space
-      if session[:space_id].blank?
-        @current_space = Space.find_by_host request.env['HTTP_HOST']
-        if @current_space
-          session[:space_id] = @current_space.id
-        else
-          session[:space_id] ||= 2
-        end
+      @current_space = Space.find_by_host request.env['HTTP_HOST']
+      if @current_space
+        session[:space_id] = @current_space.id
+      else
+        session[:space_id] ||= 2
       end
       @current_space ||= Space.find session[:space_id]
     end
