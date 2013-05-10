@@ -2,7 +2,7 @@
   = form.input :title
   = form.input :body
   - if node.new_record? && node.parent_id.blank?
-    = form.input(:parent_id, collection: current_group.node.children) 
+    = form.input(:parent_id, collection: current_space.node.children) 
   div.form_extra
     =' link_to icon('camera-retro', node.image? ? 'Cambiar imágen' : 'Subir una imágen'), 
       '#', data: { toggle: 'add_image' } 
