@@ -14,6 +14,8 @@ $color-medium: rgb(154, 148, 141);
     width: 100%; overflow: hidden;
     margin-bottom: 10px;
 
+    h3 { font-weight: bold; font-size: 16px; }
+
     .title {
       width: 100%; overflow: hidden;
       margin-bottom: -20px;
@@ -91,7 +93,6 @@ $color-medium: rgb(154, 148, 141);
     border: 0px solid $color-light;
     border-radius: 1px;
 
-    h3 { font-weight: bold; }
 
     .position {
       display: inline;
@@ -126,7 +127,9 @@ $color-medium: rgb(154, 148, 141);
   }
 }
 
-.stream .parent { display: block; margin-bottom: -20px; }
+.children.stream {
+  .parent { display: block; margin-bottom: -20px; }
+}
 
 .add_new {
   margin-top: 20px;

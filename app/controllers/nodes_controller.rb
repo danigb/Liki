@@ -34,7 +34,7 @@ class NodesController < ApplicationController
   end
 
   def index
-    @nodes = current_space.nodes.reorder('updated_at DESC').limit(20)
+    @nodes = current_space.nodes.reorder('created_at DESC').limit(20)
   end
 
   def show
