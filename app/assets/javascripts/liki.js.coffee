@@ -8,7 +8,6 @@ hashtag = /(?:\s|>)#([^\s^:^.^,^<^"^(^)]+)/g
 linkify = ->
   $('.hashtags').each ->
     html = $(this).html()
-    console.log("parse #{html}")
     html = html.replace hashtag, replacer
     $(this).html(html)
 

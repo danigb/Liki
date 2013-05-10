@@ -1,13 +1,18 @@
 = div_for node do
-  div.parent = link_to(icon('arrow-up', "En '#{node.parent.title}'"),  node.parent) if node.parent
+  div.parent
+    - if node.parent
+      = link_to(icon('arrow-up', "En '#{node.parent.title}'"),  node.parent)
+    - elsif node.space.node != node
+      = link_to(icon('arrow-up', "Volver a '#{node.space.name}'"), root_path)
+
   a name="#{node.to_param}"
   div.content
     div.title
       div.counter = node.children_count
       = link_to node do
-        = content_tag "h#{current_page?(node) ? 1 : 2}" do
+        = content_tag "h#{main_node?(node) ? 1 : 2}" do
           span.position #{node.position}.  
-          =' node.label 
+          =' node.title if node.title?
       = link_to icon(:pencil), [:edit, node], 
         class: 'action edit'
       =' link_to icon('arrow-up'), [:up, node], 
@@ -16,29 +21,29 @@
         method: :put, data: { action: 'down' }, 
         class: 'action down'
 
-  div.main
-    div class="node_image #{node.style} #{'no-' unless node.image?}image"
-      - if node.image?
-        = image_tag node.image.url, class: 'lightbox'
-      - elsif node.style == 'profile'
-        img src="http://cambelt.co/320x320/Foto"
-    
-    - if node.body?
-      div.body.hashtags = format_body(node.body)
-    - if node.document?
-      div.download = link_to(icon('download', 'Descargar PDF'), node.document.url) 
+    div.main
+      div class="node_image #{node.style} #{'no-' unless node.image?}image"
+        - if node.image?
+          = image_tag node.image.url, class: 'lightbox'
+        - elsif node.style == 'profile'
+          img src="http://cambelt.co/320x320/Foto"
+      
+      - if node.body?
+        div.body.hashtags = format_body(node.body)
+      - if node.document?
+        div.download = link_to(icon('download', 'Descargar PDF'), node.document.url) 
 
-  - if node.mentions_count > 0
-    div.info.mentions_to
-      ' Menciona a: 
-      - node.mentioned_nodes.each do |mn|
-        =' link_to truncate(mn.label), mn, class: 'linkify'
+    - if node.mentions_count > 0
+      div.info.mentions_to
+        ' Menciona a: 
+        - node.mentioned_nodes.each do |mn|
+          =' link_to truncate(mn.label), mn, class: 'linkify'
 
-  - if node.mentioned_count > 0
-    div.info.mentioned_by
-      ' Mencionado en: 
-      - node.mentioned_by_nodes.each do |mn|
-        =' link_to truncate(mn.label), mn, class: 'linkify'
+    - if node.mentioned_count > 0
+      div.info.mentioned_by
+        ' Mencionado en: 
+        - node.mentioned_by_nodes.each do |mn|
+          =' link_to truncate(mn.label), mn, class: 'linkify'
 
 
   div.extra

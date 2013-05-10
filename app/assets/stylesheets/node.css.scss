@@ -91,6 +91,8 @@ $color-medium: rgb(154, 148, 141);
     border: 0px solid $color-light;
     border-radius: 1px;
 
+    h3 { font-weight: bold; }
+
     .position {
       display: inline;
       font-size: 18px;
@@ -103,6 +105,7 @@ $color-medium: rgb(154, 148, 141);
       }
       .action.up, .action.down { display: block; }
     }
+
   }
 }
 
