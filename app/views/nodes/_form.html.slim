@@ -1,7 +1,8 @@
 = simple_form_for node do |form|
   = form.input :title
   = form.input :body
-  = form.input(:parent_id, collection: current_group.node.children) if node.parent_id.blank?
+  - if node.new_record? && node.parent_id.blank?
+    = form.input(:parent_id, collection: current_group.node.children) 
   div.form_extra
     =' link_to icon('camera-retro', node.image? ? 'Cambiar imágen' : 'Subir una imágen'), 
       '#', data: { toggle: 'add_image' } 

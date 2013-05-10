@@ -1,112 +1,131 @@
+$color-light: rgb(219, 218, 215);
+$color-medium: rgb(154, 148, 141);
+
 .node {
-  margin: 10px auto 30px auto;
+  margin: 1px auto 30px auto;
   max-width: 640px;
-  
-  .title { 
-    margin: 10px;
-    h4 { margin: -15px 0 0 0; }
-    h5 { margin: 0; }
+  font-size: 13px;
+
+  .main {
+    width: 100%; overflow: hidden;
   }
 
-  .counter { 
-    float: right; 
-    font-size: 13px;
-    color:  rgb(154, 148, 141);
-    padding: 5px;
-    border-left: 1px solid  rgb(219, 218, 215);
-    border-bottom: 1px solid  rgb(219, 218, 215);
+  .content {
+    width: 100%; overflow: hidden;
+    margin-bottom: 10px;
+
+    .title {
+      width: 100%; overflow: hidden;
+      margin-bottom: -20px;
+      h1, h2 { float: left; }
+      h1 { font-size: 36px; }
+      h2 { font-size: 24px; }
+      .position, .counter { display: none; }
+
+      a.action {
+        display: block;
+        font-size: 10px;
+        color: white;
+        background-color: $color-medium;
+        float: left;
+        margin: 37px 0 0 10px;
+        padding: 5px 5px 5px 7px;
+        border-radius: 50%;
+      }
+      a.action:hover {
+        text-decoration: none;
+        background-color: #333;
+      }
+      .action.up, .action.down { display: none; }
+    }
   }
 
   .node_image.image, .node_image.profile {
     display: block;
     float: left;
     width: 42%;
-    margin: 0 5% 10px 10px;
+    margin: 0 5% 10px 0px;
     img { width: 100%;}
   }
-
-  .content {
-    width: 100%; overflow: hidden;
-
-    .body {
-      margin: 10px;
-      line-height: 1.5em;
-      font-weight: 300;
-      font-size: 80%;
-      color: #555;
-      p { margin: 0px 0 10px 0; }
-    }
+  .counter { 
+    float: right; 
+    font-size: 13px;
+    color:  $color-medium;
+    padding: 5px;
+    border: 1px solid $color-light;
+    width: 15px;
+    text-align: center;
+    border-radius: 50%;
   }
-
-
   .download {
     background-color: yellow;
     margin: 10px;
     padding: 5px;
   }
 
-  .node_extra {
+  .info {
     font-size: 12px;
-    padding: 0px 10px;
-    border-top: 1px solid rgb(219, 218, 215);
-    color: rgb(154, 148, 141);
+    padding: 5px 0px;
+    border-top: 1px solid $color-light;
+    color: $color-medium;
+    margin-top: 5px;
+  }
+  .info.mentions_to { display: none; }
+  .extra{
+    display: none;
+    color: $color-medium;
+    font-size: 12px;
+    .stats { display: none;}
+    .actions { float: right; }
   }
 }
 
-.node.profile {
-  .created_at { display: none; }
-  .mentioned_by, .mentions_to { display: none; }
-}
+.children .node {
+  margin-top: 25px;
+  margin-bottom: 5px;
 
-
-.node_info {
-  margin: 0 10px;
-  font-size: 11px;
-  color: rgb(154, 148, 141);
-  .actions { float: right; }
-
-   .stats, .mentions_solved { 
-    display: none; 
-  }
-}
-
-.children {
-  overflow: hidden;
   .parent { display: none; }
 
-  .node_main {
-    margin: 25px 0 5px 0;
-    border: 1px solid rgb(219, 218, 215);
-    background-color: white;
-    border-radius: 3px;
-    box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 3px 0px;
-  }
+  .content {
+    padding: 00px;
+    border: 0px solid $color-light;
+    border-radius: 1px;
 
-  &.grid .node {
+    .position {
+      display: inline;
+      font-size: 18px;
+    }
+
+    .title {
+      a.action {
+        margin-top: 28px;
+        padding: 3px 3px 3px 5px;
+      }
+      .action.up, .action.down { display: block; }
+    }
+  }
+}
+
+.children.grid  {
+  display: block;
+  overflow: hidden;
+
+  .node {
     display: inline-block; vertical-align: top;
     width: 260px;
     margin-right: 30px;
-    .node_image { width: 90%; min-height: 235px; }
+    .node_image { width: 100%; min-height: 235px; }
     .created_at { display: none; }
     .mentions_to { display: none; }
-  }
-
-  &.stream .parent { display: block; margin-bottom: -20px; }
-}
-
-
-.root {
-  .counter { display: none; }
-}
-
-.root, .stream {
-  [data-action="up"] { display: none; }
-  [data-action="down"] { display: none; }
-}
-
-.user_level_0 {
-  .user, .created_at, .stats, .mentions_solved, .mentions_to { 
-    display: inline; 
+    .title {
+      .action.up, .action.down { display: none; }
+    }
   }
 }
 
+.stream .parent { display: block; margin-bottom: -20px; }
+
+.add_new {
+  margin-top: 20px;
+  a { font-size: 18px; }
+}

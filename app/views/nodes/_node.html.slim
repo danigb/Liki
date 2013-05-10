@@ -1,42 +1,48 @@
 = div_for node do
   div.parent = link_to(icon('arrow-up', "En '#{node.parent.title}'"),  node.parent) if node.parent
-  div.node_main
-    a name="#{node.to_param}"
-    div.counter = node.children_count
+  a name="#{node.to_param}"
+  div.content
     div.title
-      - if node.profile?
-        h2 == link_to_unless_current icon(:user, node.title), node
-      - elsif node.title?
-        h2 == link_to_unless_current node.title, node
+      div.counter = node.children_count
+      = link_to node do
+        = content_tag "h#{current_page?(node) ? 1 : 2}" do
+          span.position #{node.position}.  
+          =' node.label 
+      = link_to icon(:pencil), [:edit, node], 
+        class: 'action edit'
+      =' link_to icon('arrow-up'), [:up, node], 
+        method: :put, data: { action: 'up' }, class: 'action up'
+      =' link_to icon('arrow-down'), [:down, node], 
+        method: :put, data: { action: 'down' }, 
+        class: 'action down'
 
-    div.content
-      div class="node_image #{node.style} #{'no-' unless node.image?}image"
-        - if node.image?
-          = image_tag node.image.url, class: 'lightbox'
-        - elsif node.style == 'profile'
-          img src="http://cambelt.co/320x320/Foto"
-      
-      - if node.body?
-        div.body.hashtags = format_body(node.body)
-      - if node.document?
-        div.download = link_to(icon('download', 'Descargar PDF'), node.document.url) 
+  div.main
+    div class="node_image #{node.style} #{'no-' unless node.image?}image"
+      - if node.image?
+        = image_tag node.image.url, class: 'lightbox'
+      - elsif node.style == 'profile'
+        img src="http://cambelt.co/320x320/Foto"
+    
+    - if node.body?
+      div.body.hashtags = format_body(node.body)
+    - if node.document?
+      div.download = link_to(icon('download', 'Descargar PDF'), node.document.url) 
 
-    - if node.mentions_count > 0
-      div.node_extra.mentions_to
-        p 
-          ' Menciona a: 
+  - if node.mentions_count > 0
+    div.info.mentions_to
+      ' Menciona a: 
+      - node.mentioned_nodes.each do |mn|
+        =' link_to truncate(mn.label), mn, class: 'linkify'
 
-          - node.mentioned_nodes.each do |mn|
-            =' link_to truncate(mn.label), mn, class: 'linkify'
-    - if node.mentioned_count > 0
-      div.node_extra.mentioned_by
-        p 
-          ' Mencionado en: 
-          - node.mentioned_by_nodes.each do |mn|
-            =' link_to truncate(mn.label), mn, class: 'linkify'
+  - if node.mentioned_count > 0
+    div.info.mentioned_by
+      ' Mencionado en: 
+      - node.mentioned_by_nodes.each do |mn|
+        =' link_to truncate(mn.label), mn, class: 'linkify'
 
-  div.node_info
-    span.user  Por #{link_to node.user.name, node.user} 
+
+  div.extra
+    span.user Por #{link_to node.user.name, node.user} 
     span.created_at  #{icon(:calendar) } #{l node.created_at, format: :short} 
     span.stats 
       =' icon('list-ol',node.position) 
@@ -46,7 +52,4 @@
     span.mentions_solved  #{'*' unless node.mentions_solved}
 
     div.actions
-      =' link_to icon(:pencil, 'Editar'), [:edit, node]
-      =' link_to icon('arrow-up'), [:up, node], method: :put, data: { action: 'up' }
-      =' link_to icon('arrow-down'), [:down, node], method: :put, data: { action: 'down' }
 
