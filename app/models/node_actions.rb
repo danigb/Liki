@@ -1,4 +1,4 @@
-class Actions
+class NodeActions
   attr_reader :current_user, :current_space
 
   def initialize(current_user, current_space)
@@ -20,9 +20,9 @@ class Actions
   def update_node(node, node_params, admin_params)
     node.attributes = node_params
     node.save
-    node.mentioner.update_mentions 
+    node.mentioner.update_mentions
     if @current_user.admin?
-      node.admin.reorder_children(node) if admin_params[:reorder].present?
+      node.admin.reorder_children if admin_params[:reorder].present?
       node.admin.move_to(admin_params[:move_to_parent_id]) if admin_params[:move_to_parent_id].present?
       change_owner(node, admin_params[:change_owner]) if admin_params[:change_owner].present?
       node.admin.reorder_alphabetically if admin_params[:reorder_alphabetically].present?

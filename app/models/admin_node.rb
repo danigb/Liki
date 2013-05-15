@@ -12,13 +12,13 @@ class AdminNode
   end
 
   def reorder_children
-    @node.children.each_with_index do |n,i|
+    @node.children.each_with_index do |n, i|
       n.update_columns(position: i + 1)
     end
   end
 
   def reorder_alphabetically
-    @node.children.reorder('title ASC').each_with_index do |n,i|
+    @node.children.reorder('title ASC').each_with_index do |n, i|
       n.update_columns(position: i + 1)
     end
   end

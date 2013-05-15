@@ -6,7 +6,16 @@
 - Mover los items con javascript
 - Añadir un usuario a un espacio
 - User leves?
+- Menos clicks para subir imágen
+- Cuando añades una página, vuelve a la página madre
+- Nodos anidados?
+- Poner un + en el título
+- Popups
 
+# CHANGELOG
+
+14/5/2013 
+- Reducir el texto en el grid
 
 # RESOURCES
 rsync -auv deployer@pelicana.es:apps/LaPelicana/shared/system/* public/system/
@@ -16,4 +25,5 @@ git update-index --skip-worktree config/database.yml
 
 Move branch # http://stackoverflow.com/questions/1394797/move-existing-uncommited-work-to-a-new-branch-in-git
 git checkout -b <new-branch>
+
 

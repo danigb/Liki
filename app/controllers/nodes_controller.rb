@@ -15,24 +15,6 @@ class NodesController < ApplicationController
     @nodes = nodes.where('1 = 0')
   end
 
-  def map
-    all = current_space.nodes.where('title IS NOT NULL')
-    mentions = current_space.mentions
-    ms = mentions.map do |mention|
-      if mention.from.title.present? && mention.to.title.present?
-      [mention.from.title, mention.to.title, {color: '#EDC951'}] 
-      end
-    end.compact()
-    titles = all.map &:title
-    all.each do |node|
-      ms << [node.parent.title, node.title, {color: '#CC333F'}] if node.parent
-    end
-    @data = Jbuilder.encode do |json|
-      json.nodes titles
-      json.edges ms
-    end
-  end
-
   def index
     @nodes = current_space.nodes.reorder('created_at DESC').limit(20)
   end
@@ -61,13 +43,13 @@ class NodesController < ApplicationController
   end
 
   def create
-    actions = Actions.new(current_user, current_space)
+    actions = NodeActions.new(current_user, current_space)
     node = actions.create_node(node_params)
     respond_with node
   end
 
   def update
-    actions = Actions.new(current_user, current_space)
+    actions = NodeActions.new(current_user, current_space)
     actions.update_node(node, node_params, params)
     respond_with node
   end

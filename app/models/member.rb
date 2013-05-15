@@ -21,8 +21,10 @@ class Member < ActiveRecord::Base
 
   protected
   def create_member_node
-    self.node = Node.create!(title: user.name, user: self.user, space: self.space,
-                            body: "Email: #{user.email}")
+    self.node = Node.create!(title: user.name, 
+                             user: self.user, 
+                             space: self.space,
+                             body: "Email: #{user.email}")
     self.save
   end
 end
