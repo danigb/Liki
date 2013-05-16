@@ -16,7 +16,7 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 
 # MODELS
-gem 'friendly_id', :github => 'FriendlyId/friendly_id', :branch => 'rails4'
+gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'rails4'
 gem 'acts_as_list'
 gem 'carrierwave'
 gem 'mime-types'
@@ -25,12 +25,12 @@ gem 'rinku'
 #gem 'postrank-uri'
 
 # VIEWS
-gem 'slim'
-gem 'simple_form'
+gem 'slim', '>= 1.3.8'
+gem 'simple_form', github: 'plataformatec/simple_form'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
-gem 'jbuilder', '~> 1.0.1'
+gem 'jbuilder', '~> 1.4.1'
 gem 'font-awesome-sass-rails'
 gem 'redcarpet'
 

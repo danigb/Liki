@@ -43,7 +43,7 @@ describe Node do
       c = create(:node, parent: p)
       p.reload
       p.children.size.must_equal 1
-      p.destroy
+      proc { p.destroy }.must_raise ActiveRecord::DeleteRestrictionError
       # TODO: arreglar esto
       # p.destroyed?.must_equal false
     end
