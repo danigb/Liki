@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Liki::Application.routes.draw do
   root to: 'nodes#root'
 
@@ -22,4 +23,5 @@ Liki::Application.routes.draw do
   get 'user_level/:id', to: 'sessions#user_level'
   get 'visit/:id', to: 'sessions#visit', as: :visit
   post 'invitacion', to: 'sessions#send_token', as: :send_token
+  mount Sidekiq::Web, at: '/sidekiq'
 end
