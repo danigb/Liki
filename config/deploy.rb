@@ -4,9 +4,9 @@ load 'deploy/assets'
 
 load 'config/recipes/all'
 
-server "198.211.96.162", :web, :app, :db, primary: true
+server "198.211.122.4", :web, :app, :db, primary: true
 
-set :application, "LaPelicana"
+set :application, "Liki"
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
