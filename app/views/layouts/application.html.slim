@@ -5,13 +5,13 @@ html
     meta name="liki"
     meta name="app_version" content="#{ENV['RAILS_APP_VERSION']}"
     link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'
-    = stylesheet_link_tag 'application', meia: 'all', 
+    = stylesheet_link_tag 'application', media: 'all', 
       'data-turbolinks-track' => true
     = javascript_include_tag 'application', 
       'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  body class="user_level_#{current_user_level}"
+  body class="user-level-#{current_user_level}"
     header
       = link_to current_space.name, root_path, class: 'current space'
       - if current_user

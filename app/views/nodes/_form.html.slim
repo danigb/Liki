@@ -17,39 +17,6 @@
     - if node.document?
       div = link_to icon(:download, 'Descargar PDF'), node.document.url
     = form.input :document
-  - if current_user.admin?
-    div.form_extra
-      = link_to(icon('wrench', 'Más...'), '#', data: { toggle: 'admin' })
-    div.alert.admin.hidden_input
-      p Eres administradora. Un gran poder exige una gran
-        responsabilidad.
-      p Si no sabes qué poner aquí, déjalo como está.
-
-
-      = form.input :style
-      = form.input :slug
-
-      = form.input :remove_image, as: :boolean
-      = form.input :remove_document, as: :boolean
-
-      div.input.text
-        - if node.parent
-          p Ahora está en: #{node.parent.title} #{node.parent.id}
-          = form.input :parent_id, as: :hidden
-        label Mover a:
-        = text_field_tag :move_to_parent_id
-
-      div.input.text
-        label Owner:
-        = text_field_tag :change_owner
-
-      div.input.text
-        label Añadir tag:
-        = text_field_tag :add_tag
-
-      = boolean_input(:remove_slug, 'Quitar slug')
-      = boolean_input(:reorder, 'Reordenar')
-      = boolean_input(:reorder_alphabetically, 'Reordenar alfabéticamente')
 
   div.buttons = form.submit 'Guardar', class: 'button'
 

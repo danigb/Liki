@@ -1,4 +1,4 @@
-class AccessAdminAction
+class AccessAdminActions
   attr_accessor :node
   attr_accessor :add_editor_user_name
 

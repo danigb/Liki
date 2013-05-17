@@ -1,0 +1,7 @@
+body {
+  a.user-level-admin { display: none; }
+}
+
+body.user-level-0 {
+  a.user-level-admin { display: block; }
+}

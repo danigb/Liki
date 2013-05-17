@@ -3,6 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require "capybara/rails"
 require 'sidekiq/testing'
+require 'database_cleaner'
 
 DatabaseCleaner.strategy = :truncation
 

@@ -25,7 +25,6 @@ $color-medium: rgb(154, 148, 141);
       .position, .counter { display: none; }
 
       a.action {
-        display: block;
         font-size: 10px;
         color: white;
         background-color: $color-medium;
@@ -135,6 +134,11 @@ $color-medium: rgb(154, 148, 141);
 }
 
 .children.stream {
+  .node {
+    .title {
+      .action.up, .action.down { display: none; }
+    }
+  }
   .parent { display: block; margin-bottom: -20px; }
 }
 
@@ -142,3 +146,5 @@ $color-medium: rgb(154, 148, 141);
   margin-top: 20px;
   a { font-size: 18px; }
 }
+
+

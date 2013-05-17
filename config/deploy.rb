@@ -20,8 +20,8 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 # nginx stuff
-set :server_names, 'pelicana.es'
-set :nginx_page_caching, true
+set :server_names, 'liki.es'
+set :nginx_page_caching, false
 
 # newrelic settings
 set :newrelic_license_key, '0a0d3776322392d64886579d8e72499290edd79a'
@@ -30,7 +30,7 @@ set :newrelic_license_key, '0a0d3776322392d64886579d8e72499290edd79a'
 set :config_files, ['database.yml', 'newrelic.yml']
 
 # postgres download
-set :host, 'pelicana.es'
+set :host, 'liki.es'
 
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"

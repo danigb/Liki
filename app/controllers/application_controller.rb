@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
 
   def current_user=(id)
     @current_user = nil
+    session[:current_user_level] = nil
     session[:user_id] = id
   end
 

@@ -1,9 +1,11 @@
 class Node < ActiveRecord::Base
   belongs_to :user, counter_cache: true
   belongs_to :space, counter_cache: true
+
   belongs_to :parent, class_name: 'Node', counter_cache: :children_count
   has_many :children, -> { order 'position ASC' }, foreign_key: 'parent_id', 
     class_name: 'Node', dependent: :restrict_with_exception
+
   has_many :mentioned, foreign_key: 'to_id', class_name: 'Mention',
     dependent: :delete_all
   has_many :mentions, foreign_key: 'from_id', dependent: :delete_all
@@ -11,11 +13,14 @@ class Node < ActiveRecord::Base
     source: :to
   has_many :mentioned_by_nodes, class_name: 'Node', through: :mentioned,
     source: :from
+
   has_many :followings, as: :followed, dependent: :delete_all
   has_many :followers, through: :followings, source: :user, class_name: 'User'
-  has_many :taggings, foreign_key: 'tag_id'
+
+  has_many :taggings, foreign_key: 'tag_id', dependent: :delete_all
   has_many :taggeds, through: :taggings
-  has_many :accesses
+
+  has_many :accesses, dependent: :delete_all
 
 
   validates_presence_of :user_id, :space_id
@@ -30,10 +35,6 @@ class Node < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     new_record? && title.present?
-  end
-
-  def admin
-    @admin ||= AdminNode.new(self)
   end
 
   def mentioner
