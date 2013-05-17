@@ -8,6 +8,9 @@ div.root
 div class="children #{@node.style}"
   = render partial: 'node', collection: @node.children
 
+- if @node.taggeds.count > 0
+  div class="children stream"
+    = render partial: 'node', collection: @node.taggeds
 
 
 div.node

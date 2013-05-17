@@ -13,6 +13,8 @@ class Node < ActiveRecord::Base
     source: :from
   has_many :followings, as: :followed, dependent: :delete_all
   has_many :followers, through: :followings, source: :user, class_name: 'User'
+  has_many :taggings, foreign_key: 'tag_id'
+  has_many :taggeds, through: :taggings
 
 
   validates_presence_of :user_id, :space_id
@@ -26,7 +28,7 @@ class Node < ActiveRecord::Base
   before_validation :set_space_id
 
   def should_generate_new_friendly_id?
-    new_record?
+    new_record? && title.present?
   end
 
   def admin

@@ -29,10 +29,17 @@ class NodeActions
 
   def admin_update_node(node, admin)
     remove_slug(node) if admin[:remove_slug].present?
+    add_tag(node, admin[:add_tag])
     node.admin.reorder_children if admin[:reorder].present?
     node.admin.move_to(admin[:move_to_parent_id]) if admin[:move_to_parent_id].present?
     change_owner(node, admin[:change_owner]) if admin[:change_owner].present?
     node.admin.reorder_alphabetically if admin[:reorder_alphabetically].present?
+  end
+
+  def add_tag(node, tag_name)
+    return if tag_name.blank?
+    tag = Node.find(tag_name.parameterize)
+    Tagging.create(tag: tag, tagged: node) if tag
   end
 
   def remove_slug(node)

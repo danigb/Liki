@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130510130129) do
+ActiveRecord::Schema.define(version: 20130517011405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20130510130129) do
     t.datetime "created_at"
   end
 
-  add_index "followings", ["followed_id", "followed_type"], name: "index_followings_on_followed_id_and_followed_type"
-  add_index "followings", ["user_id"], name: "index_followings_on_user_id"
+  add_index "followings", ["followed_id", "followed_type"], name: "index_followings_on_followed_id_and_followed_type", using: :btree
+  add_index "followings", ["user_id"], name: "index_followings_on_user_id", using: :btree
 
   create_table "members", force: true do |t|
     t.integer  "space_id"
@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 20130510130129) do
     t.datetime "created_at"
   end
 
-  add_index "members", ["node_id"], name: "index_members_on_node_id"
-  add_index "members", ["space_id"], name: "index_members_on_space_id"
-  add_index "members", ["user_id"], name: "index_members_on_user_id"
+  add_index "members", ["node_id"], name: "index_members_on_node_id", using: :btree
+  add_index "members", ["space_id"], name: "index_members_on_space_id", using: :btree
+  add_index "members", ["user_id"], name: "index_members_on_user_id", using: :btree
 
   create_table "mentions", force: true do |t|
     t.integer "from_id"
@@ -48,9 +48,9 @@ ActiveRecord::Schema.define(version: 20130510130129) do
     t.integer "space_id"
   end
 
-  add_index "mentions", ["from_id"], name: "index_mentions_on_from_id"
-  add_index "mentions", ["space_id"], name: "index_mentions_on_space_id"
-  add_index "mentions", ["to_id"], name: "index_mentions_on_to_id"
+  add_index "mentions", ["from_id"], name: "index_mentions_on_from_id", using: :btree
+  add_index "mentions", ["space_id"], name: "index_mentions_on_space_id", using: :btree
+  add_index "mentions", ["to_id"], name: "index_mentions_on_to_id", using: :btree
 
   create_table "nodes", force: true do |t|
     t.string   "title",           limit: 300
@@ -70,13 +70,14 @@ ActiveRecord::Schema.define(version: 20130510130129) do
     t.string   "document",        limit: 300
     t.string   "style",           limit: 8
     t.integer  "followers_count",             default: 0
+    t.integer  "taggings_count",              default: 0
   end
 
-  add_index "nodes", ["parent_id"], name: "index_nodes_on_parent_id"
-  add_index "nodes", ["slug"], name: "index_nodes_on_slug"
-  add_index "nodes", ["space_id", "parent_id"], name: "index_nodes_on_space_id_and_parent_id"
-  add_index "nodes", ["space_id"], name: "index_nodes_on_space_id"
-  add_index "nodes", ["user_id"], name: "index_nodes_on_user_id"
+  add_index "nodes", ["parent_id"], name: "index_nodes_on_parent_id", using: :btree
+  add_index "nodes", ["slug"], name: "index_nodes_on_slug", using: :btree
+  add_index "nodes", ["space_id", "parent_id"], name: "index_nodes_on_space_id_and_parent_id", using: :btree
+  add_index "nodes", ["space_id"], name: "index_nodes_on_space_id", using: :btree
+  add_index "nodes", ["user_id"], name: "index_nodes_on_user_id", using: :btree
 
   create_table "spaces", force: true do |t|
     t.string   "name",            limit: 100
@@ -91,9 +92,16 @@ ActiveRecord::Schema.define(version: 20130510130129) do
     t.string   "host",            limit: 100
   end
 
-  add_index "spaces", ["host"], name: "index_spaces_on_host"
-  add_index "spaces", ["node_id"], name: "index_spaces_on_node_id"
-  add_index "spaces", ["user_id"], name: "index_spaces_on_user_id"
+  add_index "spaces", ["host"], name: "index_spaces_on_host", using: :btree
+  add_index "spaces", ["node_id"], name: "index_spaces_on_node_id", using: :btree
+  add_index "spaces", ["user_id"], name: "index_spaces_on_user_id", using: :btree
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "tagged_id"
+    t.integer  "position"
+    t.datetime "created_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name",             limit: 100
@@ -106,6 +114,6 @@ ActiveRecord::Schema.define(version: 20130510130129) do
     t.integer  "followings_count",             default: 0
   end
 
-  add_index "users", ["slug"], name: "index_users_on_slug", unique: true
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
 end

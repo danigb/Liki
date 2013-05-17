@@ -43,6 +43,10 @@
         label Owner:
         = text_field_tag :change_owner
 
+      div.input.text
+        label Añadir tag:
+        = text_field_tag :add_tag
+
       = boolean_input(:remove_slug, 'Quitar slug')
       = boolean_input(:reorder, 'Reordenar')
       = boolean_input(:reorder_alphabetically, 'Reordenar alfabéticamente')
