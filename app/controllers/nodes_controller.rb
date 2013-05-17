@@ -45,13 +45,13 @@ class NodesController < ApplicationController
   def create
     actions = NodeActions.new(current_user, current_space)
     node = actions.create_node(node_params)
-    respond_with node
+    respond_with node, location: node_location(node)
   end
 
   def update
     actions = NodeActions.new(current_user, current_space)
     actions.update_node(node, node_params, params)
-    respond_with node
+    respond_with node, location: node_location(node)
   end
 
   def destroy
@@ -72,6 +72,10 @@ class NodesController < ApplicationController
   private
   def node
     @node ||= current_space.nodes.find(params[:id])
+  end
+
+  def node_location(node)
+    node.parent ? node.parent : node
   end
 
   def node_params

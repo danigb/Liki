@@ -25,6 +25,10 @@ class Node < ActiveRecord::Base
 
   before_validation :set_space_id
 
+  def should_generate_new_friendly_id?
+    new_record?
+  end
+
   def admin
     @admin ||= AdminNode.new(self)
   end

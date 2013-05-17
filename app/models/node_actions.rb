@@ -21,15 +21,22 @@ class NodeActions
     node.attributes = node_params
     node.save
     node.mentioner.update_mentions
-    if @current_user.admin?
-      node.admin.reorder_children if admin_params[:reorder].present?
-      node.admin.move_to(admin_params[:move_to_parent_id]) if admin_params[:move_to_parent_id].present?
-      change_owner(node, admin_params[:change_owner]) if admin_params[:change_owner].present?
-      node.admin.reorder_alphabetically if admin_params[:reorder_alphabetically].present?
-    end
+    admin_update_node(node, admin_params) if @current_user.admin?
     Notifier.perform_async(:update, 'Node', @current_user.id, node.id)
     MentionWorker.perform_async
     node
+  end
+
+  def admin_update_node(node, admin)
+    remove_slug(node) if admin[:remove_slug].present?
+    node.admin.reorder_children if admin[:reorder].present?
+    node.admin.move_to(admin[:move_to_parent_id]) if admin[:move_to_parent_id].present?
+    change_owner(node, admin[:change_owner]) if admin[:change_owner].present?
+    node.admin.reorder_alphabetically if admin[:reorder_alphabetically].present?
+  end
+
+  def remove_slug(node)
+    node.update_attributes(slug: nil)
   end
 
   def change_owner(node, owner_id)
