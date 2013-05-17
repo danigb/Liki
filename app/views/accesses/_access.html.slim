@@ -1,0 +1,8 @@
+= div_for access do
+  =' link_to access.user.name, access.user 
+  =' icon('eye-open', access.view_count)
+  ' (#{l access.last_view_at})
+  =' icon('pencil', access.edit_count)
+  ' [#{access.edit_level}] 
+  = "(#{l access.last_edit_at})" if access.last_edit_at
+

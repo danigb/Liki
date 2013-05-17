@@ -7,6 +7,9 @@ class CreateTaggings < ActiveRecord::Migration
       t.datetime :created_at
     end
 
-    add_column :nodes, :taggings_count, :integer, default: 0
+    add_index :taggings, :tag_id
+    add_index :taggings, :tagged_id
+
+    add_column :nodes, :tagged_count, :integer, default: 0
   end
 end

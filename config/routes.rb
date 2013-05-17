@@ -7,7 +7,10 @@ Liki::Application.routes.draw do
     put :down, on: :member
   end
 
-  resources :nodes, concerns: :position, path: 'p'
+  resources :nodes, concerns: :position, path: 'p' do
+    get :admin, on: :member
+  end
+
   resources :users, path: 'u'
   resources :members, path: 'm'
   resources :spaces

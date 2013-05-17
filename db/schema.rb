@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130517011405) do
+ActiveRecord::Schema.define(version: 20130517014326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accesses", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "node_id"
+    t.boolean  "visible",                          default: true
+    t.integer  "view_count",                       default: 0
+    t.datetime "last_view_at"
+    t.integer  "edit_level",                       default: 0
+    t.integer  "edit_count",                       default: 0
+    t.datetime "last_edit_at"
+    t.string   "auth_toker",            limit: 50
+    t.datetime "auth_token_created_at"
+    t.integer  "auth_token_emailed",               default: 0
+  end
+
+  add_index "accesses", ["node_id"], name: "index_accesses_on_node_id", using: :btree
+  add_index "accesses", ["user_id"], name: "index_accesses_on_user_id", using: :btree
 
   create_table "followings", force: true do |t|
     t.integer  "user_id"
@@ -70,7 +87,8 @@ ActiveRecord::Schema.define(version: 20130517011405) do
     t.string   "document",        limit: 300
     t.string   "style",           limit: 8
     t.integer  "followers_count",             default: 0
-    t.integer  "taggings_count",              default: 0
+    t.integer  "tagged_count",                default: 0
+    t.integer  "view_count",                  default: 0
   end
 
   add_index "nodes", ["parent_id"], name: "index_nodes_on_parent_id", using: :btree
@@ -102,6 +120,9 @@ ActiveRecord::Schema.define(version: 20130517011405) do
     t.integer  "position"
     t.datetime "created_at"
   end
+
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+  add_index "taggings", ["tagged_id"], name: "index_taggings_on_tagged_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",             limit: 100

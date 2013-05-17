@@ -1,25 +1,33 @@
 require 'test_helper'
 
 describe NodesController do
-  it 'shows login if not logged in' do
-    node = create(:node)
-    visit node_path(node)
-    current_path.must_equal login_path
-  end
+  describe 'Show' do
+    it 'shows login if not logged in' do
+      node = create(:node)
+      visit node_path(node)
+      current_path.must_equal login_path
+    end
 
-  it 'shows node if logged in' do
-    node = create(:node)
-    login(create(:user))
-    visit node_path(node)
-    page.body.must_match node.title
-  end
+    it 'shows node if logged in' do
+      node = create(:node)
+      login(create(:user))
+      visit node_path(node)
+      page.body.must_match node.title
+    end
 
-  it 'shows parent node on untitled' do
-    parent = create(:node)
-    node = create(:node, parent: parent, title: nil)
-    login(create(:user))
-    visit node_path(node)
-    current_path.must_equal node_path(parent)
+    it 'shows parent node if using id' do
+      parent = create(:node)
+      node = create(:node, parent: parent, title: nil)
+      login(create(:user))
+      visit node_path(node)
+      current_path.must_equal node_path(parent)
+    end
+
+    it 'shows form if page not found' do
+      login(create(:user))
+      visit node_path('something')
+      page.find('node_title').must_be :present?
+    end
   end
 
   it 'creates nodes' do

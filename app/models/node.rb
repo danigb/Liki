@@ -15,6 +15,7 @@ class Node < ActiveRecord::Base
   has_many :followers, through: :followings, source: :user, class_name: 'User'
   has_many :taggings, foreign_key: 'tag_id'
   has_many :taggeds, through: :taggings
+  has_many :accesses
 
 
   validates_presence_of :user_id, :space_id

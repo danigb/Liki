@@ -20,18 +20,22 @@ class NodesController < ApplicationController
   end
 
   def show
-    if params[:id] =~ /^\d+$/
-      @node = Node.find(params[:id])
-      @node.parent ? 
-        redirect_to(node_path(@node.parent, anchor: @node.to_param)) : 
-        respond_with(@node)
-    elsif @node = Node.find_by_slug(params[:id])
-      respond_with @node
+    action = NodeShowAction.new(current_space, current_user)
+    action.show(params[:id])
+
+    if action.redirect
+      redirect_to node_path(action.redirect, action.redirect_params)
+    elsif action.node
+      respond_with node
     else
       @title = params[:id].camelcase.gsub /-/, ' '
       @node = Node.new(title: @title)
       render action: 'new'
     end
+  end
+
+  def admin
+    respond_with node
   end
 
   def new

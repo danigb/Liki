@@ -1,0 +1,7 @@
+= div_for following do
+  =' link_to following.user.name, following.user
+  ' sigue esta página. 
+  = link_to 'Dejar de seguir', following, method: :delete,
+    data: { confirm: "¿Quieres dejar de seguir #{@node.label}?",
+    action: 'unfollow' }, class: 'unfollow'
+  

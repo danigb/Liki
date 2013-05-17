@@ -8,8 +8,9 @@ describe Tagging do
     t.tag.must_equal p
     t.tagged.must_equal c
     p.taggings.count.must_equal 1
-    p.taggings_count.must_equal 1
     p.taggeds.must_include c
+    p.reload
+    p.tagged_count.must_equal 1
   end
 
   it 'have position' do

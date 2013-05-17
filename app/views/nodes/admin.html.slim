@@ -1,0 +1,12 @@
+- title @node.label
+
+div.node
+  h1 = link_to @node.label, @node
+
+  h2 Visitas: #{@node.view_count}
+  div.accesses
+    = render @node.accesses
+
+  h2 Seguidorxs: #{@node.followers_count}
+  div.followers
+    = render @node.followings
