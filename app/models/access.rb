@@ -2,6 +2,11 @@ class Access < ActiveRecord::Base
   belongs_to :user
   belongs_to :node
 
+  NO_EDIT = 0 # Can't edit
+  EDITOR = 1 # Can update
+  OWNER = 2 # Can update and destroy
+  ADMIN = 3 # Can admin
+
   validates_presence_of :user_id, :node_id
 
   def self.get(node, user)

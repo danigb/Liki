@@ -7,6 +7,11 @@ div.node
   div.accesses
     = render @node.accesses
 
+  = simple_form_for @form, url: @node do |form|
+    = form.input :add_editor_user_name
+    = form.submit 'Guardar', class: 'button'
+
+
   h2 Seguidorxs: #{@node.followers_count}
   div.followers
     = render @node.followings

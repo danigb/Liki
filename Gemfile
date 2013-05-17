@@ -33,6 +33,7 @@ gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.4.1'
 gem 'font-awesome-sass-rails'
 gem 'redcarpet'
+gem 'reform'
 
 group :production do
   gem 'unicorn'
