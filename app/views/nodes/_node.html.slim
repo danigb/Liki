@@ -9,10 +9,8 @@
   div.content
     div.title
       div.counter = node.children_count
-      = link_to node do
-        = content_tag "h#{main_node?(node) ? 1 : 2}" do
-          span.position #{node.position}.  
-          =' node.title if node.title?
+      = content_tag "h#{main_node?(node) ? 1 : 2}" do
+        = link_to node.title, node if node.title?
       = link_to icon(:pencil), [:edit, node], 
         class: 'action edit'
       =' link_to icon('arrow-up'), [:up, node], 

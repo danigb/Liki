@@ -30,9 +30,13 @@ $color-medium: rgb(154, 148, 141);
         color: white;
         background-color: $color-medium;
         float: left;
-        margin: 37px 0 0 10px;
+        margin: 37px 0 0 3px;
         padding: 5px 5px 5px 7px;
         border-radius: 50%;
+
+      }
+      a.action:first-child {
+        margin-left: 13px;
       }
       a.action:hover {
         text-decoration: none;
