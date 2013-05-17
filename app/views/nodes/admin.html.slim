@@ -15,7 +15,7 @@ div.node
 
   = simple_form_for @access_admin_form, url: @node do |form|
     = form.input :add_editor_user_name
-    = form.submit 'Guardar', class: 'button'
+    = form.submit 'Guardar', name: 'access-admin', class: 'button'
 
   h2 #{icon('eye-open')} Seguidorxs
   div.followers
@@ -40,5 +40,5 @@ div.node
     = form.input :remove_slug, as: :boolean
     = form.input :reorder_children, as: :boolean
     = form.input :reorder_alphabetically, as: :boolean
-    = form.submit 'Guardar', class: 'button'
+    = form.submit 'Guardar', name: 'node-admin', class: 'button'
 

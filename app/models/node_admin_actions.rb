@@ -11,19 +11,23 @@ class NodeAdminActions
   end
 
   def move_to_parent=(parent)
-    before_parent = node.parent
-    new_parent_id = parent == -1 ? nil : Node.find(parent).id
-    @node.attributes = { parent_id: new_parent_id, position: 10000 }
-    @node.save
-    reorder_children_of(before_parent) if before_parent
-    reorder_children_of(@node.parent) if @node.parent
+    if parent.present?
+      before_parent = node.parent
+      new_parent_id = parent == -1 ? nil : Node.find(parent).id
+      @node.attributes = { parent_id: new_parent_id, position: 10000 }
+      @node.save
+      reorder_children_of(before_parent) if before_parent
+      reorder_children_of(@node.parent) if @node.parent
+    end
   end
 
   def change_owner=(owner)
-    user = User.find_by_slug(owner.parameterize)
-    if user
-      @node.user = user
-      @node.save
+    if owner.present?
+      user = User.find_by_slug(owner.parameterize)
+      if user
+        @node.user = user
+        @node.save
+      end
     end
   end
 

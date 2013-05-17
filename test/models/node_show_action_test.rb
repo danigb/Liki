@@ -5,7 +5,7 @@ describe NodeShowAction do
     node = create(:node, title: 'uno')
     user = create(:user)
 
-    action = NodeShowAction.new(node.space, node.user)
+    action = NodeShowAction.new(node.space, user)
     action.show(node.slug)
     action.has_better_id?.must_equal false
     action.node.must_equal node

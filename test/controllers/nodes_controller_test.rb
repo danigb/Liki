@@ -24,9 +24,10 @@ describe NodesController do
     end
 
     it 'shows form if page not found' do
+      create(:space)
       login(create(:user))
       visit node_path('something')
-      page.find('node_title').must_be :present?
+      page.find('#node_title').must_be :present?
     end
   end
 
@@ -56,19 +57,23 @@ describe NodesController do
     page.find('.mentioned_by').text.must_match 'Dos'
   end
 
-  it 'reorder nodes' do
-    g = create(:space)
-    login(create(:user, admin: true))
-    p = create(:node, space: g)
-    b = create(:node, title: 'b', parent: p)
-    a = create(:node, title: 'a', parent: p)
-    a.position.must_equal 2
-    b.position.must_equal 1
-    visit edit_node_path(p)
-    check 'reorder_alphabetically'
-    click_submit
-    a.position.must_equal 1
-    b.position.must_equal 2
+  describe 'Node admin' do
+    it 'reorder nodes' do
+      g = create(:space)
+      login(create(:user, admin: true))
+      p = create(:node, space: g)
+      b = create(:node, title: 'b', parent: p)
+      a = create(:node, title: 'a', parent: p)
+      a.position.must_equal 2
+      b.position.must_equal 1
+      visit admin_node_path(p)
+      check 'node_admin_reorder_alphabetically'
+      click_submit 'node-admin'
+      a.reload
+      a.position.must_equal 1
+      b.reload
+      b.position.must_equal 2
+    end
 
   end
 
