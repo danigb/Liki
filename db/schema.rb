@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130517014326) do
+ActiveRecord::Schema.define(version: 20130518144806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,9 +28,11 @@ ActiveRecord::Schema.define(version: 20130517014326) do
     t.string   "auth_toker",            limit: 50
     t.datetime "auth_token_created_at"
     t.integer  "auth_token_emailed",               default: 0
+    t.integer  "space_id"
   end
 
   add_index "accesses", ["node_id"], name: "index_accesses_on_node_id", using: :btree
+  add_index "accesses", ["space_id"], name: "index_accesses_on_space_id", using: :btree
   add_index "accesses", ["user_id"], name: "index_accesses_on_user_id", using: :btree
 
   create_table "followings", force: true do |t|
@@ -38,9 +40,11 @@ ActiveRecord::Schema.define(version: 20130517014326) do
     t.integer  "followed_id"
     t.string   "followed_type", limit: 16
     t.datetime "created_at"
+    t.integer  "space_id"
   end
 
   add_index "followings", ["followed_id", "followed_type"], name: "index_followings_on_followed_id_and_followed_type", using: :btree
+  add_index "followings", ["space_id"], name: "index_followings_on_space_id", using: :btree
   add_index "followings", ["user_id"], name: "index_followings_on_user_id", using: :btree
 
   create_table "members", force: true do |t|
@@ -119,8 +123,10 @@ ActiveRecord::Schema.define(version: 20130517014326) do
     t.integer  "tagged_id"
     t.integer  "position"
     t.datetime "created_at"
+    t.integer  "space_id"
   end
 
+  add_index "taggings", ["space_id"], name: "index_taggings_on_space_id", using: :btree
   add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
   add_index "taggings", ["tagged_id"], name: "index_taggings_on_tagged_id", using: :btree
 

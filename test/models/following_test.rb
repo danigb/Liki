@@ -4,8 +4,7 @@ describe Following do
   it 'find following' do
     user = create(:user)
     node = create(:node)
-    f = Following.create(user_id: user.id, followed_id: node.id,
-                         followed_type: 'Node')
+    f = Following.follow(node, user)
 
     Following.following(node, user).must_equal f
   end 
