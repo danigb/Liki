@@ -12,6 +12,7 @@ class NodeAdminForm < Reform::Form
   property :remove_slug, on: :action
   property :reorder_children, on: :action
   property :reorder_alphabetically, on: :action
+  property :children_role, on: :action
 
   def validate(params)
     super(params) if params.present?

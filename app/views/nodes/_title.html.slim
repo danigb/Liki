@@ -1,0 +1,19 @@
+div.title
+  div.counter = node.children_count
+  = content_tag "h#{main_node?(node) ? 1 : 2}" do
+    - if node.slug?
+      = link_to node do
+        span = node.title
+        small = icon('arrow-right', 'Ver')
+    - else
+      = node.title
+  = link_to icon(:pencil), [:edit, node], 
+    class: 'action edit'
+  = link_to icon(:wrench), [:admin, node], 
+    class: 'action admin user-level-admin'
+  =' link_to icon('arrow-up'), [:up, node], 
+    method: :put, data: { action: 'up' }, class: 'action up'
+  =' link_to icon('arrow-down'), [:down, node], 
+    method: :put, data: { action: 'down' }, 
+    class: 'action down'
+

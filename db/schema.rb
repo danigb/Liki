@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130518144806) do
+ActiveRecord::Schema.define(version: 20130518211845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 20130518144806) do
     t.integer  "followers_count",             default: 0
     t.integer  "tagged_count",                default: 0
     t.integer  "view_count",                  default: 0
+    t.string   "role",            limit: 8
+    t.string   "image_style",     limit: 16
   end
 
   add_index "nodes", ["parent_id"], name: "index_nodes_on_parent_id", using: :btree

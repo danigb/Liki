@@ -3,15 +3,19 @@
   = form.input :body
   - if node.new_record? && node.parent_id.blank?
     = form.input(:parent_id, collection: current_space.node.children) 
+  - else
+    = form.input :parent_id, as: :hidden
   div.form_extra
     =' link_to icon('camera-retro', node.image? ? 'Cambiar imágen' : 'Subir una imágen'), 
       '#', data: { toggle: 'add_image' } 
     = link_to icon('paper-clip', 'Subir un pdf'), '#', data: { toggle: 'add_document' } 
+
   div.add_image.hidden_input
     h4 Imágen
     - if node.image?
       = image_tag(node.image.thumb.url)
     = form.input :image
+
   div.add_document.hidden_input
     h4 Documento adjunto
     - if node.document?
@@ -21,7 +25,13 @@
   div.buttons = form.submit 'Guardar', class: 'button'
 
   - if current_user.admin?
-    = form.input :style
     = form.input :slug
+    = form.input :role
+    = form.input :style
+    = form.input :image_style
+    = form.input :remove_image, as: :boolean
+    = form.input :remove_document, as: :boolean
+
+
 
 

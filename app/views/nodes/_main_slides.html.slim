@@ -1,0 +1,5 @@
+div.main
+  div.slides
+    - node.children.imaged.each do |children|
+      div.slide
+        = image_tag children.image.url, class: 'lightbox'

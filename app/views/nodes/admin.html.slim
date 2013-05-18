@@ -41,6 +41,7 @@ div.node
   = simple_form_for @node_admin_form, url: @node do |form|
     = form.input :move_to_parent
     = form.input :change_owner
+    = form.input :children_role
     = form.input :remove_slug, as: :boolean
     = form.input :reorder_children, as: :boolean
     = form.input :reorder_alphabetically, as: :boolean

@@ -149,4 +149,15 @@ $color-medium: rgb(154, 148, 141);
   a { font-size: 18px; }
 }
 
+.node {
+  .slides {
+    width: 100%; overflow: hidden;
 
+    .slide {
+      width: 20%; margin-right: 5%;
+      float: left;
+
+      img { width: 100%; }
+    }
+  }
+}

@@ -2,7 +2,8 @@ class NodeAdminActions
   attr_reader :node, :space, :user
   attr_reader :move_to_parent, :change_owner, 
     :remove_slug, :reorder_children,
-    :reorder_alphabetically
+    :reorder_alphabetically,
+    :children_role
 
   def initialize(node, user)
     @node = node
@@ -48,6 +49,14 @@ class NodeAdminActions
     if is_true?(reorder_alphabetically)
       @node.children.reorder('title ASC').each_with_index do |n, i|
         n.update_columns(position: i + 1)
+      end
+    end
+  end
+
+  def children_role=(role)
+    if role.present?
+      @node.children.each do |c|
+        c.update_attributes(role: role)
       end
     end
   end

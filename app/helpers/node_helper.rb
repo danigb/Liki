@@ -1,4 +1,8 @@
 module NodeHelper 
+  def main_partial(node)
+    ['slides'].include?(node.role) ?
+      "main_#{node.role}" : "main"
+  end
   class LikiRender < Redcarpet::Render::HTML
     def header(text, header_level)
       "<h3>#{text}</h3>"
@@ -7,10 +11,6 @@ module NodeHelper
   
   def main_node?(node)
     node.parent.blank? || current_page?(node)
-  end
-
-  def old_format_body(text)
-    raw Rinku.auto_link(simple_format(text))
   end
 
   def format_body(text)
