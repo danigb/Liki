@@ -18,7 +18,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   # Process files as they are uploaded:
-  process resize_to_limit: [640, 640]
+  process resize_to_limit: [800, 800]
 
   version :thumb do
     process resize_to_fit: [160, 160]
@@ -32,6 +32,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Avoid using model.id or version_name here, 
   # see uploader/store.rb for details.
   def filename
-    "#{model.title}.#{model.image.file.extension}" if original_filename
+    "#{model.title.parameterize}.#{model.image.file.extension}" if original_filename
   end
 end
