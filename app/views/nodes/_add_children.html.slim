@@ -20,5 +20,7 @@ div.node.add_children
           style="visibility: hidden;" data-link-type="direct"]
         p O una que esté almacenada en tu ordenador:
         = form.input :image, label: false
+        p Añade una descripción (cuándo, dónde...):
+        = form.input :body, label: false
         = form.submit 'Subir foto', class: 'button'
 

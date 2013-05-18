@@ -12,38 +12,9 @@ $color-medium: rgb(154, 148, 141);
 
   .content {
     width: 100%; overflow: hidden;
-    margin-bottom: 10px;
 
     h3 { font-weight: bold; font-size: 16px; }
 
-    .title {
-      width: 100%; overflow: hidden;
-      margin-bottom: -20px;
-      h1, h2 { float: left; }
-      h1 { font-size: 36px; }
-      h2 { font-size: 24px; }
-      small { font-size: 50%; padding: 0 0.6em; display: none; }
-      .position, .counter { display: none; }
-
-      a.action {
-        font-size: 10px;
-        color: white;
-        background-color: $color-medium;
-        float: left;
-        margin: 37px 0 0 3px;
-        padding: 5px 5px 5px 7px;
-        border-radius: 50%;
-
-      }
-      a.action:first-child {
-        margin-left: 13px;
-      }
-      a.action:hover {
-        text-decoration: none;
-        background-color: #333;
-      }
-      .action.up, .action.down { display: none; }
-    }
   }
 
   .node_image.image, .node_image.profile {
@@ -78,13 +49,39 @@ $color-medium: rgb(154, 148, 141);
   }
   .info.mentions_to { display: none; }
   .extra{
-    display: none;
-    color: $color-medium;
     font-size: 12px;
-    .stats { display: none;}
-    .actions { float: right; }
   }
 }
+
+// NODE TITLE
+.node .title {
+  width: 100%; overflow: hidden;
+  margin-bottom: -20px;
+  h1, h2 { float: left; }
+  h1 { font-size: 36px; }
+  h2 { font-size: 24px; }
+  small { font-size: 50%; padding: 0 0.6em; }
+  .position, .counter { display: none; }
+
+  a.action {
+    font-size: 10px;
+    color: white;
+    background-color: $color-medium;
+    float: left;
+    margin: 37px 0 0 3px;
+    padding: 5px 5px 5px 7px;
+    border-radius: 50%;
+  }
+  a.action:first-child {
+    margin-left: 13px;
+  }
+  a.action:hover {
+    text-decoration: none;
+    background-color: #333;
+  }
+  .action.up, .action.down { display: none; }
+}
+
 
 .children .node {
   margin-top: 25px;
@@ -104,7 +101,6 @@ $color-medium: rgb(154, 148, 141);
     }
 
     .title {
-      small { display: inline-block; }
       a.action {
         margin-top: 28px;
         padding: 3px 3px 3px 5px;
@@ -124,11 +120,9 @@ $color-medium: rgb(154, 148, 141);
     width: 260px;
     margin-right: 30px;
     .node_image { width: 100%; min-height: 235px; float: none; }
-    .created_at { display: none; }
+    small { display: none; }
     .mentions_to { display: none; }
-    .title {
-      .action.up, .action.down { display: none; }
-    }
+    .action.up, .action.down { display: none; }
     .body {
       max-height: 50px;
     }
