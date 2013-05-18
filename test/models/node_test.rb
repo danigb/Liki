@@ -7,6 +7,25 @@ describe Node do
     node.to_param.must_equal node.id.to_s
   end
 
+  describe 'Slugs' do
+    it 'have slug only if created with title' do
+      create(:node, title: nil).slug.must_be :blank?
+      create(:node, title: '   ').slug.must_be :blank?
+      create(:node, title: 'The title').slug.must_be :present?
+    end
+
+    it 'recreates slug if title changed and slug present' do
+      n = create(:node, title: 'title 1')
+      n.slug.must_equal 'title-1'
+      n.update_attributes(title: 'title 2')
+      n.slug.must_equal 'title-2'
+
+      n = create(:node, title: nil)
+      n.update_attributes(title: 'the title')
+      n.slug.must_be :blank?
+    end
+  end
+
   describe 'Parent and children' do
     it "can have parent" do
       parent = create(:node, space: create(:space))

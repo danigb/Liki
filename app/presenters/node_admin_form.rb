@@ -6,8 +6,7 @@ class NodeAdminForm < Reform::Form
 
   model :node_admin, on: :node
   
-  property :style, on: :node
-  property :slug, on: :node
+  property :title, on: :node
   property :move_to_parent, on: :action
   property :change_owner, on: :action
   property :remove_slug, on: :action

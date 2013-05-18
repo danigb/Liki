@@ -16,8 +16,8 @@ html
       = link_to current_space.name, root_path, class: 'current space'
       - if current_user
         = link_to current_user.name, current_user, class: 'current user'
-        div.links 
-          = link_to icon(:rss), recent_path
+
+        div.search
           = link_to icon(:search), search_path
           = form_tag search_path, method: :get do
             = text_field_tag :q

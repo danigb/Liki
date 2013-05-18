@@ -61,11 +61,12 @@ class NodesController < ApplicationController
       actions = NodeActions.new(current_user, current_space)
       actions.update_node(node, node_params, params)
     end
-    if access_admin_form.validate(params[:access_admin])
-      access_admin_form.save 
-    end
     if node_admin_form.validate(params[:node_admin])
       node_admin_form.save
+      node.save
+    end
+    if access_admin_form.validate(params[:access_admin])
+      access_admin_form.save 
     end
     if following_admin_form.validate(params[:following_admin])
       following_admin_form.save

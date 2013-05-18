@@ -32,20 +32,20 @@ class NodeAdminActions
   end
 
   def remove_slug=(remove_slug)
-    if remove_slug
+    if is_true?(remove_slug)
       @node.slug = nil
       @node.save
     end
   end
 
   def reorder_children=(reorder_children)
-    if reorder_children
+    if is_true?(reorder_children)
       reorder_children_of(@node)
     end
   end
 
   def reorder_alphabetically=(reorder_alphabetically)
-    if reorder_alphabetically
+    if is_true?(reorder_alphabetically)
       @node.children.reorder('title ASC').each_with_index do |n, i|
         n.update_columns(position: i + 1)
       end
@@ -53,6 +53,10 @@ class NodeAdminActions
   end
 
   protected
+  def is_true?(parameter)
+    parameter == true || parameter == '1'
+  end
+
   def reorder_children_of(node)
     node.children.each_with_index do |n, i|
       n.update_columns(position: i + 1)

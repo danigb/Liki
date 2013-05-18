@@ -22,6 +22,7 @@ $color-medium: rgb(154, 148, 141);
       h1, h2 { float: left; }
       h1 { font-size: 36px; }
       h2 { font-size: 24px; }
+      small { font-size: 50%; padding: 0 0.6em; display: none; }
       .position, .counter { display: none; }
 
       a.action {
@@ -103,6 +104,7 @@ $color-medium: rgb(154, 148, 141);
     }
 
     .title {
+      small { display: inline-block; }
       a.action {
         margin-top: 28px;
         padding: 3px 3px 3px 5px;

@@ -19,6 +19,7 @@ Liki::Application.routes.draw do
   get 'novedades' => 'nodes#index', as: :recent
   get 'buscar' => 'nodes#search', as: :search
   get 'mapa' => 'explorer#map', as: :map
+  get 'fotos' => 'explorer#photos', as: :photos
 
   get 'entrar(/:id)' => 'sessions#new', as: :login
   get 'salir' => 'sessions#destroy', as: :logout

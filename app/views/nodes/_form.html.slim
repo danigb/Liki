@@ -20,4 +20,8 @@
 
   div.buttons = form.submit 'Guardar', class: 'button'
 
+  - if current_user.admin?
+    = form.input :style
+    = form.input :slug
+
 

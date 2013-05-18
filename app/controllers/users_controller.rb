@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   before_filter :require_owner_or_admin
 
   def show
-    @member = current_space.member(user)
-    respond_with user
+    member = current_space.member(user)
+    redirect_to member.node
   end
 
   def edit

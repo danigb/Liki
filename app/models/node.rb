@@ -34,7 +34,7 @@ class Node < ActiveRecord::Base
   before_validation :set_space_id
 
   def should_generate_new_friendly_id?
-    new_record? && title.present?
+    (new_record? && title.present?) || (title_changed? && slug.present?)
   end
 
   def mentioner

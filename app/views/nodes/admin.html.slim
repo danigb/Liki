@@ -39,8 +39,6 @@ div.node
   h2 #{icon('wrench')} Administrar
   p Eres administradora. Usa tus poderes con cuidado.
   = simple_form_for @node_admin_form, url: @node do |form|
-    = form.input :style
-    = form.input :slug
     = form.input :move_to_parent
     = form.input :change_owner
     = form.input :remove_slug, as: :boolean

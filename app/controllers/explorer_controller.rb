@@ -2,6 +2,10 @@ class ExplorerController < ApplicationController
   before_filter :require_user
   respond_to :html
 
+  def photos
+    @form = PhotosForm.new(user: current_user)
+  end
+
   def map
     all = current_space.nodes.where('title IS NOT NULL')
     mentions = current_space.mentions

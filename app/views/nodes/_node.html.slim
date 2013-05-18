@@ -10,7 +10,12 @@
     div.title
       div.counter = node.children_count
       = content_tag "h#{main_node?(node) ? 1 : 2}" do
-        = link_to_if node.slug?, node.title, node if node.title?
+        - if node.slug?
+          = link_to node do
+            span = node.title
+            small = icon('arrow-right', 'Ver')
+        - else
+          = node.title
       = link_to icon(:pencil), [:edit, node], 
         class: 'action edit'
       = link_to icon(:wrench), [:admin, node], 
