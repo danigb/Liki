@@ -15,5 +15,6 @@
 /log/*.log
 /tmp
 /public/system/**/**
+/public/uploads
 .ruby-version
 dump.rdb

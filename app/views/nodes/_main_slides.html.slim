@@ -1,4 +1,6 @@
 div.main
+  - if node.body?
+    div.body.hashtags = simple_format_body(node.body)
   div.slides
     - node.children.imaged.each do |children|
       div.slide

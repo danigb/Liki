@@ -52,7 +52,9 @@ class NodesController < ApplicationController
 
   def create
     actions = NodeActions.new(current_user, current_space)
-    node = actions.create_node(node_params)
+    options = {}
+    options[:dropbox] = params['selected-file']
+    node = actions.create_node(node_params, options)
     respond_with node, location: node_location(node)
   end
 

@@ -6,9 +6,10 @@ class NodeActions
     @current_space = current_space
   end
 
-  def create_node(node_params)
+  def create_node(node_params, options = {})
     node = Node.new
     node.attributes = node_params
+    node.remote_image_url = options[:dropbox] if options[:dropbox]
     node.space = @current_space
     node.user = @current_user
     node.save

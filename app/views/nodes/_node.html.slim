@@ -11,14 +11,14 @@
     = render main_partial(node), node: node
 
   div.extra
-    span.user Por #{link_to node.user.name, node.user} 
-    span.created_at  #{icon(:calendar) } #{l node.created_at, format: :short} 
-    span.stats 
-      =' icon('list-ol',node.position) 
-      =' icon(:link, node.mentions_count) 
-      =' icon('quote-left', node.mentioned_count) 
-      =' icon('eye-open', node.followers_count) 
-    span.mentions_solved  #{'*' unless node.mentions_solved}
-
     div.actions
+      = link_to icon(:pencil), [:edit, node], 
+        class: 'action edit'
+      = link_to icon(:wrench), [:admin, node], 
+        class: 'action admin user-level-admin'
+      =' link_to icon('arrow-up'), [:up, node], 
+        method: :put, data: { action: 'up' }, class: 'action up'
+      =' link_to icon('arrow-down'), [:down, node], 
+        method: :put, data: { action: 'down' }, 
+        class: 'action down'
 

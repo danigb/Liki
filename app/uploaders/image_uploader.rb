@@ -32,6 +32,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Avoid using model.id or version_name here, 
   # see uploader/store.rb for details.
   def filename
-    "#{model.title.parameterize}.#{model.image.file.extension}" if original_filename
+    if original_filename && model.title.present?
+      "#{model.title.parameterize}.#{model.image.file.extension}" 
+    else
+      original_filename
+    end
   end
 end

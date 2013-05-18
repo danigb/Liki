@@ -8,7 +8,11 @@ module NodeHelper
       "<h3>#{text}</h3>"
     end
   end
-  
+
+  def simple_format_body(text)
+    raw Rinku.auto_link(simple_format(text))
+  end
+
   def main_node?(node)
     node.parent.blank? || current_page?(node)
   end

@@ -5,7 +5,7 @@ div#host style="display:none"
 div.root
   = render 'node', node: @node
 
-div class="children #{@node.style}"
+div class="children #{@node.style} #{@node.role}"
   = render partial: 'node', collection: @node.children
 
 - if @node.taggeds.count > 0
@@ -13,23 +13,8 @@ div class="children #{@node.style}"
     = render partial: 'node', collection: @node.taggeds
 
 
-div.node
-  div.add_new = link_to icon(:plus, "Añadir"), '#', 
-    data: { action: 'add_children', toggle: 'add_children' }
-  div class="add_children separator" style="display: none"
-    = render 'nodes/form', node: @node.children.build
+= render 'add_children'
 
-div.node.followers.separator
-  - if following = Following.following(@node, current_user)
-    span.follower = icon('ok', 'Estás siguiendo esta página. ')
-    ' Recibirás un email cuando cambie. 
-    = link_to 'Dejar de seguir', following, method: :delete,
-      data: { confirm: "¿Quieres dejar de seguir #{@node.label}?",
-      action: 'unfollow' }, class: 'unfollow'
-  - else
-    =' link_to icon('eye-open', 'Hazte seguidor/a de esta página'), 
-      followings_path(n: @node.id), method: :post,
-      class: 'follow' 
-    | si quieres recibir emails cuando alguien haga cambios.
+= render 'following'
 
-
+<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="97zrc4q9b8q6ilx"></script>
