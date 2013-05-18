@@ -36,6 +36,7 @@ class NodesController < ApplicationController
 
   def admin
     access_admin_form
+    following_admin_form
     node_admin_form
     respond_with node
   end
@@ -66,6 +67,9 @@ class NodesController < ApplicationController
     if node_admin_form.validate(params[:node_admin])
       node_admin_form.save
     end
+    if following_admin_form.validate(params[:following_admin])
+      following_admin_form.save
+    end
     respond_with node, location: node_location(node)
   end
 
@@ -91,7 +95,7 @@ class NodesController < ApplicationController
 
   def access_admin_form
     @access_admin_actions ||= AccessAdminActions.new(
-      current_space, current_user)
+      node, current_user)
     @access_admin_form ||= AccessAdminForm.new(
       node: node, action: @access_admin_actions)
   end
@@ -100,6 +104,13 @@ class NodesController < ApplicationController
     @node_admin_actions ||= NodeAdminActions.new(node, current_user)
     @node_admin_form ||= NodeAdminForm.new(
       node: node, action: @node_admin_actions)
+  end
+
+  def following_admin_form
+    @following_admin_actions ||= FollowingAdminActions.new(
+      node, current_user)
+    @following_admin_form ||= FollowingAdminForm.new(
+      node: node, action: @following_admin_actions)
   end
 
   def node_location(node)

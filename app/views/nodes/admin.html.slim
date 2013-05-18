@@ -15,11 +15,17 @@ div.node
 
   = simple_form_for @access_admin_form, url: @node do |form|
     = form.input :add_editor_user_name
-    = form.submit 'Guardar', name: 'access-admin', class: 'button'
+    = form.submit 'Añadir acceso', name: 'access-admin', 
+      class: 'button'
 
   h2 #{icon('eye-open')} Seguidorxs
   div.followers
     = render @node.followings
+  = simple_form_for @following_admin_form, 
+    url: @node do |form|
+    = form.input :add_follower_user_name
+    = form.submit 'Añadir seguidorx', name: 'follower-admin',
+      class: 'button'
 
   h2 #{icon('link')} Menciones
   div.mentions
