@@ -5,8 +5,10 @@ div.node.add_children
       data: { action: 'add_children', toggle: 'add_children' }
     div class="add_children separator" style="display: none"
       = simple_form_for @node.children.build do |form|
+        = form.input :parent_id, as: :hidden
         = form.input :title
         = form.input :body
+        = form.submit 'Añadir página', class: 'button'
   - if @node.role == 'slides'
     div.add_action.new_document 
       = link_to icon(:plus, "Subir foto"), '#', 

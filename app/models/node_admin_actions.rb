@@ -14,7 +14,7 @@ class NodeAdminActions
   def move_to_parent=(parent)
     if parent.present?
       before_parent = node.parent
-      new_parent_id = parent == -1 ? nil : Node.find(parent).id
+      new_parent_id = parent == -1 ? nil : @space.nodes.find(parent).id
       @node.attributes = { parent_id: new_parent_id, position: 10000 }
       @node.save
       reorder_children_of(before_parent) if before_parent
