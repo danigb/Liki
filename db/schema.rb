@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130518211845) do
+ActiveRecord::Schema.define(version: 20130519000027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,30 +74,32 @@ ActiveRecord::Schema.define(version: 20130518211845) do
   add_index "mentions", ["to_id"], name: "index_mentions_on_to_id", using: :btree
 
   create_table "nodes", force: true do |t|
-    t.string   "title",           limit: 300
-    t.string   "slug",            limit: 300
-    t.string   "image",           limit: 300
+    t.string   "title",             limit: 300
+    t.string   "slug",              limit: 300
+    t.string   "image",             limit: 300
     t.text     "body"
     t.integer  "user_id"
     t.integer  "space_id"
     t.integer  "parent_id"
     t.integer  "position"
-    t.integer  "children_count",              default: 0
+    t.integer  "children_count",                default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "mentions_solved",             default: false
-    t.integer  "mentioned_count",             default: 0
-    t.integer  "mentions_count",              default: 0
-    t.string   "document",        limit: 300
-    t.string   "style",           limit: 8
-    t.integer  "followers_count",             default: 0
-    t.integer  "tagged_count",                default: 0
-    t.integer  "view_count",                  default: 0
-    t.string   "role",            limit: 8
-    t.string   "image_style",     limit: 16
+    t.boolean  "mentions_solved",               default: false
+    t.integer  "mentioned_count",               default: 0
+    t.integer  "mentions_count",                default: 0
+    t.string   "document",          limit: 300
+    t.string   "style",             limit: 8
+    t.integer  "followers_count",               default: 0
+    t.integer  "tagged_count",                  default: 0
+    t.integer  "view_count",                    default: 0
+    t.string   "role",              limit: 8
+    t.string   "image_style",       limit: 16
+    t.string   "dropbox_image_url"
   end
 
   add_index "nodes", ["parent_id"], name: "index_nodes_on_parent_id", using: :btree
+  add_index "nodes", ["role"], name: "index_nodes_on_role", using: :btree
   add_index "nodes", ["slug"], name: "index_nodes_on_slug", using: :btree
   add_index "nodes", ["space_id", "parent_id"], name: "index_nodes_on_space_id_and_parent_id", using: :btree
   add_index "nodes", ["space_id"], name: "index_nodes_on_space_id", using: :btree

@@ -51,17 +51,17 @@ class NodesController < ApplicationController
   end
 
   def create
-    actions = NodeActions.new(current_user, current_space)
-    options = {}
-    options[:dropbox] = params['selected-file']
-    node = actions.create_node(node_params, options)
+    repo = NodeRepo.new(current_user, current_space)
+    node = Node.new(node_params)
+    node = repo.create(node, {dropbox: params['selected-file']})
     respond_with node, location: node_location(node)
   end
 
   def update
     if params[:node].present?
-      actions = NodeActions.new(current_user, current_space)
-      actions.update_node(node, node_params, params)
+      repo = NodeRepo.new(current_user, current_space)
+      node.attributes = node_params
+      repo.update(node, {dropbox: params['selected-file']})
     end
     if node_admin_form.validate(params[:node_admin])
       node_admin_form.save

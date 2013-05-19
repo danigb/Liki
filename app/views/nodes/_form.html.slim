@@ -5,33 +5,30 @@
     = form.input(:parent_id, collection: current_space.node.children) 
   - else
     = form.input :parent_id, as: :hidden
-  div.form_extra
-    =' link_to icon('camera-retro', node.image? ? 'Cambiar imágen' : 'Subir una imágen'), 
-      '#', data: { toggle: 'add_image' } 
-    = link_to icon('paper-clip', 'Subir un pdf'), '#', data: { toggle: 'add_document' } 
 
-  div.add_image.hidden_input
-    h4 Imágen
+  div.add_image
     - if node.image?
-      = image_tag(node.image.thumb.url)
-    = form.input :image
+      = image_tag(node.image.thumb.url, class: 'current')
+    p Puedes subir una imágen desde tu dropbox:
+    input[type="dropbox-chooser" name="selected-file"
+      style="visibility: hidden;" data-link-type="direct"]
+    p O desde tu ordenador:
+    = form.input :image, label: false
 
-  div.add_document.hidden_input
-    h4 Documento adjunto
-    - if node.document?
-      div = link_to icon(:download, 'Descargar PDF'), node.document.url
-    = form.input :document
 
   div.buttons = form.submit 'Guardar', class: 'button'
 
+  div.node
   - if current_user.admin?
+    h2 Eres administradora.
     = form.input :slug
     = form.input :role
     = form.input :style
     = form.input :image_style
     = form.input :remove_image, as: :boolean
     = form.input :remove_document, as: :boolean
+    = form.input :document
 
-
+<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="97zrc4q9b8q6ilx"></script>
 
 

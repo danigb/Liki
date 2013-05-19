@@ -24,6 +24,7 @@ $color-medium: rgb(154, 148, 141);
     margin: 0 5% 10px 0px;
     img { width: 100%;}
   }
+  .node_image img.remote { width: 90%; border: 5px solid yellow; }
   .counter { 
     float: right; 
     font-size: 13px;

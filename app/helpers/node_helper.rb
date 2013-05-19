@@ -3,6 +3,15 @@ module NodeHelper
     ['slides'].include?(node.role) ?
       "main_#{node.role}" : "main"
   end
+
+  def node_image(node)
+    node.image.url || node.dropbox_image_url
+  end
+
+  def image_source(node)
+    node.image.url ? 'local' : 'remote'
+  end
+
   class LikiRender < Redcarpet::Render::HTML
     def header(text, header_level)
       "<h3>#{text}</h3>"

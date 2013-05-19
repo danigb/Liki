@@ -1,8 +1,10 @@
 div.main
-  div class="node_image #{node.style} \
-  #{'no-' unless node.image?}image"
-    - if node.image?
-      = image_tag node.image.url, class: 'lightbox'
+  - if node_image(node).present?
+    div.node_image.image
+      = image_tag node_image(node), 
+        class: "lightbox #{image_source(node)}"
+  - else
+    div.node_image.no-image
   
   - if node.body?
     div.body.hashtags = format_body(node.body)

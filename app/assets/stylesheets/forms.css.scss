@@ -10,8 +10,10 @@ form {
       padding: 2px 0;
     }
     .hint { font-size: 11px; }
-
   }
+
+  .add_image { width: 100%; overflow: hidden; }
+  img.current { float: right; }
 
   div.input.boolean {
     input {
