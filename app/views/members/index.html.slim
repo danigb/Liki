@@ -1,23 +1,25 @@
 div.node
-  = title 'Participantes'
+  = title "Participantes en #{current_space.name}"
 
+  = simple_form_for @new_member do |form|
+    = form.input :user_id, as: :string
+    = form.submit 'Añadir participante', class: 'button'
 
   div.children
     - @members.each do |member|
-      div.node
-        div.node_main
-          div.title
-            h2 == "#{member.user.name} #{icon(:certificate) if member.user.admin?}"
+      - unless member.user 
+        = debug member
+        = link_to 'borrar', member, method: :delete,
+          data: { confirm: '¿Segura?' }
+      - else
+        = div_for member do
+          h2 == "#{member.user.name} #{icon(:certificate) if member.user.admin?}"
+          span #{link_to member.node.title, member.node} | 
+          span #{icon('eye-open', member.login_count)} 
+          span #{l member.last_login_at if member.last_login_at} | 
+          span #{member.user.email}
+          div Token: #{login_url(member.auth_token)}
 
-          div.content
-            div.body
-              p Email: #{member.user.email}
-              p Token: #{login_url(member.auth_token)}
-              p Perfil: #{link_to member.node.title, member.node}
-              p Ha entrado #{member.login_count} veces
-              p = l member.last_login_at if member.last_login_at
-
-        div.node_info
-          div.actions
-            =' link_to icon('eye-open', 'Ver'), user_path(member.user) 
-            = link_to icon(:pencil, 'Editar'), edit_user_path(member.user)
+          div.node_info
+            div.actions
+              = link_to icon(:pencil, 'Editar usuarix'), edit_user_path(member.user)

@@ -2,6 +2,11 @@ class UsersController < ApplicationController
   respond_to :html
   before_filter :require_owner_or_admin
 
+  def index
+    @users = User.all
+    respond_with @users
+  end
+
   def show
     member = current_space.member(user)
     redirect_to member.node

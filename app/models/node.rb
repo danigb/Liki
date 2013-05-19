@@ -22,7 +22,7 @@ class Node < ActiveRecord::Base
 
   has_many :accesses, dependent: :delete_all
 
-  scope :imaged, -> { where("image <> ''") }
+  scope :imaged, -> { where("image <> '' OR dropbox_image_url <>''") }
 
 
   validates_presence_of :user_id, :space_id

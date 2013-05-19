@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :members
+  has_many :members, dependent: :delete_all
+  has_many :spaces, through: :members
   has_many :nodes
   has_many :followings, -> { order('created_at DESC') }
 

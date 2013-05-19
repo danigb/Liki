@@ -1,0 +1,13 @@
+div.node
+  = title 'Usuarixs'
+
+  = link_to icon('plus', 'Añadir participante'), new_user_path
+
+  - @users.each do |user|
+    = div_for user do
+      strong =' link_to user.name, user 
+      span = link_to icon(:pencil), [:edit, user]
+      span =' user.email 
+      - user.spaces.each do |space|
+        span | #{link_to space.name, space}
+
