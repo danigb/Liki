@@ -1,0 +1,10 @@
+div.main
+  div.body.hashtags = format_body(node.body)
+  div.document
+    - if node.image?
+      div.img = image_tag node.image.url, class: 'lightbox'
+    - if node.document?
+      div.info
+        = link_to icon('download', 'Descargar PDF'),
+          node.document.url
+      

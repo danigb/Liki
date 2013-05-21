@@ -14,6 +14,7 @@
  *= require 'buttons'
  *= require 'layout'
  *= require 'node'
+ *= require 'roles'
  *= require 'user_levels'
  *= require 'lightbox'
  *= require 'explorer'

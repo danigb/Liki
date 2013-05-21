@@ -1,6 +1,6 @@
 module NodeHelper 
   def main_partial(node)
-    ['slides'].include?(node.role) ?
+    ['slides', 'download', 'page'].include?(node.role) ?
       "main_#{node.role}" : "main"
   end
 

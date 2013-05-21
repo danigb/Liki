@@ -1,0 +1,11 @@
+div.main
+  - if node.body?
+    div.body.hashtags = format_body(node.body)
+  ul.sections
+    - node.children.each do |child|
+      li.section
+        = link_to node_path(node, anchor: child.id) do
+          span.title =' child.title 
+          small = icon('arrow-right', 'Ver')
+
+
