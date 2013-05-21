@@ -78,14 +78,6 @@ $color-medium: rgb(154, 148, 141);
   .action.up, .action.down { display: none; }
 }
 
-// ROOT NODE
-div.root {
-  .node.slides {
-    .main .slides { display: none; }
-  }
-}
-
-
 .children .node {
   margin-top: 25px;
   margin-bottom: 5px;
@@ -151,15 +143,3 @@ div.root {
   }
 }
 
-.node {
-  .slides {
-    width: 100%; overflow: hidden;
-
-    .slide {
-      width: 20%; margin-right: 5%;
-      float: left;
-
-      img { width: 100%; }
-    }
-  }
-}

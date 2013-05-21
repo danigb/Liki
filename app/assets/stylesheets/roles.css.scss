@@ -18,6 +18,18 @@ $color-medium: rgb(154, 148, 141);
 .root .node.page ul.sections { display: none; }
 
 // SLIDES
+.node {
+  .slides {
+    width: 100%; overflow: hidden;
+
+    .slide {
+      display: inline-block; vertical-align: top;
+      width: 20%; margin-right: 5%;
+      img { width: 100%; }
+    }
+  }
+}
+div.root .node.slides .main .slides { display: none; }
 
 // DOWNLOAD
 .node.download {

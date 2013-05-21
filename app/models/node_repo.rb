@@ -26,9 +26,9 @@ class NodeRepo
   protected
   def launch_workers(node)
     Following.follow(node, @current_user)
-    Notifier.perform_async(:update, 'Node', @current_user.id, node.id)
-    UploadWorker.perform_async(node.id)
-    MentionWorker.perform_async
+    Workers.push(Notifier, :update, 'Node', @current_user.id, node.id)
+    Workers.push(UploadWorker, node.id)
+    Workers.push(MentionWorker)
   end
 
   def apply_options(node, options)
