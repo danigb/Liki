@@ -1,0 +1,4 @@
+div.subtree
+  - nodes.each do |node|
+    = link_to node.title, node
+    = render 'subtree', nodes: node.children.slugged 

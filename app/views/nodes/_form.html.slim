@@ -18,17 +18,6 @@
 
   div.buttons = form.submit 'Guardar', class: 'button'
 
-  div.node
-  - if current_user.admin?
-    h2 Eres administradora.
-    = form.input :slug
-    = form.input :role
-    = form.input :style
-    = form.input :image_style
-    = form.input :remove_image, as: :boolean
-    = form.input :remove_document, as: :boolean
-    = form.input :document
-
 <script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="97zrc4q9b8q6ilx"></script>
 
 

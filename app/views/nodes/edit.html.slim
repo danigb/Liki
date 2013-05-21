@@ -10,4 +10,7 @@ div.node.alert.separator
     data: { confirm: "¿Quieres borrar '#{@node.title}'?" },
     class: 'button danger'
 
+= render 'admin_form', node: @node if current_user.admin?
+  
+
 

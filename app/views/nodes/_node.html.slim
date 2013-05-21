@@ -1,4 +1,4 @@
-= div_for node do
+= div_for node, class: node.role do
   div.parent
     - if node.parent
       = link_to(icon('arrow-up', "En '#{node.parent.title}'"),  node.parent)

@@ -23,6 +23,7 @@ class Node < ActiveRecord::Base
   has_many :accesses, dependent: :delete_all
 
   scope :imaged, -> { where("image <> '' OR dropbox_image_url <>''") }
+  scope :slugged, -> { where("slug <> ''") }
 
 
   validates_presence_of :user_id, :space_id
@@ -32,6 +33,8 @@ class Node < ActiveRecord::Base
   friendly_id :title, use: :scoped, scope: :space
   mount_uploader :image, ImageUploader
   mount_uploader :document, DocumentUploader
+
+  ROLES = ['folder', 'document', 'slides', 'section', 'photo']
 
   before_validation :set_space_id
 

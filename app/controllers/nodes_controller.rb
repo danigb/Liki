@@ -16,7 +16,7 @@ class NodesController < ApplicationController
   end
 
   def index
-    @nodes = current_space.nodes.reorder('created_at DESC').limit(20)
+    @root = current_space.node
   end
 
   def show
@@ -117,7 +117,7 @@ class NodesController < ApplicationController
   end
 
   def node_location(node)
-    node.parent ? node.parent : node
+    node_path(node)
   end
 
   def node_params

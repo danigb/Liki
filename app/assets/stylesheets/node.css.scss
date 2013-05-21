@@ -83,6 +83,13 @@ $color-medium: rgb(154, 148, 141);
   .action.up, .action.down { display: none; }
 }
 
+// ROOT NODE
+div.root {
+  .node.slides {
+    .main .slides { display: none; }
+  }
+}
+
 
 .children .node {
   margin-top: 25px;

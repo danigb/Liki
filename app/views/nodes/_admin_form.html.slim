@@ -1,0 +1,14 @@
+div.node.separator
+  h2 Eres administradora.
+  p Usa tus poderes con cuidado.
+  = simple_form_for node do |form|
+    = form.input :slug
+    = form.input :role
+    = form.input :style
+    = form.input :image_style
+    = form.input :remove_image, as: :boolean
+    = form.input :remove_document, as: :boolean
+    = form.input :document
+    = form.submit 'Administrar', class: 'button'
+
+
