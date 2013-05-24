@@ -5,7 +5,7 @@ describe NodeAdminActions do
     p1 = create(:node)
     a = create(:node, parent: p1)
     b = create(:node, parent: p1)
-    p2 = create(:node, title: 'dos')
+    p2 = create(:node, title: 'dos', space: p1.space)
     c = create(:node, parent: p2)
     
     actions = NodeAdminActions.new(a, create(:user))

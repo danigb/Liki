@@ -18,6 +18,7 @@ class NotifyMailer < ActionMailer::Base
 
   protected
   def send_notification(subject, node, recipient)
+    UserMailer.default_url_options[:host] = @space.host
     @recipient = recipient
     @node = node
     @space = node.space

@@ -24,7 +24,7 @@ class NodesController < ApplicationController
 
     if params[:id] =~ /^\d+$/
       redirect_to node_path(node.parent, anchor: node.id)
-    elsif @current_space.nodes.find_by_slug(params[:id])
+    elsif current_space.nodes.find_by_slug(params[:id])
       repo.show(node)
       respond_with node
     else
