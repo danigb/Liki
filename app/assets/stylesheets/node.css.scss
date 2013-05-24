@@ -1,29 +1,31 @@
 $color-light: rgb(219, 218, 215);
 $color-medium: rgb(154, 148, 141);
+$column-width: 640px;
 
 .node {
   margin: 1px auto 30px auto;
-  max-width: 640px;
+  max-width: $column-width;
   font-size: 13px;
+  background-color: white;
 
   .main {
-    width: 100%; overflow: hidden;
+    width: 100%; 
   }
 
   .content {
-    width: 100%; overflow: hidden;
+    width: 100%;
 
     h3 { font-weight: bold; font-size: 16px; }
 
   }
 
-  .node_image.image, .node_image.profile {
-    display: block;
+  .node_image.left {
     float: left;
-    width: 42%;
-    margin: 0 5% 10px 0px;
-    img { width: 100%;}
+    width: 47%;
+    margin-right: 3%;
+    img { width: 100%; }
   }
+
   .node_image img.remote { width: 90%; border: 5px solid yellow; }
   .counter { 
     float: right; 
@@ -106,7 +108,13 @@ $color-medium: rgb(154, 148, 141);
   }
 }
 
-.children.grid, .children.slides  {
+.children {
+  margin: 0 auto;
+  max-width: $column-width;
+  background-color: white;
+}
+
+.children.grid {
   display: block;
   overflow: hidden;
 

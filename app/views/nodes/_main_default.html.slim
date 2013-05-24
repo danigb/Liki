@@ -1,6 +1,6 @@
-div.main
+div.main.default
   - if node_image(node).present?
-    div.node_image.image
+    div class="node_image image #{node.image_style}"
       = image_tag node_image(node), 
         class: "lightbox #{image_source(node)}"
   - else

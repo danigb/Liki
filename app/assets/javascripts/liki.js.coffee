@@ -4,3 +4,12 @@ $(document). on 'click', 'a[data-toggle]', ->
   $(this).hide()
   false
 
+init = ->
+  background  = $('body').data('backimage')
+  $.backstretch(background)
+
+
+$(document).ready init
+$(window).bind 'page:load', init
+
+

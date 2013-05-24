@@ -3,9 +3,13 @@
   #main {
     max-width: 640px;
     margin: 80px auto;
+    background-color: white;
   }
   #column { 
-    margin: 80px 100px; 
+    max-width: 640px;
+    padding: 40px;
+    margin: 40px auto 200px auto;
+    background-color: white;
   }
 }
 @media only screen and (max-device-width: 800px) {

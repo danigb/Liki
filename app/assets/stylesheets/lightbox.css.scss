@@ -26,8 +26,9 @@ div#lightbox {
     img {
         max-width: 90%;
         background: #ffffff;
-        -webkit-box-shadow: 0px 0px 15px #444;
-        -moz-box-shadow: 0px 0px 15px #444;
+        border: 12px solid #e7e7dd;
+        box-shadow: 0 0 1px 0 rgba(0,0,0,0.9);
+        border-radius: 3px;
     }
 
 }
