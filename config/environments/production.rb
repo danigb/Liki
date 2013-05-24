@@ -68,11 +68,13 @@ Liki::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:             "smtp.mandrillapp.com",
-    port:                587,
+    port:                25,
     user_name:           'danigb@gmail.com',
     password:            'E1qXXgoRpHsJAkipqHpJhA',
-    authentication:      'plain',
-    enable_starttls_auto: true  }
+    authentication:      'login',
+    enable_starttls_auto: true,
+    domain: 'liki.es'
+  } 
   config.action_mailer.default_url_options = { host: 'liki.es' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
