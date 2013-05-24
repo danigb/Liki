@@ -1,7 +1,7 @@
 $color-light: rgb(219, 218, 215);
 $color-medium: rgb(154, 148, 141);
 // PAGE
-.node.page {
+.node.page, .node.folder {
   .main ul.sections {
     margin: 0 0 10px 10px;
     padding: 0;
@@ -16,6 +16,7 @@ $color-medium: rgb(154, 148, 141);
   }
 }
 .root .node.page ul.sections { display: none; }
+.root .node.folder ul.sections { display: none; }
 
 // SLIDES
 .node {

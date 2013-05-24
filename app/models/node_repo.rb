@@ -6,6 +6,13 @@ class NodeRepo
     @current_space = current_space
   end
 
+  def show(node)
+    Access.get(node, @current_user).view!
+
+    node.view_count = node.view_count + 1
+    node.save
+  end
+
   def create(node, options = {})
     apply_options(node, options)
     node.space = @current_space

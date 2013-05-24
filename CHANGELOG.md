@@ -20,6 +20,11 @@
 # RESOURCES
 rsync -auv deployer@pelicana.es:apps/Liki/shared/system/* public/system/
 
+vim:
+http://stackoverflow.com/questions/12553032/how-to-customize-plugins-in-janus-a-vim-distribution
+Rnavcommand presenter app/presenters
+
+
 If you need to keep local changes in file which tracked by #git, just do:
 git update-index --skip-worktree config/database.yml
 

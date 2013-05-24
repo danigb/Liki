@@ -8,7 +8,7 @@ class Space < ActiveRecord::Base
   has_many :followings, as: :followed, dependent: :delete_all
   has_many :followers, through: :followings, source: :user, class_name: 'User'
 
-  validates_presence_of :name, :user_id
+  validates_presence_of :name, :user_id, :email
 
   after_create :create_space_node
 

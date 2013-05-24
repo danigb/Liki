@@ -10,19 +10,3 @@ div.node.add_children
         = form.input :body
         = form.submit 'Añadir página', class: 'button'
   - if @node.role == 'slides'
-    div.add_action.new_document 
-      = link_to icon(:plus, "Subir foto"), '#', 
-      data: { action: 'add_children', toggle: 'add_children' }
-    div class="add_children separator" style="display: none"
-      h3 Subir foto
-      = simple_form_for @node.children.build do |form|
-        = form.input :parent_id, as: :hidden
-        p Puedes subir una imágen desde tu dropbox:
-        input[type="dropbox-chooser" name="selected-file"
-          style="visibility: hidden;" data-link-type="direct"]
-        p O una que esté almacenada en tu ordenador:
-        = form.input :image, label: false
-        p Añade una descripción (cuándo, dónde...):
-        = form.input :body, label: false
-        = form.submit 'Subir foto', class: 'button'
-

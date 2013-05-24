@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130519000027) do
+ActiveRecord::Schema.define(version: 20130524111202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20130519000027) do
     t.integer  "mentions_count",              default: 0
     t.integer  "followers_count",             default: 0
     t.string   "host",            limit: 100
+    t.string   "email"
   end
 
   add_index "spaces", ["host"], name: "index_spaces_on_host", using: :btree

@@ -20,12 +20,12 @@ class NodesController < ApplicationController
   end
 
   def show
-    action = NodeShowAction.new(current_space, current_user)
-    action.show(params[:id])
+    repo = NodeRepo.new(current_user, current_space)
 
-    if action.redirect
-      redirect_to node_path(action.redirect, action.redirect_params)
-    elsif action.node
+    if params[:id] =~ /^\d+$/
+      redirect_to node_path(node.parent, anchor: node.id)
+    elsif @current_space.nodes.find_by_slug(params[:id])
+      repo.show(node)
       respond_with node
     else
       @title = params[:id].camelcase.gsub /-/, ' '
@@ -125,6 +125,6 @@ class NodesController < ApplicationController
                                  :document, :image, :slug,
                                  :role, :style, :image_style,
                                  :remove_image, :remove_document,
-                                 :parent_id)
+                                 :parent_id, :prevent_slug_creation)
   end
 end

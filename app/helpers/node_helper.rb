@@ -1,8 +1,4 @@
 module NodeHelper 
-  def main_partial(node)
-    ['slides', 'download', 'page'].include?(node.role) ?
-      "main_#{node.role}" : "main"
-  end
 
   def node_image(node)
     node.image.url || node.dropbox_image_url

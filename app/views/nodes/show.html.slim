@@ -12,8 +12,9 @@ div class="children #{@node.style} #{@node.role}"
   div class="children stream"
     = render partial: 'node', collection: @node.taggeds
 
-
-= render 'add_children'
+div.node.add_children
+  - @node.rol.children.each do |children_role|
+    = render "add_#{children_role}_child", node: @node
 
 = render 'following'
 

@@ -24,6 +24,11 @@ describe Node do
       n.update_attributes(title: 'the title')
       n.slug.must_be :blank?
     end
+
+    it 'prevents slug creation' do
+      n = create(:node, title: 'title', prevent_slug_creation: true)
+      n.slug.must_be :blank?
+    end
   end
 
   describe 'Parent and children' do

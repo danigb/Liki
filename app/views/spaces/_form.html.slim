@@ -1,6 +1,7 @@
 = simple_form_for @space do |form|
   = form.input :name
   = form.input :host
+  = form.input :email
 
   = boolean_input(:regenerate_counters, 'Regenerar estadísticas')
   = boolean_input(:regenerate_mentions, 'Regenerar menciones')

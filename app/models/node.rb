@@ -33,13 +33,18 @@ class Node < ActiveRecord::Base
   friendly_id :title, use: :scoped, scope: :space
   mount_uploader :image, ImageUploader
   mount_uploader :document, DocumentUploader
+  attr_accessor :prevent_slug_creation
 
   ROLES = ['folder', 'document', 'slides', 'section', 'photo']
 
   before_validation :set_space_id
 
   def should_generate_new_friendly_id?
-    (new_record? && title.present?) || (title_changed? && slug.present?)
+    !prevent_slug_creation && (new_record? && title.present?) || (title_changed? && slug.present?)
+  end
+
+  def rol
+    @rol ||= Role.find(self.role)
   end
 
   def mentioner

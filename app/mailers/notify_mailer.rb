@@ -21,6 +21,6 @@ class NotifyMailer < ActionMailer::Base
     @recipient = recipient
     @node = node
     @space = node.space
-    mail to: @recipient.email, subject: subject
+    mail to: @recipient.email, subject: subject, from: @space.email
   end
 end
