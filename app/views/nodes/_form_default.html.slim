@@ -5,6 +5,9 @@
     = form.input(:parent_id, collection: current_space.node.children) 
   - else
     = form.input :parent_id, as: :hidden
+  - if current_user.admin?
+    p Eres administradora. Cuidado!
+    = form.input :role
 
   div.add_image
     - if node.image?
