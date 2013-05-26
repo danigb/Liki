@@ -2,7 +2,7 @@ class MembersController < ApplicationController
   before_filter :require_admin
 
   def index
-    @members = current_space.members
+    @members = current_space.members.joins(:user).order('users.email')
     @new_member = current_space.members.build
   end
 

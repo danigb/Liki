@@ -4,5 +4,6 @@
   - if current_user.admin?
     div.admin 
       | Eres administradora, usa tus poderes con cuidado
+      = form.input :slug
       = form.input :admin
   = form.submit class: 'button'
