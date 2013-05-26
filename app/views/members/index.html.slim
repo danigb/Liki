@@ -1,5 +1,6 @@
 div.node
-  = title "Participantes en #{current_space.name}"
+  = title "Participantes"
+  h2 En #{@current_space.name} (#{@members.size})
 
   = simple_form_for @new_member do |form|
     = form.input :user_id, as: :string
@@ -7,14 +8,14 @@ div.node
 
   div.children
     - @members.each do |member|
-      - unless member.user 
+      - unless member.user && member.node
         = debug member
         = link_to 'borrar', member, method: :delete,
           data: { confirm: '¿Segura?' }
       - else
         = div_for member do
           h2 == "#{member.user.name} #{icon(:certificate) if member.user.admin?}"
-          span #{link_to member.node.title, member.node} | 
+          span #{link_to member.node.title, member.node}  | 
           span #{icon('eye-open', member.login_count)} 
           span #{l member.last_login_at if member.last_login_at} | 
           span #{member.user.email}
