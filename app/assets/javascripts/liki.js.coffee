@@ -5,8 +5,9 @@ $(document). on 'click', 'a[data-toggle]', ->
   false
 
 init = ->
-  background  = $('body').data('backimage')
-  $.backstretch(background)
+  image = $('body').data('backimage')
+  $('html').css('background-image', "url(#{image})")
+  #$.backstretch(background)
 
 
 $(document).ready init

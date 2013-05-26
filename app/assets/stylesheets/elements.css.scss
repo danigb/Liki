@@ -4,6 +4,14 @@ html, body {
   font-family: 'Source Sans Pro', 'Lucida Grande', Verdana, Helvetica, Arial;
 }
 
+html {
+  background: url(/Blank.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   font-family: 'Source Sans Pro', 'Noto Sans', MuseoSans, 'Helvetica Neue', Arial;
@@ -43,9 +51,4 @@ a.linkify {
   .follower { font-weight: bold; }
   .follow { font-weight: bold; color: #080; }
   .unfollow { color: #800; }
-}
-
-.backstretch {
-  -webkit-filter: blur(4px);  
-  opacity: 0.9;
 }
