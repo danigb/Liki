@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130526031317) do
+ActiveRecord::Schema.define(version: 20130526174059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,17 +106,19 @@ ActiveRecord::Schema.define(version: 20130526031317) do
   add_index "nodes", ["user_id"], name: "index_nodes_on_user_id", using: :btree
 
   create_table "spaces", force: true do |t|
-    t.string   "name",            limit: 100
-    t.integer  "members_count",               default: 0
+    t.string   "name",             limit: 100
+    t.integer  "members_count",                default: 0
     t.integer  "node_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "nodes_count",                 default: 0
-    t.integer  "mentions_count",              default: 0
-    t.integer  "followers_count",             default: 0
-    t.string   "host",            limit: 100
+    t.integer  "nodes_count",                  default: 0
+    t.integer  "mentions_count",               default: 0
+    t.integer  "followers_count",              default: 0
+    t.string   "host",             limit: 100
     t.string   "email"
+    t.string   "background_image"
+    t.string   "avatar_image"
   end
 
   add_index "spaces", ["host"], name: "index_spaces_on_host", using: :btree

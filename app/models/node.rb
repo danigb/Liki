@@ -31,7 +31,7 @@ class Node < ActiveRecord::Base
   acts_as_list scope: [:space_id, :parent_id]
   include FriendlyId
   friendly_id :title, use: :scoped, scope: :space
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, NodeImageUploader
   mount_uploader :document, DocumentUploader
   attr_accessor :prevent_slug_creation
 

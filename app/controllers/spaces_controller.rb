@@ -42,7 +42,8 @@ class SpacesController < ApplicationController
   end
 
   def space_params
-    params.require(:space).permit(:name, :host, :email)
+    params.require(:space).permit(:name, :host, :email, 
+                                  :background_image)
   end
 
   def require_super

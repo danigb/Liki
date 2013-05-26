@@ -12,7 +12,7 @@ html
     = csrf_meta_tags
 
   body[class="user-level-#{current_user_level}"
-    data-backimage="#{current_space.node.image.url}"]
+    data-backimage="#{current_space.background_image.url}"]
     header.no-print
       = link_to current_space.name, root_path, class: 'current space'
       - if current_user

@@ -10,6 +10,8 @@ class Space < ActiveRecord::Base
 
   validates_presence_of :name, :user_id, :email
 
+  mount_uploader :background_image, SpaceImageUploader
+
   after_create :create_space_node
 
   def member(user)
