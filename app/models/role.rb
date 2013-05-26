@@ -40,4 +40,7 @@ class Role
     role.partial = :folder
     role.children_types << 'section' 
   end
+
+  ROLES[:profile] = Role.new('profile').tap do |role|
+  end
 end

@@ -26,6 +26,22 @@ $column-width: 640px;
     margin-right: 3%;
     img { width: 100%; }
   }
+  .node_image {
+    .image_border {
+      padding: 0; margin: 4px;
+      background-color: #e7e7dd;
+      border: 8px solid #e7e7dd;
+      box-shadow: 0 0 1px 0 rgba(0,0,0,0.8);
+      border-radius: 2px;
+    }
+    img { 
+      width: 100%;
+    }
+  }
+  .node_image.no-border {
+    .image_border { border-width: 0; box-shadow: none;
+    background-color: transparent;}
+  }
 
   .node_image img.remote { width: 90%; border: 5px solid yellow; }
   .counter { 
@@ -123,7 +139,7 @@ $column-width: 640px;
     display: inline-block; vertical-align: top;
     width: 260px;
     margin-right: 30px;
-    .node_image { width: 100%; min-height: 235px; float: none; }
+    .node_image { width: 100%; float: none; }
     small { display: none; }
     .mentions_to { display: none; }
     .action.up, .action.down { display: none; }

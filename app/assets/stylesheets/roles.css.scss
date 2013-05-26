@@ -91,3 +91,17 @@ div.root .node.photos .main .slides { display: none; }
   }
   .node_image.no-border img { border-width: 0px; }
 }
+
+// PROFILE
+.node.profile {
+  .node_image {
+    float: left;
+    width: 48%;
+    margin: 0 2% 0 0;
+  }
+}
+
+.children .node.profile {
+  .image_border { border-width: 6px; }
+  .node_image { width: 24%; margin-right: 1%; }
+}
