@@ -1,14 +1,16 @@
 div.node
   = title 'Editar'
   p = link_to icon('arrow-left', "Cancelar, y volver a '#{@node.title}'"), @node
-  = render 'form', node: @node
+
+  = render "form_#{@node.rol.form}", node: @node
 
 div.node.alert.separator
-  p Puedes borrar esta página, pero espero que sea por un buen
-    motivo
-  div.buttons = link_to icon(:trash, 'Borrar'), @node, method: :delete, 
-    data: { confirm: "¿Quieres borrar '#{@node.title}'?" },
-    class: 'button danger'
+  div.buttons 
+    =' link_to icon(:trash, 'Borrar'), @node, method: :delete, 
+      data: { confirm: "¿Quieres borrar '#{@node.title}'?" },
+      class: 'button danger' 
+    | Puedes borrar esta página, pero espero que 
+      sea por un buen motivo
 
 = render 'admin_form', node: @node if current_user.admin?
   

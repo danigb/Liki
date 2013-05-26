@@ -44,7 +44,7 @@ class Node < ActiveRecord::Base
   end
 
   def rol
-    @rol ||= Role.find(self.role)
+    @rol ||= Role.find(self.role).new(self)
   end
 
   def mentioner

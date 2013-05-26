@@ -23,6 +23,3 @@ es:
 
     hints:
       node:
-        image: 'La imágen debe tener 1MB máximo o unos 600 pixels'
-  
-

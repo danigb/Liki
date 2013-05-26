@@ -1,48 +1,93 @@
 class Role
-  attr_accessor :name, :partial, :children, :children_types
+  attr_accessor :name, :node, 
+    :partial, :form, :children_types
 
-  def initialize(name)
+  def initialize(name, node)
     @name = name
+    @node = node
     @partial = name
+    @form = 'default'
     @children_types = []
-    @children  = Proc.new {|n| n.children }
   end
 
-  def self.find(name)
-    name ||= ''
-    key = name.to_s.downcase.to_sym
-    ROLES[key] || ROLES[:default]
+  def children
+    @node.children
   end
 
-  ROLES = {}
-  ROLES[:default] = Role.new('default')
+  def build(role)
+    @node.children.build(role: role, prevent_slug_creation: true)
+  end
 
-  ROLES[:folder] = Role.new('folder')
+  def self.find(role)
+    @roles ||= Role.descendants.map &:name
+    role ||= ''
+    name = "Role::#{role.camelcase}"
+    @roles.include?(name) ? name.constantize : Role::DefaultRole
+  end
 
-  ROLES[:slides] = Role.new('slides').tap do |role|
-    role.children_types << 'photo' 
-    role.children = Proc.new do |node|
-      node.children.reorder('created_at DESC') 
+  class DefaultRole < Role
+    def initialize(node)
+      super('default', node)
     end
   end
 
-  ROLES[:photos] = Role.new('photos').tap do |role|
-    role.children_types << 'photo' 
-    role.partial = :slides
-    role.children = Proc.new do |node|
+  class Folder < Role
+    def initialize(node)
+      super('folder', node)
+    end
+  end
+
+  class Slides < Role
+    def initialize(node)
+      super('slides', node)
+      self.children_types << 'photo'
+    end
+
+    def children
+      @node.children.reorder('created_at DESC')
+    end
+
+  end
+
+  class Photos < Role
+    def initialize(node)
+      super('photos', node)
+      self.partial = :slides
+      self.children_types << 'photo'
+    end
+
+    def children
       node.space.nodes.where(role: 'photo').reorder('created_at DESC') 
     end
   end
 
-  ROLES[:download] = Role.new('download')
-
-  ROLES[:page] = Role.new('page').tap do |role|
-    role.partial = :folder
-    role.children_types << 'section' 
+  class Section < Role
+    def initialize(node)
+      super('section', node)
+      self.partial = 'default'
+      self.form = 'section'
+    end
   end
 
-  ROLES[:profile] = Role.new('profile').tap do |role|
-    role.children_types << 'photo'
-    role.children_types << 'section'
+  class Download < Role
+    def initialize(node)
+      super('download', node)
+    end
+  end
+
+  class Page < Role
+    def initialize(node)
+      super('page', node)
+      self.partial = :folder
+      self.children_types << 'section'
+    end
+  end
+
+  class Profile < Role
+    def initialize(node)
+      super('profile', node)
+      self.children_types << 'photo'
+      self.children_types << 'section'
+    end
   end
 end

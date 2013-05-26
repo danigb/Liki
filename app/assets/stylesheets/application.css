@@ -18,6 +18,7 @@
  *= require 'user_levels'
  *= require 'lightbox'
  *= require 'explorer'
+ *= require 'print'
  *= require_self
  */
 

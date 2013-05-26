@@ -1,10 +1,9 @@
-- child = node.children.build(role: 'section', prevent_slug_creation: true)
-
-= simple_form_for child do |form|
-  = form.input :parent_id, as: :hidden
-  = form.input :prevent_slug_creation, as: :hidden
-  = form.input :role, as: :hidden
-  = form.input :title
-  = form.input :body
-  = form.submit 'Añadir sección', class: 'button'
+div.form_section
+  = simple_form_for node do |form|
+    = form.input :parent_id, as: :hidden
+    = form.input :prevent_slug_creation, as: :hidden
+    = form.input :role, as: :hidden
+    = form.input :title
+    = form.input :body
+    = form.submit 'Guardar sección', class: 'button'
 

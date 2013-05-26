@@ -8,5 +8,4 @@
 //= require linkify
 //= require map
 //= require lightbox
-
   

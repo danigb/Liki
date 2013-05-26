@@ -6,7 +6,7 @@ div.root
   = render 'node', node: @node
 
 div class="children #{@node.style} #{@node.role}"
-  = render partial: 'node', collection: @node.rol.children.call(@node)
+  = render partial: 'node', collection: @node.rol.children
 
 - if @node.taggeds.count > 0
   div class="children stream"
@@ -15,13 +15,14 @@ div class="children #{@node.style} #{@node.role}"
 div.node.add_action
   - @node.rol.children_types.each do |role|
     = link_to icon(:plus, t("add_actions.#{role}")), '#', 
-      data: { action: "add_#{role}", toggle: "add_#{role}" }
+      data: { action: "add_#{role}", toggle: "add_#{role}" },
+      class: 'action'
 
   - @node.rol.children_types.each do |role|
     div[class="add_form separator add_#{role}" 
       style="display: none"]
       h3 = t("add_actions.#{role}")
-      = render "form_#{role}", node: @node
+      = render "form_#{role}", node: @node.rol.build(role)
 
 
 

@@ -13,7 +13,7 @@ html
 
   body[class="user-level-#{current_user_level}"
     data-backimage="#{current_space.node.image.url}"]
-    header
+    header.no-print
       = link_to current_space.name, root_path, class: 'current space'
       - if current_user
         = link_to current_user.name, current_user, class: 'current user'

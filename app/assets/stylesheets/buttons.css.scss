@@ -1,20 +1,17 @@
 .button {
-   border: 1px solid #DDD;
+   border: 0px solid #DDD;
    border-radius: 3px;
-   text-shadow: 0 1px 1px white;
-   -webkit-box-shadow: 0 1px 1px #fff;
-   -moz-box-shadow:    0 1px 1px #fff;
-   box-shadow:         0 1px 1px #fff;
-   font: bold 11px Sans-Serif;
+   box-shadow:         0 1px 1px #DDD;
+   font-size: 18px;
    padding: 6px 10px;
    white-space: nowrap;
    vertical-align: middle;
-   color: #666;
-   background: transparent;
+   background-color: #8c8;
    cursor: pointer;
 }
 .button:hover, .button:focus {
    border-color: #999;
+   text-decoration: none;
    background: -webkit-linear-gradient(top, white, #E0E0E0);
    background:    -moz-linear-gradient(top, white, #E0E0E0);
    background:     -ms-linear-gradient(top, white, #E0E0E0);
@@ -34,10 +31,10 @@
    background:    -moz-linear-gradient(top, #E6E6E6, gainsboro);
    background:     -ms-linear-gradient(top, #E6E6E6, gainsboro);
    background:      -o-linear-gradient(top, #E6E6E6, gainsboro);
-}
+ }
 
 .button.danger {
-  color: #900;
+  background-color: #D66;
 }
 
 .buttons {
