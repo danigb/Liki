@@ -96,6 +96,11 @@ $column-width: 640px;
   .action.up, .action.down { display: none; }
 }
 
+// ROOT
+.root div.node {
+  .title small { display: none; }
+}
+
 .children .node {
   margin-top: 25px;
   margin-bottom: 5px;

@@ -1,9 +1,12 @@
 div.node
   = title 'Bienvenida'
   p ¡Hola! A este lugar se accede mediante invitación.
-  p Si ya has sido invitado, puedes recibir tu invitación escribiendo tu email
+  p Puedes recibir tu invitación escribiendo tu email aquí:
   = form_tag send_token_path do
     div.input.email
       label Escribe tu correo electrónico
-      = email_field_tag :email
+      = email_field_tag :email, '', required: true
     = submit_tag 'Enviar', class: 'button'
+
+  br
+
