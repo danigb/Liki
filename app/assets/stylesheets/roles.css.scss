@@ -20,7 +20,7 @@ $color-medium: rgb(154, 148, 141);
 
 // SLIDES
 .node {
-  .slides {
+  .slides, .photos {
     width: 100%; overflow: hidden;
 
     .slide {
@@ -39,11 +39,13 @@ $color-medium: rgb(154, 148, 141);
   }
 }
 div.root .node.slides .main .slides { display: none; }
+div.root .node.photos .main .slides { display: none; }
 
-.children.slides {
+.children.slides, .children.photos {
   .node {
     display: inline-block; vertical-align: top;
-    width: 20%; margin-right: 4%;
+    width: 20%;
+    margin: 0 4% 0px 0;
     img { 
       width: 100%; 
     }
@@ -51,6 +53,7 @@ div.root .node.slides .main .slides { display: none; }
   .node.no-border {
     img { border: 0; }
   }
+  .action.up, .action.down { display: none; }
 
 }
 

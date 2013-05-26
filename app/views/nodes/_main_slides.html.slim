@@ -1,8 +1,9 @@
 div.main
   div.slides
-    - node.children.imaged.each do |children|
+    - node.rol.children.call(node).limit(8).each do |children|
       div class="slide #{node.image_style}"
         = image_tag children.image.url, class: 'lightbox'
+  div.more = link_to icon('arrow-right', 'Ver más...'), node
   - if node.body?
     div.body.hashtags = simple_format_body(node.body)
 
