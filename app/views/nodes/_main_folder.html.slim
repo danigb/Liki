@@ -4,7 +4,7 @@ div.main
   ul.sections
     - node.children.each do |child|
       li.section
-        = link_to node_path(node, anchor: child.id) do
+        = link_to(child.slug? ? child : node_path(node, anchor: child.id)) do
           span.title =' child.title 
           small = icon('arrow-right', 'Ver')
 
