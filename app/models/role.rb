@@ -34,6 +34,12 @@ class Role
   class Folder < Role
     def initialize(node)
       super('folder', node)
+      self.children_types << 'page'
+      @form = 'section'
+    end
+
+    def build(role)
+      @node.children.build(role: role)
     end
   end
 

@@ -1,0 +1,8 @@
+div.form_section
+  = simple_form_for node do |form|
+    = form.input :parent_id, as: :hidden
+    = form.input :role, as: :hidden
+    = form.input :title
+    = form.input :body
+    = form.submit 'Guardar página', class: 'button'
+
