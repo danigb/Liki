@@ -1,7 +1,7 @@
 $(document). on 'click', 'a[data-toggle]', ->
   css_class = $(this).data('toggle')
-  $("div.#{css_class}").show()
-  $(this).hide()
+  $("div.#{css_class}").toggle()
+  $(this).toggleClass('active')
   false
 
 init = ->

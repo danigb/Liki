@@ -12,9 +12,18 @@ div class="children #{@node.style} #{@node.role}"
   div class="children stream"
     = render partial: 'node', collection: @node.taggeds
 
-div.node.add_children
-  - @node.rol.children_types.each do |children_role|
-    = render "add_#{children_role}_child", node: @node
+div.node.add_action
+  - @node.rol.children_types.each do |role|
+    = link_to icon(:plus, t("add_actions.#{role}")), '#', 
+      data: { action: "add_#{role}", toggle: "add_#{role}" }
+
+  - @node.rol.children_types.each do |role|
+    div[class="add_form separator add_#{role}" 
+      style="display: none"]
+      h3 = t("add_actions.#{role}")
+      = render "form_#{role}", node: @node
+
+
 
 = render 'following'
 

@@ -42,5 +42,7 @@ class Role
   end
 
   ROLES[:profile] = Role.new('profile').tap do |role|
+    role.children_types << 'photo'
+    role.children_types << 'section'
   end
 end
