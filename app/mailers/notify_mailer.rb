@@ -1,5 +1,5 @@
 class NotifyMailer < ActionMailer::Base
-  default from: 'lapelicanacrianza@gmail.com'
+  default from: 'hola@liki.es'
 
   def space_follower_node_created(recipient, node)
     send_notification "Han añadido una página a #{node.space.name}",

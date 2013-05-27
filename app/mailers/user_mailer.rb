@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: 'lapelicanacrianza@gmail.com'
+  default from: 'hola@liki.es'
 
   def auth_token_email(member)
     @member = member
