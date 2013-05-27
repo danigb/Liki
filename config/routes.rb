@@ -16,6 +16,8 @@ Liki::Application.routes.draw do
   resources :spaces
   resources :followings, path: 'f'
 
+  resource :inbox, controller: 'inbox', only: [:show,:create]
+
   get 'novedades' => 'nodes#index', as: :recent
   get 'buscar' => 'nodes#search', as: :search
   get 'mapa' => 'explorer#map', as: :map

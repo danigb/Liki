@@ -14,6 +14,7 @@ gem 'newrelic_rpm'
 gem 'dalli'
 gem 'sidekiq'
 gem 'sinatra', require: false
+gem 'mandrill-rails'
 
 # MODELS
 gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'rails4'
