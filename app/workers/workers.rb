@@ -1,6 +1,6 @@
 class Workers
   def self.push(klass, *args)
-    if Rails.env.production?
+    if true || Rails.env.production?
       klass.perform_async(*args)
     else
       puts "DEVQUEUE: #{klass}"
