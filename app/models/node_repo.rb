@@ -7,18 +7,17 @@ class NodeRepo
   end
 
   def show(node)
-    Access.get(node, @current_user).view!
-
+    Access.get(node, current_user).view!
     node.view_count = node.view_count + 1
     node.save
   end
 
   def create(node, options = {})
     apply_options(node, options)
-    node.space = @current_space
-    node.user = @current_user
+    node.space = current_space
+    node.user = current_user
     node.save
-    launch_workers(node)
+    launch_workers(node, :create)
     node
   end
 
@@ -26,16 +25,17 @@ class NodeRepo
     apply_options(node, options)
     node.save
     node.mentioner.update_mentions
-    launch_workers(node)
+    launch_workers(node, :update)
     node
   end
 
   protected
-  def launch_workers(node)
-    Following.follow(node, @current_user)
-    Workers.push(Notifier, :update, 'Node', @current_user.id, node.id)
-    Workers.push(UploadWorker, node.id)
+  def launch_workers(node, action)
+    Following.follow(node, current_user)
+    Workers.push(TrackActivityWorker, action, node, current_user)
     Workers.push(MentionWorker)
+    Workers.push(Notifier, action, 'Node', current_user.id, node.id)
+    Workers.push(UploadWorker, node.id)
   end
 
   def apply_options(node, options)

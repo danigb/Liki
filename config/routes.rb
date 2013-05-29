@@ -1,5 +1,6 @@
 require 'sidekiq/web'
 Liki::Application.routes.draw do
+
   root to: 'nodes#root'
 
   concern :position do
@@ -15,6 +16,7 @@ Liki::Application.routes.draw do
   resources :members, path: 'm'
   resources :spaces
   resources :followings, path: 'f'
+  resources :activities, path: 'a'
 
   resource :inbox, controller: 'inbox', only: [:show,:create]
 

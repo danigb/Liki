@@ -3,3 +3,9 @@ es:
     photo: 'Subir foto'
     section: 'Añadir sección'
     page: 'Añadir página'
+
+  activity:
+    actions:
+      create: 'creado'
+      update: 'modificado'
+      destroy: 'borrado'
