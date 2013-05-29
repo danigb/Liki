@@ -32,7 +32,7 @@ class NodeRepo
   protected
   def launch_workers(node, action)
     Following.follow(node, current_user)
-    Workers.push(TrackActivityWorker, action, node, current_user)
+    #Workers.push(TrackActivityWorker, action, node, current_user)
     Workers.push(MentionWorker)
     Workers.push(Notifier, action, 'Node', current_user.id, node.id)
     Workers.push(UploadWorker, node.id)
