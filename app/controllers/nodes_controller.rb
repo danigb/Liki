@@ -10,9 +10,11 @@ class NodesController < ApplicationController
   def search
     @query = params[:q] if params[:q].present? && params[:q].length > 2
     nodes = current_space.nodes
-    @query.present? ? 
-      @nodes = nodes.where(Node.arel_table[:title].matches("%#{@query}%")) :
-    @nodes = nodes.where('1 = 0')
+    if @query.present? 
+      @nodes = nodes.where(Node.arel_table[:title].matches("%#{@query}%"))
+    else
+      @nodes = nodes.where('1 = 0')
+    end
   end
 
   def index
@@ -22,13 +24,11 @@ class NodesController < ApplicationController
   def show
     repo = NodeRepo.new(current_user, current_space)
 
-    if params[:id] =~ /^\d+$/
-      redirect_to node_path(node.parent, anchor: node.id)
-    elsif current_space.nodes.find_by_slug(params[:id])
+    if current_space.nodes.find(params[:id])
       repo.show(node)
       respond_with node
     else
-      @title = params[:id].camelcase.gsub /-/, ' '
+      @title = params[:id].camelcase.gsub(/-/, ' ')
       @node = Node.new(title: @title)
       render action: 'new'
     end

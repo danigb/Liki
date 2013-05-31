@@ -1,0 +1,6 @@
+= simple_form_for @node do |form|
+  = form.input :title, label: false
+  = form.input :body, label: false
+
+  div.buttons
+    = form.submit 'Guardar', class: 'pure-button pure-button-primary'

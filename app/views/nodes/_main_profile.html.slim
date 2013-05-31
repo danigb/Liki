@@ -1,9 +1,0 @@
-div.main.profile
-  - if node_image(node).present?
-    div class="node_image image #{node.image_style}"
-      div.image_border = image_tag node_image(node), 
-        class: "lightbox #{image_source(node)}"
-
-  - if node.body?
-    div.body.hashtags = simple_format_body(node.body)
-

@@ -33,15 +33,10 @@ class Node < ActiveRecord::Base
   friendly_id :title, use: :scoped, scope: :space
   mount_uploader :image, NodeImageUploader
   mount_uploader :document, DocumentUploader
-  attr_accessor :prevent_slug_creation
 
   ROLES = ['folder', 'document', 'slides', 'section', 'photo']
 
   before_validation :set_space_id
-
-  def should_generate_new_friendly_id?
-    !prevent_slug_creation && (new_record? && title.present?) || (title_changed? && slug.present?)
-  end
 
   def rol
     @rol ||= Role.find(self.role).new(self)

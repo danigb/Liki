@@ -1,8 +1,0 @@
-div.main
-  div.slides
-    - node.rol.children.limit(8).each do |children|
-      div class="slide #{node.image_style}"
-        = image_tag children.image.url, class: 'lightbox'
-  - if node.body?
-    div.body.hashtags = simple_format_body(node.body)
-

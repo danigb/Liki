@@ -18,3 +18,4 @@
 /public/uploads
 .ruby-version
 dump.rdb
+.DS_Store

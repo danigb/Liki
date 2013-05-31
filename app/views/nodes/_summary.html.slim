@@ -1,0 +1,10 @@
+= div_for node, class: 'summary' do
+  h2 = link_to node do
+    = node.title
+
+  div.body = format_body node.body
+
+  ul.subnavigation
+    - node.children.each do |child|
+      li = link_to child.title, child
+

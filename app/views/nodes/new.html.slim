@@ -1,8 +1,0 @@
-- title 'Añadir página'
-div.node
-  - if @title.present?
-    h1 La página '#{@title}' no existe. ¿Quieres crearla?
-  - else
-    h1 Añadir página
-
-  = render "form_#{@node.rol.form}", node: @node

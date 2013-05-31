@@ -1,25 +1,11 @@
-= cache node do
-  a name="#{node.to_param}"
-  = div_for node, class: node.role do
-    div.parent
-      - if node.parent
-        = link_to(icon('arrow-up', "En '#{node.parent.title}'"),  node.parent)
-      - elsif node.space.node != node
-        = link_to(icon('arrow-up', "Volver a '#{node.space.name}'"), root_path)
+= div_for node do
+  h1
+    = link_to_unless_current node do
+      = node.title
 
-    div.content
-      = render 'title', node: node
-      = render "main_#{node.rol.partial}", node: node
+  = format_body node.body
 
-    div.extra
-      div.actions
-        =' link_to icon(:pencil, 'Editar'), [:edit, node], 
-          class: 'action edit' 
-        =' link_to icon('arrow-up'), [:up, node], 
-          method: :put, data: { action: 'up' }, class: 'action up'
-        =' link_to icon('arrow-down'), [:down, node], 
-          method: :put, data: { action: 'down' }, 
-          class: 'action down'
-        = link_to icon(:wrench), [:admin, node], 
-          class: 'action admin user-level-admin'
-
+  div.actions
+    = link_to 'Editar', [:edit, node],
+      class: 'pure-button'
+      

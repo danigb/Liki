@@ -12,7 +12,9 @@ form {
     .hint { font-size: 11px; }
   }
 
-  .add_image { width: 100%; overflow: hidden; }
+  div.buttons { margin-top: 20px; }
+
+  .image_upload { width: 100%; overflow: hidden; }
   img.current { float: right; }
 
   div.input.boolean {
@@ -30,7 +32,7 @@ form {
   }
   
   textarea {
-    height: 6em; 
+    height: 40em; 
   }
 
   .form_extra {
@@ -41,4 +43,3 @@ form {
   .hidden_input { display: none; }
 }
 
-.form_section textarea { height: 40em; }

@@ -1,31 +1,11 @@
-- title @node.title
-div#host style="display:none"
-  = debug request.env['HTTP_HOST']
+- title(@node.title)
 
-div.root
-  = render 'node', node: @node
+- if @node.parent
+  = link_to icon('arrow-up', "En #{@node.parent.title}"), @node.parent
+- elsif @current_space.node != @node
+  = link_to icon('arrow-up', "Volver a #{@current_space.name}"), 
+    root_path
+= render @node, node: @node
 
-div class="children #{@node.style} #{@node.role}"
-  = render partial: 'node', collection: @node.rol.children
-
-- if @node.taggeds.count > 0
-  div class="children stream"
-    = render partial: 'node', collection: @node.taggeds
-
-div.node.add_action
-  - @node.rol.children_types.each do |role|
-    = link_to icon(:plus, t("add_actions.#{role}")), '#', 
-      data: { action: "add_#{role}", toggle: "add_#{role}" },
-      class: 'action'
-
-  - @node.rol.children_types.each do |role|
-    div[class="add_form separator add_#{role}" 
-      style="display: none"]
-      h3 = t("add_actions.#{role}")
-      = render "form_#{role}", node: @node.rol.build(role)
-
-
-
-//= render 'following'
-
-<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="97zrc4q9b8q6ilx"></script>
+div.children
+  = render partial: 'summary', collection: @node.children, as: :node
