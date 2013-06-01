@@ -17,7 +17,7 @@ class Notifier
     node = find_node(node_id)
     if node 
       node.space.followers.each do |user|
-        NotifyMailer.node_created(user, node).deliver
+        NotifyMailer.space_follower_node_created(user, node).deliver
       end
 
       if node.parent

@@ -12,12 +12,12 @@ class NodesController < ApplicationController
   end
 
   def show
-    repo = NodeRepo.new(current_user, current_space)
-
-    if current_space.nodes.find(params[:id])
+    begin
+      current_space.nodes.find(params[:id])
+      repo = NodeRepo.new(current_user, current_space)
       repo.show(node)
       respond_with node
-    else
+    rescue ActiveRecord::RecordNotFound
       @title = params[:id].camelcase.gsub(/-/, ' ')
       @node = Node.new(title: @title)
       render action: 'new'
