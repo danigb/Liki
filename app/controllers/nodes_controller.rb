@@ -18,9 +18,8 @@ class NodesController < ApplicationController
       repo.show(node)
       respond_with node
     rescue ActiveRecord::RecordNotFound
-      @title = params[:id].camelcase.gsub(/-/, ' ')
-      @node = Node.new(title: @title)
-      render action: 'new'
+      title = params[:id].camelcase.gsub(/-/, ' ')
+      redirect_to new_node_path(t: title, p: params[:p])
     end
   end
 
@@ -33,8 +32,8 @@ class NodesController < ApplicationController
 
 
   def new
-    parent = Node.find(params[:p]) if params[:p].present?
-    @node = Node.new(parent: parent)
+    parent = Node.find(params[:p].parameterize) if params[:p].present?
+    @node = Node.new(title: params[:t], parent: parent)
   end
 
   def edit
