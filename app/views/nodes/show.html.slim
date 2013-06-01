@@ -2,8 +2,8 @@
 
 - if @node.parent
   = link_to icon('arrow-up', "En #{@node.parent.title}"), @node.parent
-- elsif @current_space.node != @node
-  = link_to icon('arrow-up', "Volver a #{@current_space.name}"), 
+- elsif current_space.node != @node
+  = link_to icon('arrow-up', "Volver a #{current_space.name}"), 
     root_path
 = render @node, node: @node
 

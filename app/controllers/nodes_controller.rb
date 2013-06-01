@@ -13,7 +13,6 @@ class NodesController < ApplicationController
 
   def show
     begin
-      current_space.nodes.find(params[:id])
       repo = NodeRepo.new(current_user, current_space)
       repo.show(node)
       respond_with node
@@ -32,7 +31,7 @@ class NodesController < ApplicationController
 
 
   def new
-    parent = Node.find(params[:p].parameterize) if params[:p].present?
+    parent = current_space.nodes.find(params[:p].parameterize) if params[:p].present?
     @node = Node.new(title: params[:t], parent: parent)
   end
 
@@ -42,9 +41,9 @@ class NodesController < ApplicationController
 
   def create
     repo = NodeRepo.new(current_user, current_space)
-    node = Node.new(node_params)
-    node = repo.create(node, {dropbox: params['selected-file']})
-    respond_with node, location: node_location(node)
+    @node = Node.new(node_params)
+    @node = repo.create(node, {dropbox: params['selected-file']})
+    respond_with @node, location: node_location(@node)
   end
 
   def update
@@ -112,7 +111,7 @@ class NodesController < ApplicationController
 
   def node_params
     params.require(:node).permit(
-      :title, :body, 
+      :title, :body, :parent_id,
       :has_children, :has_photos, :children_name,
       :document, :image, :slug,
       :role, :style, :image_style,

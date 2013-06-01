@@ -2,7 +2,7 @@
 
 = render 'form', node: @node
 
-div.delete_node
+div.delete_node.separator
   =' link_to icon(:trash, 'Borrar'), @node, method: :delete,
     data: { confirm: "¿Quieres borrar '#{@node.title}'?" },
     class: 'pure-button danger'

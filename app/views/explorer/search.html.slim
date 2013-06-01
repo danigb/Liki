@@ -4,7 +4,7 @@ div.node
   = form_tag search_path, method: :get do
     = text_field_tag :q, @query
 
-  div.alert.search_query : p
+  div.search_query : p
     - if @query.present?
       | Se han encontrado #{@nodes.size} entradas con '#{@query}'
     - else 

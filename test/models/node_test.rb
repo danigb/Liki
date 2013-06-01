@@ -8,26 +8,17 @@ describe Node do
   end
 
   describe 'Slugs' do
-    it 'have slug only if created with title' do
+    it 'have slug' do
       create(:node, title: nil).slug.must_be :blank?
       create(:node, title: '   ').slug.must_be :blank?
       create(:node, title: 'The title').slug.must_be :present?
     end
 
-    it 'recreates slug if title changed and slug present' do
+    it 'recreates slug if title changed' do
       n = create(:node, title: 'title 1')
       n.slug.must_equal 'title-1'
       n.update_attributes(title: 'title 2')
       n.slug.must_equal 'title-2'
-
-      n = create(:node, title: nil)
-      n.update_attributes(title: 'the title')
-      n.slug.must_be :blank?
-    end
-
-    it 'prevents slug creation' do
-      n = create(:node, title: 'title', prevent_slug_creation: true)
-      n.slug.must_be :blank?
     end
   end
 
@@ -64,7 +55,7 @@ describe Node do
 
     it 'can not delete if children' do
       p = create(:node)
-      c = create(:node, parent: p)
+      create(:node, parent: p)
       p.reload
       p.children.size.must_equal 1
       proc { p.destroy }.must_raise ActiveRecord::DeleteRestrictionError
@@ -72,6 +63,7 @@ describe Node do
       # p.destroyed?.must_equal false
     end
   end
+
 
   describe 'mentions' do
     it 'have mentions' do

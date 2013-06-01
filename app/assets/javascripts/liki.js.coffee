@@ -13,7 +13,7 @@ init = ->
       toolbar:      "wysihtml5-toolbar"
       #parserRules:  wysihtml5ParserRules,
       parserRules: { tags: { br: {}, span: {}, div: {}, p: {}, ol: {}, li: {}, h4: {} }, classes: {} }
-      useLineBreaks: false
+      useLineBreaks: true
  
 
 $(document).ready init

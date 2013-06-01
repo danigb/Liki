@@ -16,7 +16,7 @@ class NodeRepo
     apply_options(node, options)
     node.space = current_space
     node.user = current_user
-    node.save
+    node.save!
     launch_workers(node, :create)
     node
   end
