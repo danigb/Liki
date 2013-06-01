@@ -1,6 +1,5 @@
 lightbox = ->
   $('img.lightbox').click  ->
-    console.log("joder")
     src = $(this).attr('src')
     $("div#lightbox a").html("<img src='#{src}' />")
     $("div#lightbox").addClass('active')

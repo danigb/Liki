@@ -1,6 +1,15 @@
 = simple_form_for @node do |form|
+  = form.input :parent_id, as: :hidden
   = form.input :title, label: false
   = form.input :body, label: false
 
+  - if current_user.admin?
+    h3 Avanzado
+    = form.input :has_children
+    = form.input :children_name
+    = form.input :has_photos
+
   div.buttons
-    = form.submit 'Guardar', class: 'pure-button pure-button-primary'
+    =' form.submit 'Guardar', class: 'pure-button pure-button-primary'
+    = link_to 'Cancelar', cancel_form_node_path(@node), 
+      class: 'pure-button'

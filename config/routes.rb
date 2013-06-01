@@ -21,7 +21,7 @@ Liki::Application.routes.draw do
   resource :inbox, controller: 'inbox', only: [:show,:create]
 
   get 'novedades' => 'nodes#index', as: :recent
-  get 'buscar' => 'nodes#search', as: :search
+  get 'buscar' => 'explorer#search', as: :search
   get 'mapa' => 'explorer#map', as: :map
   get 'fotos' => 'explorer#photos', as: :photos
 

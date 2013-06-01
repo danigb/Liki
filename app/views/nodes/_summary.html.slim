@@ -1,10 +1,18 @@
-= div_for node, class: 'summary' do
-  h2 = link_to node do
+= div_for node, class: 'node-summary' do
+  h3 = link_to node do
     = node.title
 
-  div.body = format_body node.body
+  div.node-summary-body.hashtags
+    = format_body node.body
 
-  ul.subnavigation
+  div.node-photos
+    - node.photos.limit(8).each do |photo|
+      div.node-photo-thumbnail
+        = image_tag photo.image.url, class: 'lightbox'
+    - if node.photos.count > 8
+      = link_to "Y #{node.photos.count - 8} más...", node
+
+  ul.node-summary-navigation.unstyled
     - node.children.each do |child|
-      li = link_to child.title, child
+      li = link_to icon('arrow-right', child.title), child
 

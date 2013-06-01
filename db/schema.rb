@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130529121103) do
+ActiveRecord::Schema.define(version: 20130531235611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,9 @@ ActiveRecord::Schema.define(version: 20130529121103) do
     t.string   "role",              limit: 8
     t.string   "image_style",       limit: 16
     t.string   "dropbox_image_url"
+    t.boolean  "has_children",                  default: true
+    t.boolean  "has_photos",                    default: true
+    t.string   "children_name",     limit: 30
   end
 
   add_index "nodes", ["parent_id"], name: "index_nodes_on_parent_id", using: :btree

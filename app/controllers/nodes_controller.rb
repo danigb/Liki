@@ -7,16 +7,6 @@ class NodesController < ApplicationController
     render action: 'show'
   end
 
-  def search
-    @query = params[:q] if params[:q].present? && params[:q].length > 2
-    nodes = current_space.nodes
-    if @query.present? 
-      @nodes = nodes.where(Node.arel_table[:title].matches("%#{@query}%"))
-    else
-      @nodes = nodes.where('1 = 0')
-    end
-  end
-
   def index
     @root = current_space.node
   end
@@ -43,7 +33,8 @@ class NodesController < ApplicationController
 
 
   def new
-    @node = Node.new
+    parent = Node.find(params[:p]) if params[:p].present?
+    @node = Node.new(parent: parent)
   end
 
   def edit
@@ -121,10 +112,12 @@ class NodesController < ApplicationController
   end
 
   def node_params
-    params.require(:node).permit(:title, :body, 
-                                 :document, :image, :slug,
-                                 :role, :style, :image_style,
-                                 :remove_image, :remove_document,
-                                 :parent_id, :prevent_slug_creation)
+    params.require(:node).permit(
+      :title, :body, 
+      :has_children, :has_photos, :children_name,
+      :document, :image, :slug,
+      :role, :style, :image_style,
+      :remove_image, :remove_document,
+      :parent_id, :prevent_slug_creation)
   end
 end

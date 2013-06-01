@@ -34,4 +34,18 @@ module NodeHelper
     @renderer
   end
 
+  def children_name(node)
+    node.children_name? ? node.children_name : 'página'
+  end
+
+  def cancel_form_node_path(node)
+    if !node.new_record?
+      node_path(node)
+    elsif node.parent
+      node_path(node.parent)
+    else
+      root_path
+    end
+  end
+
 end

@@ -1,0 +1,58 @@
+- title @node.label
+
+div.node
+  h1 = link_to @node.label, @node
+  p #{icon('eye-open')} Visitas: #{@node.view_count}
+  p Por #{link_to @node.user.name, @node.user} 
+  p Creado el #{l @node.created_at, format: :short} 
+  p Posición: #{@node.position}
+  span.mentions_solved  #{'* Menciones sin resolver' unless @node.mentions_solved}
+  = link_to 'Editar', [:edit, @node], class: 'pure-button'
+  =' link_to icon('arrow-up'), [:up, @node],
+    method: :put, data: { action: 'up' },
+    class: 'action up'
+  =' link_to icon('arrow-down'), [:down, @node],
+    method: :put, data: { action: 'down' },
+    class: 'action down'
+
+  h2 #{icon('pencil')} Accesos
+  div.accesses
+    = render @node.accesses
+
+  = simple_form_for @access_admin_form, url: @node do |form|
+    = form.input :add_editor_user_name
+    = form.submit 'Añadir acceso', name: 'access-admin', 
+      class: 'pure-button'
+
+  h2 #{icon('eye-open')} Seguidorxs
+  div.followers
+    = render @node.followings
+  = simple_form_for @following_admin_form, 
+    url: @node do |form|
+    = form.input :add_follower_user_name
+    = form.submit 'Añadir seguidorx', name: 'follower-admin',
+      class: 'pure-button'
+
+  h2 #{icon('link')} Menciones
+  div.mentions
+    = render @node.mentions
+
+  h2 #{icon('quote-left')} Mencionado en
+  div.mentioned
+    = render @node.mentioned
+
+
+  h2 #{icon('wrench')} Administrar
+  p Eres administradora. Usa tus poderes con cuidado.
+  = simple_form_for @node_admin_form, url: @node do |form|
+    = form.input :move_to_parent
+    = form.input :change_owner
+    = form.input :children_role
+    = form.input :remove_slug, as: :boolean
+    = form.input :reorder_children, as: :boolean
+    = form.input :reorder_alphabetically, as: :boolean
+    = form.submit 'Guardar', name: 'node-admin', 
+      class: 'pure-button pure-button-primary'
+
+= debug @node
+

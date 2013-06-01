@@ -1,11 +1,17 @@
-= div_for node do
+= div_for node, class: 'node-main' do
   h1
     = link_to_unless_current node do
       = node.title
 
-  = format_body node.body
+  div.node-main-body.hashtags
+    = format_body node.body
 
-  div.actions
-    = link_to 'Editar', [:edit, node],
-      class: 'pure-button'
+  div.node-main-actions
+    =' link_to 'Editar', [:edit, node],
+      class: 'pure-button' 
       
+  div.node-photos
+    - node.photos.each do |photo|
+      div.node-photo-thumbnail
+        = image_tag photo.image.url, class: 'lightbox'
+

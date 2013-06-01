@@ -9,3 +9,8 @@
 
 div.children
   = render partial: 'summary', collection: @node.children, as: :node
+  - if @node.has_children?
+    = link_to "Añadir #{children_name(@node)}", 
+      new_node_path(p: @node),
+      class: 'pure-button'
+  
