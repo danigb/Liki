@@ -1,3 +1,10 @@
 = title "Editar #{@node.title}"
 
 = render 'form', node: @node
+
+div.delete_node
+  =' link_to icon(:trash, 'Borrar'), @node, method: :delete,
+    data: { confirm: "¿Quieres borrar '#{@node.title}'?" },
+    class: 'pure-button danger'
+  | Puedes borrar esta página, pero espero que
+    sea por un buen motivo

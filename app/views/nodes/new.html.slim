@@ -1,5 +1,7 @@
-= title 'Añadir página'
 - if @node.parent
+  = title "Añadir #{children_name(@node.parent)}" 
   h3 En #{@node.parent.title}
+- else
+  = title 'Añadir página'
 
 = render 'form'

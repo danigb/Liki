@@ -4,7 +4,7 @@
       = node.title
 
   div.node-main-body.hashtags
-    = format_body node.body
+    = node.body.html_safe
 
   div.node-main-actions
     =' link_to 'Editar', [:edit, node],

@@ -7,6 +7,7 @@ gem 'sass-rails',   '~> 4.0.0.rc1'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap-sass', '~> 2.3.1.2'
+gem 'wysihtml5-rails'
 
 
 # INFRASTRUCTURE
@@ -34,8 +35,9 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.4.1'
 gem 'font-awesome-sass-rails'
-gem 'redcarpet'
 gem 'reform'
+gem 'truncato'
+gem 'redcarpet' # required for migration
 
 group :production do
   gem 'unicorn'

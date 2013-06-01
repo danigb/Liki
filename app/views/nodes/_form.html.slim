@@ -1,15 +1,31 @@
 = simple_form_for @node do |form|
   = form.input :parent_id, as: :hidden
   = form.input :title, label: false
+  div id="wysihtml5-toolbar" style="display: none;"
+    a[data-wysihtml5-command="formatBlock" 
+      data-wysihtml5-command-value="h4"
+      class="pure-button"]
+      = icon('text-width', 'H1')
+    a data-wysihtml5-command="bold" class="pure-button" 
+      = icon :bold
+    a data-wysihtml5-command="italic" class="pure-button"
+      = icon :italic
+    a data-wysihtml5-command="underline" class="pure-button"
+      = icon :underline
+    a data-wysihtml5-command="insertOrderedList" class="pure-button"
+      = icon('list-ol', 'Lista')
+    a data-wysihtml5-action="change_view" 
+      = icon('bold', 'HTML')
+
   = form.input :body, label: false
+
+  div.buttons
+    =' form.submit 'Guardar', class: 'pure-button pure-button-primary'
+    = link_to 'Cancelar', cancel_form_node_path(@node), 
+      class: 'pure-button'
 
   - if current_user.admin?
     h3 Avanzado
     = form.input :has_children
     = form.input :children_name
     = form.input :has_photos
-
-  div.buttons
-    =' form.submit 'Guardar', class: 'pure-button pure-button-primary'
-    = link_to 'Cancelar', cancel_form_node_path(@node), 
-      class: 'pure-button'

@@ -1,8 +1,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require springy
-//= require springyui
+//= require wysihtml5
+//= require parser_rules/advanced
 //= require accents
 //= require liki
 //= require linkify

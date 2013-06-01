@@ -7,7 +7,12 @@ $(document). on 'click', 'a[data-toggle]', ->
 init = ->
   image = $('body').data('backimage')
   $('html').css('background-image', "url(#{image})")
-
+  $("#node_body").each ->
+    console.log 'Editamos'
+    new wysihtml5.Editor "node_body",
+      toolbar:      "wysihtml5-toolbar"
+      parserRules:  wysihtml5ParserRules
+ 
 
 $(document).ready init
 $(window).bind 'page:load', init

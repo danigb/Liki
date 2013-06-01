@@ -3,7 +3,9 @@
     = node.title
 
   div.node-summary-body.hashtags
-    = format_body node.body
+    = truncate_html(node.body, length: 400)
+    - if node.body.try(:length) > 400
+      div = link_to 'Leer más...', node
 
   div.node-photos
     - node.photos.limit(8).each do |photo|
