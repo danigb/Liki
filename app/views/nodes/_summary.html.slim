@@ -4,7 +4,7 @@
 
   div.node-summary-body.hashtags
     - if node.body?
-      = truncate_html(node.body, length: 400)
+      = render_body(node, length: 400)
       - if node.body.length > 400
         div = link_to 'Leer más...', node
 

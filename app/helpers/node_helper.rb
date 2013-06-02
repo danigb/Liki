@@ -1,4 +1,14 @@
 module NodeHelper 
+  def render_body(node, options = {})
+    return unless node.body.present?
+    text = options[:length] ?
+      truncate_html(node.body, options[:length]) :
+      node.body
+
+    Rinku.auto_link(
+      text, :urls, 'target="_blank" rel="nofollow"').html_safe
+  end
+
   def node_image(node)
     node.image.url || node.dropbox_image_url
   end

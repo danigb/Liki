@@ -8,7 +8,7 @@
       = image_tag(node.image.url, alt: node.title)
 
   div.node-main-body.hashtags
-    = node.body.try(:html_safe)
+    = render_body(node)
 
   div.node-main-actions
     =' link_to 'Editar', [:edit, node],

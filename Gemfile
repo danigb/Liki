@@ -37,7 +37,7 @@ gem 'jbuilder', '~> 1.4.1'
 gem 'font-awesome-sass-rails'
 gem 'reform'
 gem 'truncato'
-gem 'redcarpet' # required for migration
+gem 'rinku'
 
 group :production do
   gem 'unicorn'
