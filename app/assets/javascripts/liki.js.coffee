@@ -11,8 +11,7 @@ init = ->
     console.log 'Editamos'
     new wysihtml5.Editor "node_body",
       toolbar:      "wysihtml5-toolbar"
-      #parserRules:  wysihtml5ParserRules,
-      parserRules: { tags: { br: {}, span: {}, div: {}, p: {}, ol: {}, li: {}, h4: {} }, classes: {} }
+      parserRules:  wysihtml5ParserRules,
       useLineBreaks: true
  
 
