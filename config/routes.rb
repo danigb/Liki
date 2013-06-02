@@ -32,4 +32,8 @@ Liki::Application.routes.draw do
   get 'visit/:id', to: 'sessions#visit', as: :visit
   post 'invitacion', to: 'sessions#send_token', as: :send_token
   mount Sidekiq::Web, at: '/sidekiq'
+
+
+  get '404' => 'site#error404'
+  get '500' => 'site#error500'
 end
