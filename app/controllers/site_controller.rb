@@ -1,20 +1,11 @@
 class SiteController < ApplicationController
   def error404
-    current_space.background_image.url = '/elmapa.jpg'
+    @background = '/lastripas2.jpg'
+    render 'error404', layout: false
   end
 
   def error500
-    current_space.background_image.url = '/lastripas.jpg'
-  end
-
-  def current_space
-    @current_space ||= OpenStruct.new.tap do |space|
-      space.background_image = OpenStruct.new
-      space.name = ':-('
-    end
-  end
-
-  def current_user
-    nil
+    @background = '/lastripas.jpg'
+    render 'error500', layout: false
   end
 end

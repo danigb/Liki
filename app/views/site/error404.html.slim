@@ -1,4 +1,6 @@
-= title 'Página no encontrada'
-p Lo siento, pero lo que buscas no existe o ha cambiado 
-  de nombre.
-= link_to 'Volver al inicio', '/', class: 'pure-button'
+= content_for :error do
+  = title 'P&aacute;gina no encontrada'.html_safe
+  p Lo siento, pero lo que buscas no existe o ha cambiado 
+    de nombre.
+  = link_to 'Volver al inicio', '/', class: 'pure-button'
+= render 'layout'

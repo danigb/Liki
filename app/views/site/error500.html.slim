@@ -1,6 +1,7 @@
-= title 'Algo ha ido mal...'
-p Lo siento, pero algo ha fallado. Trataré de solucionarlo
-  lo antes posible. Me ayudaría que me enviases un email
-  (danigb@gmail.com) contándome que andabas haciendo.
-p ¡Gracias!
-
+= content_for :error do
+  = title 'Algo ha ido mal...'
+  p Lo siento, pero algo ha fallado. Tratar&eacute; de solucionarlo
+    lo antes posible. Me ayudar&iacute;a que me enviases un email
+    (danigb@gmail.com) cont&aacute;ndome que andabas haciendo.
+  p Gracias!
+= render 'layout'
