@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
     if create_session(service.login(@session_form))
       redirect_to root_path
     else
+      flash.notice = 'Usuario o contraseña no válidas'
       render action: 'new'
     end
   end

@@ -12,7 +12,7 @@ class SessionService
   def login(form)
     if form.valid?
       user = User.find_by_email(form.email)
-      if user && user.authenticate(form.password)
+      if user && user.password_digest? && user.authenticate(form.password)
         enter_with current_space.member(user)
       end
     end

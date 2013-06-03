@@ -42,13 +42,7 @@ class Node < ActiveRecord::Base
   mount_uploader :image, NodeImageUploader
   mount_uploader :document, DocumentUploader
 
-  ROLES = ['folder', 'document', 'slides', 'section', 'photo']
-
   before_validation :set_space_id
-
-  def rol
-    @rol ||= Role.find(self.role).new(self)
-  end
 
   def mentioner
     @mentioner ||= Mentioner.new(self)

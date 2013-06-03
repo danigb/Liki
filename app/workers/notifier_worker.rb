@@ -1,4 +1,4 @@
-class Notifier
+class NotifierWorker
   include Sidekiq::Worker
 
   attr_reader :current_user

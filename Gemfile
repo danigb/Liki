@@ -36,7 +36,7 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.4.1'
 gem 'font-awesome-sass-rails'
-gem 'reform', github: 'apotonick/reform'
+gem 'reform'
 gem 'truncato'
 gem 'rinku'
 

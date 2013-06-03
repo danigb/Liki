@@ -25,6 +25,11 @@ html
       
 
     div#column
+      - flash.each do |name, msg|
+        div class="alert alert-#{name}"
+          a.close data-dimiss="alert"
+          = msg
+
       == yield
 
     div#lightbox

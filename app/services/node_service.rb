@@ -1,4 +1,4 @@
-class NodeRepo
+class NodeService
   attr_reader :current_user, :current_space
 
   def initialize(current_user, current_space)
@@ -34,7 +34,7 @@ class NodeRepo
     Following.follow(node, current_user)
     Workers.push(TrackActivityWorker, action.to_s, 'Node', node.id, current_user.id)
     Workers.push(MentionWorker)
-    Workers.push(Notifier, action, 'Node', current_user.id, node.id)
+    Workers.push(NotifierWorker, action, 'Node', current_user.id, node.id)
     Workers.push(UploadWorker, node.id)
   end
 

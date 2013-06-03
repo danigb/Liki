@@ -13,8 +13,7 @@ class NodesController < ApplicationController
 
   def show
     begin
-      repo = NodeRepo.new(current_user, current_space)
-      repo.show(node)
+      service.show(node)
       respond_with node
     rescue ActiveRecord::RecordNotFound
       title = params[:id].camelcase.gsub(/-/, ' ')
@@ -40,17 +39,15 @@ class NodesController < ApplicationController
   end
 
   def create
-    repo = NodeRepo.new(current_user, current_space)
     @node = Node.new(node_params)
-    @node = repo.create(node, {dropbox: params['selected-file']})
+    @node = service.create(node, {dropbox: params['selected-file']})
     respond_with @node, location: node_location(@node)
   end
 
   def update
     if params[:node].present?
-      repo = NodeRepo.new(current_user, current_space)
       node.attributes = node_params
-      repo.update(node, {dropbox: params['selected-file']})
+      service.update(node, {dropbox: params['selected-file']})
     end
     if node_admin_form.validate(params[:node_admin])
       node_admin_form.save
@@ -107,6 +104,10 @@ class NodesController < ApplicationController
 
   def node_location(node)
     node_path(node)
+  end
+
+  def service
+    @service ||= NodeService.new(current_user, current_space)
   end
 
   def node_params
