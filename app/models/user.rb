@@ -7,5 +7,7 @@ class User < ActiveRecord::Base
   include FriendlyId
   friendly_id :name, use: :slugged
 
+  has_secure_password validations: false
+
   validates_presence_of :name
 end

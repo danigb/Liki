@@ -41,7 +41,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :admin, :slug)
+    params.require(:user).permit(
+      :name, :email, :admin, :slug, :password)
   end
 
   def require_owner_or_admin

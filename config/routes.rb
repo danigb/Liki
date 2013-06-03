@@ -25,12 +25,14 @@ Liki::Application.routes.draw do
   get 'mapa' => 'explorer#map', as: :map
   get 'fotos' => 'explorer#photos', as: :photos
 
+  resources :sessions, path: 's'
   get 'entrar(/:id)' => 'sessions#new', as: :login
   get 'salir' => 'sessions#destroy', as: :logout
   get 'enter/:id', to: 'sessions#enter', as: :enter
   get 'user_level/:id', to: 'sessions#user_level'
   get 'visit/:id', to: 'sessions#visit', as: :visit
   post 'invitacion', to: 'sessions#send_token', as: :send_token
+
   mount Sidekiq::Web, at: '/sidekiq'
 
 

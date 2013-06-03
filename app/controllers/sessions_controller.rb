@@ -1,18 +1,23 @@
 class SessionsController < ApplicationController
   def new
-    m = Member.find_by_auth_token(params[:id])
-    if m 
-      session[:space_id] = m.space.id
-      m.update_attributes(last_login_at: Time.now, 
-                               login_count: m.login_count + 1)
-      self.current_user = m.user.id
-      redirect_to root_path
+    @session_form = SessionFormPresenter.new
+    if create_session(service.authorize_token(params[:id]))
+      render action: 'authorized' 
     end
   end
 
   def user_level
     session[:current_user_level] = params[:id]
     redirect_to root_path
+  end
+
+  def create
+    @session_form = SessionFormPresenter.new(params[:session_form_presenter])
+    if create_session(service.login(@session_form))
+      redirect_to root_path
+    else
+      render action: 'new'
+    end
   end
 
   def enter
@@ -40,4 +45,13 @@ class SessionsController < ApplicationController
     end
   end
 
+  protected
+  def create_session(user)
+    return false unless user.present?
+    self.current_user = user
+  end
+
+  def service
+    @service ||= SessionService.new(current_space)
+  end
 end
