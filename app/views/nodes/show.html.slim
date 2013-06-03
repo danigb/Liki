@@ -1,3 +1,4 @@
+- presenter = NodePresenter.new(@node, self)
 - title(@node.title)
 
 - if @node.parent
@@ -5,10 +6,10 @@
 - elsif current_space.node != @node
   = link_to icon('arrow-up', "Volver a #{current_space.name}"), 
     root_path
-= render @node, node: @node
 
-div.children
-  = render partial: 'summary', collection: @node.children, as: :node
+= presenter.render_node
+= presenter.render_children
+= presenter.render_mentioned
 
 div.separator
   - if @node.has_children?

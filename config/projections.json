@@ -1,0 +1,48 @@
+{
+  "app/models/*.rb": {
+    "command": "model",
+    "affinity": "model",
+    "alternate": ["unit/models/%s_test.rb", "spec/models/%s_spec.rb"],
+    "related": "db/schema.rb#%s",
+    "template": "class %S\nend"
+  },
+ 
+  "spec/factories/*_factory.rb": {
+    "command": "factory",
+    "affinity": "model",
+    "related": "app/models/%s.rb",
+    "template": "FactoryGirl.define do\n  factory :%s do\n  end\nend"
+  },
+ 
+  "app/services/*_service.rb": {
+    "command": "service",
+    "affinity": "model",
+    "alternate": ["unit/service/%s_service_test.rb"],
+    "related": "app/models/%s.rb",
+    "template": "class %SService\nend"
+  },
+
+  "app/workers/*_worker.rb": {
+    "command": "worker",
+    "affinity": "model",
+    "alternate": ["unit/workers/%s_worker_spec.rb"],
+    "related": "app/models/%s.rb",
+    "template": "class %SWorker\nend"
+  },
+
+  "app/presenters/*_presenter.rb": {
+    "command": "presenter",
+    "affinity": "model",
+    "alternate": ["unit/presenters/%s_presenter_spec.rb", "spec/presenters/%s_presenter_spec.rb"],
+    "related": "app/models/%s.rb",
+    "template": "class %SPresenter\nend"
+  },
+  "app/presenters/application_presenter.rb": { "command": "presenter" },
+ 
+  "lib/*.rb": { "alternate": "unit/lib/%s_spec.rb" },
+  "unit/lib/*_spec.rb": { "alternate": "lib/%s.rb" },
+  "unit/*_spec.rb": { "alternate": "app/%s.rb" },
+ 
+  "spec/engines/*_spec.rb": { "alternate": "engines/%s.rb" },
+  "unit/engines/*_spec.rb": { "alternate": "engines/%s.rb" },
+}

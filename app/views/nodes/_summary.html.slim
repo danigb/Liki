@@ -16,6 +16,6 @@
       = link_to "Y #{node.photos.count - 8} más...", node
 
   ul.node-summary-navigation.unstyled
-    - node.children.each do |child|
-      li = link_to icon('arrow-right', child.title), child
+    - node.children.each do |n|
+      li = link_to icon('arrow-right', n.title), n
 

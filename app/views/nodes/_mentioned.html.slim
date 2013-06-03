@@ -1,0 +1,6 @@
+div.node-mentioned
+  h4 Sobre #{node.title}, ver también:
+  ul.unstyled
+    - node.mentioned_by_nodes.each do |n|
+      li = link_to icon('arrow-right', n.title), n
+
