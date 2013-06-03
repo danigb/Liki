@@ -21,4 +21,8 @@ module ApplicationHelper
     Truncato.truncate(text, max_length: 400).html_safe
   end
 
+  def flash_class(name)
+    name == :notice ? 'success' : 'error'
+  end
+
 end

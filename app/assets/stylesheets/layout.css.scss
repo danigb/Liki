@@ -66,19 +66,3 @@ header {
   }
 }
 
-.alert {
-  padding: 10px;
-  background-color: #FEE;
-
-  &.info {
-    border: 1px solid #00529B;
-    background-color: #BDE5F8; 
-  }
-  &.danger {
-  }
-
-  p {
-    margin: 3px 0;
-    font-size: 12px;
-  }
-}

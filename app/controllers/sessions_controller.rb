@@ -14,9 +14,10 @@ class SessionsController < ApplicationController
   def create
     @session_form = SessionFormPresenter.new(params[:session_form_presenter])
     if create_session(service.login(@session_form))
+      flash.notice = 'Bienvenida'
       redirect_to root_path
     else
-      flash.notice = 'Usuario o contraseña no válidas'
+      flash.alert = 'Usuario o contraseña no válidas'
       render action: 'new'
     end
   end
