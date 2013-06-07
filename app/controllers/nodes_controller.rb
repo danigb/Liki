@@ -25,6 +25,7 @@ class NodesController < ApplicationController
   def admin
     @access_form = AccessFormPresenter.new
     @node_admin_form = NodeAdminFormPresenter.new
+    @following_form = FollowingFormPresenter.new
     respond_with node
   end
 

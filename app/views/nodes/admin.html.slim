@@ -20,7 +20,7 @@ div.node
   div.accesses
     = render @node.accesses
 
-  = simple_form_for @access_admin_form, url: @node do |form|
+  = simple_form_for @access_form, url: access_path do |form|
     = form.input :add_editor_user_name
     = form.submit 'Añadir acceso', name: 'access-admin', 
       class: 'pure-button'
@@ -28,8 +28,8 @@ div.node
   h2 #{icon('eye-open')} Seguidorxs
   div.followers
     = render @node.followings
-  = simple_form_for @following_admin_form, 
-    url: @node do |form|
+  = simple_form_for @following_form, 
+    url: node_followings_path(@node) do |form|
     = form.input :add_follower_user_name
     = form.submit 'Añadir seguidorx', name: 'follower-admin',
       class: 'pure-button'
@@ -45,7 +45,7 @@ div.node
 
   h2 #{icon('wrench')} Administrar
   p Eres administradora. Usa tus poderes con cuidado.
-  = simple_form_for @node_admin_form, url: @node do |form|
+  = simple_form_for @node_admin_form, url: admin_node_path(@node) do |form|
     = form.input :move_to_parent
     = form.input :change_owner
     = form.input :children_role

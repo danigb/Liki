@@ -18,6 +18,7 @@ Liki::Application.routes.draw do
   resources :members, path: 'm'
   resources :spaces
   resources :activities, path: 'a'
+  resources :access
 
   resource :inbox, controller: 'inbox', only: [:show,:create]
 
