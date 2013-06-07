@@ -20,8 +20,7 @@ class Node < ActiveRecord::Base
   include HasMentions
   include HasFollowers
   include HasActivity
-
-  has_many :accesses, dependent: :delete_all
+  include HasAccesses
 
   scope :imaged, -> { where("image <> '' OR dropbox_image_url <>''") }
   scope :slugged, -> { where("slug <> ''") }

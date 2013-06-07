@@ -11,10 +11,8 @@ class Access < ActiveRecord::Base
   OWNER = 2 # Can update and destroy
   ADMIN = 3 # Can admin
 
-  def self.get(node, user)
-    return unless node && user
-    access = Access.where(node_id: node.id, user_id: user.id).first
-    access ||= Access.create!(node: node, user: user)
+  def denied?
+    false
   end
 
   def view!

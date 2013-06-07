@@ -8,12 +8,8 @@ class MembersController < ApplicationController
 
   def create
     user_id = params[:member][:user_id].parameterize
-    if user = User.find(user_id)
-      member = Member.new
-      member.space = current_space
-      member.user = user
-      member.save
-    end
+    user = User.find(user_id)
+    current_space.add_member(user)
     redirect_to members_path
   end
 

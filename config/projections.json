@@ -17,7 +17,7 @@
   "app/services/*_service.rb": {
     "command": "service",
     "affinity": "model",
-    "alternate": ["unit/service/%s_service_test.rb"],
+    "alternate": ["test/services/%s_service_test.rb"],
     "related": "app/models/%s.rb",
     "template": "class %SService\nend"
   },
