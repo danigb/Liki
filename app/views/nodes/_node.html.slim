@@ -1,28 +1,28 @@
-= div_for node, class: 'node-main' do
-  h1
-    = link_to_unless_current node do
-      = node.title
+= cache ['node', node]
+  = div_for node, class: 'node-main' do
+    h1
+      = link_to_unless_current node do
+        = node.title
 
-  - if node.image?
-    div class="node-main-image #{node.image_style}"
-      = image_tag(node.image.url, alt: node.title)
+    - if node.image?
+      div class="node-main-image #{node.image_style}"
+        = image_tag(node.image.url, alt: node.title)
 
-  div.node-main-body.hashtags
-    = render_body(node)
+    div.node-main-body.hashtags
+      = render_body(node)
 
-  div.node-main-actions
-    =' link_to 'Editar', [:edit, node],
-      class: 'pure-button' 
-    - if @node.has_photos?
-      = link_to 'Subir foto', '#', data: { action: 'add_photo',
-        toggle: 'add_photo'}, class: 'pure-button'
-      div[class='add_form add_photo'
-        style='display: none']
-        = render 'form_photo', node: Node.new(parent: node, 
-          role: 'photo')
-      
-  div.node-photos
-    - node.photos.each do |photo|
-      div.node-photo-thumbnail
-        = image_tag photo.image.url, class: 'lightbox'
-
+    div.node-main-actions
+      =' link_to 'Editar', [:edit, node],
+        class: 'pure-button' 
+      - if @node.has_photos?
+        = link_to 'Subir foto', '#', data: { action: 'add_photo',
+          toggle: 'add_photo'}, class: 'pure-button'
+        div[class='add_form add_photo'
+          style='display: none']
+          = render 'form_photo', node: Node.new(parent: node, 
+            role: 'photo')
+        
+    div.node-photos
+      - node.photos.each do |photo|
+        div.node-photo-thumbnail
+          = image_tag photo.image.url, class: 'lightbox'

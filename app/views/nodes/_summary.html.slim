@@ -1,21 +1,20 @@
-= div_for node, class: 'node-summary' do
-  h3 = link_to node do
-    = node.title
+  = div_for node, class: 'node-summary' do
+    h3 = link_to node do
+      = node.title
 
-  div.node-summary-body.hashtags
-    - if node.body?
-      = render_body(node, length: 400)
-      - if node.body.length > 400
-        div = link_to 'Leer más...', node
+    div.node-summary-body.hashtags
+      - if node.body?
+        = render_body(node, length: 400)
+        - if node.body.length > 400
+          div = link_to 'Leer más...', node
 
-  div.node-photos
-    - node.photos.limit(8).each do |photo|
-      div.node-photo-thumbnail
-        = image_tag photo.image.url, class: 'lightbox'
-    - if node.photos.count > 8
-      = link_to "Y #{node.photos.count - 8} más...", node
+    div.node-photos
+      - node.photos.limit(8).each do |photo|
+        div.node-photo-thumbnail
+          = image_tag photo.image.url, class: 'lightbox'
+      - if node.photos.count > 8
+        = link_to "Y #{node.photos.count - 8} más...", node
 
-  ul.node-summary-navigation.unstyled
-    - node.children.each do |n|
-      li = link_to icon('arrow-right', n.title), n
-
+    ul.node-summary-navigation.unstyled
+      - node.children.each do |n|
+        li = link_to icon('arrow-right', n.title), n

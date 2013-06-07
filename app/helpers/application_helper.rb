@@ -16,11 +16,6 @@ module ApplicationHelper
     end
   end
 
-  def truncate_html(text, options = {})
-    return unless text.present?
-    Truncato.truncate(text, max_length: 400).html_safe
-  end
-
   def flash_class(name)
     name == :notice ? 'success' : 'error'
   end

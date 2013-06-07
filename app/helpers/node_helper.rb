@@ -2,7 +2,8 @@ module NodeHelper
   def render_body(node, options = {})
     return unless node.body.present?
     text = options[:length] ?
-      truncate_html(node.body, options[:length]) :
+      # Truncato.truncate(node.body, max_length: options[:length]) : 
+      HTML_Truncator.truncate(node.body, 40) :
       node.body
 
     Rinku.auto_link(

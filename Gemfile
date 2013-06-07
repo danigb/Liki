@@ -37,7 +37,8 @@ gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.4.1'
 gem 'font-awesome-sass-rails'
 gem 'reform'
-gem 'truncato'
+#gem 'truncato'
+gem "html_truncator"
 gem 'rinku'
 
 group :production do

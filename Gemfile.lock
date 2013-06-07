@@ -101,7 +101,8 @@ GEM
     highline (1.6.19)
     hike (1.2.2)
     hirb (0.7.1)
-    htmlentities (4.3.1)
+    html_truncator (0.3.0)
+      nokogiri (~> 1.4)
     i18n (0.6.4)
     jbuilder (1.4.1)
       activesupport (>= 3.0.0)
@@ -217,10 +218,6 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    truncato (0.7.5)
-      htmlentities (~> 4.3.1)
-      nokogiri (~> 1.5.5)
-      truncato
     turbolinks (1.1.1)
       coffee-rails
     turn (0.9.6)
@@ -259,6 +256,7 @@ DEPENDENCIES
   friendly_id!
   garb
   hirb
+  html_truncator
   jbuilder (~> 1.4.1)
   jquery-rails
   jquery-turbolinks
@@ -279,7 +277,6 @@ DEPENDENCIES
   sinatra
   slim (>= 1.3.8)
   thin
-  truncato
   turbolinks
   turn
   uglifier (>= 1.3.0)
