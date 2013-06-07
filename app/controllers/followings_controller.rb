@@ -1,5 +1,9 @@
 class FollowingsController < ApplicationController
-  before_filter :require_user
+  before_filter :require_user, except: [:index]
+
+  def index
+    @followings = node.followings
+  end
 
   def create
     model = Node.find(params[:n]) if params[:n].present?
@@ -13,5 +17,10 @@ class FollowingsController < ApplicationController
     followed = following.followed
     following.destroy
     redirect_to followed, notice: "Has dejado de seguir '#{followed.label}'"
+  end
+
+  protected
+  def node
+    @node ||= Node.find(params[:node_id])
   end
 end

@@ -1,16 +1,3 @@
-/*
- = 'elements'
- = 'layout'
- = 'node'
- =  'forms'
- =  'roles'
- =  'user_levels'
- =  'lightbox'
- =  'explorer'
- =  'print'
- = _self
- */
-
 $bodyBackground: transparent;
 $sansFontFamily: 'Source Sans Pro', 'Lucida Grande', Verdana, Helvetica, Arial;
 $headingsFontWeight: normal;
@@ -26,3 +13,4 @@ $inputBorderRadius: 0;
 @import "layout";
 @import "forms";
 @import "node";
+@import "followings";

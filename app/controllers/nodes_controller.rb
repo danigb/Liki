@@ -23,9 +23,8 @@ class NodesController < ApplicationController
   end
 
   def admin
-    access_admin_form
-    following_admin_form
-    node_admin_form
+    @access_form = AccessFormPresenter.new
+    @node_admin_form = NodeAdminFormPresenter.new
     respond_with node
   end
 
@@ -46,17 +45,8 @@ class NodesController < ApplicationController
   end
 
   def update
-    if params[:node].present?
-      node.attributes = node_params
-      service.update(node, {dropbox: params['selected-file']})
-    end
-    if node_admin_form.validate(params[:node_admin])
-      node_admin_form.save
-      node.save
-    end
-    if access_admin_form.validate(params[:access_admin])
-      access_admin_form.save 
-    end
+    node.attributes = node_params
+    service.update(node, {dropbox: params['selected-file']})
     respond_with node
   end
 

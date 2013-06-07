@@ -10,12 +10,13 @@ Liki::Application.routes.draw do
 
   resources :nodes, concerns: :position, path: 'p' do
     get :admin, on: :member
+    post :admin, on: :member
+    resources :followings, path: 'f'
   end
 
   resources :users, path: 'u'
   resources :members, path: 'm'
   resources :spaces
-  resources :followings, path: 'f'
   resources :activities, path: 'a'
 
   resource :inbox, controller: 'inbox', only: [:show,:create]

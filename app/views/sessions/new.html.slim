@@ -3,6 +3,7 @@ div.node
   p ¡Hola! A este lugar se accede mediante invitación.
   h3 Usa tu email y contraseña para entrar:
   = simple_form_for @session_form, url: sessions_path do |form|
+    = hidden_field_tag :from, params[:from]
     = form.input :email
     = form.input :password
     = form.submit 'Entrar', class: 'pure-button pure-button-primary'

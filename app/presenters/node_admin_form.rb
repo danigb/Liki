@@ -1,21 +1,9 @@
-require 'reform/rails'
-
-class NodeAdminForm < Reform::Form
-  include DSL
-  include Reform::Form::ActiveModel
-
-  model :node_admin, on: :node
-  
-  property :title, on: :node
-  property :move_to_parent, on: :action
-  property :change_owner, on: :action
-  property :remove_slug, on: :action
-  property :reorder_children, on: :action
-  property :reorder_alphabetically, on: :action
-  property :children_role, on: :action
-
-  def validate(params)
-    super(params) if params.present?
-  end
-
+class NodeAdminFormPresenter < FormPresenter
+  attr_accessor :title, on: :node
+  attr_accessor :move_to_parent, on: :action
+  attr_accessor :change_owner, on: :action
+  attr_accessor :remove_slug, on: :action
+  attr_accessor :reorder_children, on: :action
+  attr_accessor :reorder_alphabetically, on: :action
+  attr_accessor :children_role, on: :action
 end

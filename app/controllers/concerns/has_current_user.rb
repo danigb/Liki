@@ -8,7 +8,8 @@ module HasCurrentUser
   protected
   def require_user
     if current_user.blank?
-      redirect_to login_path
+      redirect_to login_path(from: request.path), 
+        alert: 'Tienes que identificarte para continuar'
     end
   end
 

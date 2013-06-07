@@ -1,0 +1,15 @@
+.followers, .following {
+  font-size: 12px;
+
+  .follower { font-weight: bold; }
+  .user a, .followed a { text-decoration: underline; }
+  .follow { font-weight: bold; color: #080; }
+  .unfollow { color: #800; }
+}
+
+.user-followings {
+  margin-top: 40px;
+  .user { display: none; }
+}
+
+

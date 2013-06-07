@@ -1,0 +1,2 @@
+class AccessFormPresenter < FormPresenter
+end

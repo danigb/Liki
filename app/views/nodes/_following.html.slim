@@ -1,0 +1,15 @@
+div.followers
+  - if following = Following.following(@node, current_user)
+    span.follower = icon('ok', 'Estás siguiendo esta página. ')
+    ' Recibirás un email cuando cambie. 
+    = link_to 'Dejar de seguir', [@node, following], method: :delete,
+      data: { confirm: "¿Quieres dejar de seguir #{@node.label}?",
+      action: 'unfollow' }, class: 'unfollow'
+  - else
+    =' link_to icon('eye-open', 'Hazte seguidor/a de esta página'), 
+      node_followings_path(node: @node), method: :post,
+      class: 'follow' 
+    | si quieres recibir emails cuando alguien haga cambios.
+
+
+

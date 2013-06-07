@@ -3,7 +3,7 @@ class SpacesController < ApplicationController
   before_filter :require_user, :require_super
 
   def index
-    @spaces = Space.all
+    @spaces = Space.order('name ASC')
     respond_with @spaces
   end
 
@@ -42,8 +42,9 @@ class SpacesController < ApplicationController
   end
 
   def space_params
-    params.require(:space).permit(:name, :host, :email, 
-                                  :background_image)
+    params.require(:space).permit(
+      :name, :host, :email, 
+      :is_open, :background_image)
   end
 
   def require_super

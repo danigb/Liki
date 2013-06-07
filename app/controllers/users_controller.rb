@@ -3,13 +3,18 @@ class UsersController < ApplicationController
   before_filter :require_owner_or_admin
 
   def index
-    @users = User.all
+    @users = User.order('name ASC')
     respond_with @users
   end
 
   def show
-    member = current_space.member(user)
-    redirect_to member.node
+    if current_user == user || current_user.admin
+      @followings = user.followings.where(followed_type: 'Node').where(space_id: current_space.id).order('created_at DESC')
+      respond_with user
+    else
+      member = current_space.member(user)
+      redirect_to member.node
+    end
   end
 
   def edit

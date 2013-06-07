@@ -1,7 +1,10 @@
 div.node
   = title 'Usuarixs'
 
-  = link_to icon('plus', 'Añadir participante'), new_user_path
+  = link_to icon('plus', 'Añadir participante'), new_user_path,
+    class: 'pure-button pure-button-primary'
+
+  h4 Se han registrado #{@users.size} usuarixs
 
   - @users.each do |user|
     = div_for user do
