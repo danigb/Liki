@@ -1,9 +1,10 @@
 class NodesController < ApplicationController
-  before_filter :require_user
+  before_filter :require_user, except: [:root, :show]
   respond_to :html
 
   def root
     @node = current_space.node
+    service.show(@node)
     render action: 'show'
   end
 
@@ -41,7 +42,7 @@ class NodesController < ApplicationController
   def create
     @node = Node.new(node_params)
     @node = service.create(node, {dropbox: params['selected-file']})
-    respond_with @node, location: node_location(@node)
+    respond_with @node
   end
 
   def update
@@ -56,7 +57,7 @@ class NodesController < ApplicationController
     if access_admin_form.validate(params[:access_admin])
       access_admin_form.save 
     end
-    respond_with node, location: node_location(node)
+    respond_with node
   end
 
   def destroy
@@ -94,10 +95,6 @@ class NodesController < ApplicationController
 
   def following_admin_form
     @following_admin_form ||= FollowingFormPresenter.new(node_id: node.id)
-  end
-
-  def node_location(node)
-    node_path(node)
   end
 
   def service

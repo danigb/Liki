@@ -1,16 +1,15 @@
 require 'test_helper'
 
 describe Node do
-  it 'can have not title' do
-    node = create(:node, title: nil, space: create(:space))
-    node.slug.must_equal nil
-    node.to_param.must_equal node.id.to_s
+  describe 'Title' do
+    it 'must be present' do
+      build(:node, title: nil).save.must_equal false
+      build(:node, title: '   ').save.must_equal false
+    end
   end
 
   describe 'Slugs' do
     it 'have slug' do
-      create(:node, title: nil).slug.must_be :blank?
-      create(:node, title: '   ').slug.must_be :blank?
       create(:node, title: 'The title').slug.must_be :present?
     end
 

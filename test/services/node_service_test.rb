@@ -1,5 +1,5 @@
 require 'test_helper' 
 
-describe NodeRepo do
+describe NodeService do
 
 end

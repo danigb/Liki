@@ -15,14 +15,22 @@ class Access < ActiveRecord::Base
     false
   end
 
-  def view!
-    self.view_count = self.view_count + 1
-    self.last_view_at = Time.now
-    save
+  def update_views
+    update_counter(:view)
+  end
+
+  def update_edits
+    update_counter(:edit)
   end
 
   protected
   def add_space_id
     self.space_id = node.space_id if self.node
+  end
+
+  def update_counter(name)
+    send("#{name}_count=", send("#{name}_count") + 1)
+    send("last_#{name}_at=", Time.now)
+    save
   end
 end

@@ -2,7 +2,7 @@
   "app/models/*.rb": {
     "command": "model",
     "affinity": "model",
-    "alternate": ["unit/models/%s_test.rb", "spec/models/%s_spec.rb"],
+    "alternate": ["test/models/%s_test.rb"],
     "related": "db/schema.rb#%s",
     "template": "class %S\nend"
   },
@@ -25,7 +25,7 @@
   "app/workers/*_worker.rb": {
     "command": "worker",
     "affinity": "model",
-    "alternate": ["unit/workers/%s_worker_spec.rb"],
+    "alternate": ["test/workers/%s_worker_spec.rb"],
     "related": "app/models/%s.rb",
     "template": "class %SWorker\nend"
   },
@@ -33,16 +33,13 @@
   "app/presenters/*_presenter.rb": {
     "command": "presenter",
     "affinity": "model",
-    "alternate": ["unit/presenters/%s_presenter_spec.rb", "spec/presenters/%s_presenter_spec.rb"],
+    "alternate": ["test/presenters/%s_presenter_test.rb"],
     "related": "app/models/%s.rb",
     "template": "class %SPresenter\nend"
   },
   "app/presenters/application_presenter.rb": { "command": "presenter" },
  
-  "lib/*.rb": { "alternate": "unit/lib/%s_spec.rb" },
-  "unit/lib/*_spec.rb": { "alternate": "lib/%s.rb" },
-  "unit/*_spec.rb": { "alternate": "app/%s.rb" },
+  "lib/*.rb": { "alternate": "test/lib/%s_spec.rb" },
+  "test/lib/*_test.rb": { "alternate": "lib/%s.rb" },
  
-  "spec/engines/*_spec.rb": { "alternate": "engines/%s.rb" },
-  "unit/engines/*_spec.rb": { "alternate": "engines/%s.rb" },
 }
