@@ -16,6 +16,9 @@
       - if node.photos.count > 8
         = link_to "Y #{node.photos.count - 8} más...", node
 
+    div.node-summary-document
+      = render 'document', node: node
+
     ul.node-summary-navigation.unstyled
       - node.children.each do |n|
         li = link_to icon('arrow-right', n.title), n

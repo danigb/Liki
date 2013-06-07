@@ -1,0 +1,4 @@
+- if node.document?
+  b = icon('download', 'Descargar PDF: ')
+  = link_to File.basename(node.document.url), node.document.url
+

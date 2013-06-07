@@ -12,9 +12,13 @@ class NodePresenter < SimpleDelegator
 
   def render_children
     content_tag :div, class: 'children' do
-    render partial: 'summary', 
-      collection: @node.children, as: :node
+      render partial: 'summary', 
+        collection: @node.children, as: :node
     end
+  end
+
+  def render_document
+    render 'nodes/document', node: node
   end
 
   def render_mentioned

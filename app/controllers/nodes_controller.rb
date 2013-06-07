@@ -56,9 +56,6 @@ class NodesController < ApplicationController
     if access_admin_form.validate(params[:access_admin])
       access_admin_form.save 
     end
-    if following_admin_form.validate(params[:following_admin])
-      following_admin_form.save
-    end
     respond_with node, location: node_location(node)
   end
 

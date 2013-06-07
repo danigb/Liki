@@ -27,6 +27,8 @@ class Node < ActiveRecord::Base
   scope :slugged, -> { where("slug <> ''") }
 
   validates_presence_of :user_id, :space_id
+  validates_presence_of :title
+  validates_uniqueness_of :title, scope: :space_id
 
   acts_as_list scope: [:space_id, :parent_id]
   include FriendlyId

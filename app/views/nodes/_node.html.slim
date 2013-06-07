@@ -11,6 +11,10 @@
     div.node-main-body.hashtags
       = render_body(node)
 
+    div.node-main-document
+      = presenter.render_document
+        
+
     div.node-main-actions
       =' link_to 'Editar', [:edit, node],
         class: 'pure-button' 
