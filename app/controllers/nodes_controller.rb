@@ -96,10 +96,7 @@ class NodesController < ApplicationController
   end
 
   def following_admin_form
-    @following_admin_actions ||= FollowingAdminActions.new(
-      node, current_user)
-    @following_admin_form ||= FollowingAdminForm.new(
-      node: node, action: @following_admin_actions)
+    @following_admin_form ||= FollowingFormPresenter.new(node_id: node.id)
   end
 
   def node_location(node)

@@ -14,25 +14,17 @@ class Node < ActiveRecord::Base
     foreign_key: 'parent_id', 
     class_name: 'Node', dependent: :restrict_with_exception
 
-  has_many :mentioned, foreign_key: 'to_id', class_name: 'Mention',
-    dependent: :delete_all
-  has_many :mentions, foreign_key: 'from_id', dependent: :delete_all
-  has_many :mentioned_nodes, class_name: 'Node', through: :mentions,
-    source: :to
-  has_many :mentioned_by_nodes, class_name: 'Node', through: :mentioned,
-    source: :from
-
-  has_many :followings, as: :followed, dependent: :delete_all
-  has_many :followers, through: :followings, source: :user, class_name: 'User'
-
   has_many :taggings, foreign_key: 'tag_id', dependent: :delete_all
   has_many :taggeds, through: :taggings
+
+  include HasMentions
+  include HasFollowers
+  include HasActivity
 
   has_many :accesses, dependent: :delete_all
 
   scope :imaged, -> { where("image <> '' OR dropbox_image_url <>''") }
   scope :slugged, -> { where("slug <> ''") }
-
 
   validates_presence_of :user_id, :space_id
 
@@ -43,10 +35,6 @@ class Node < ActiveRecord::Base
   mount_uploader :document, DocumentUploader
 
   before_validation :set_space_id
-
-  def mentioner
-    @mentioner ||= Mentioner.new(self)
-  end
 
   def label
     title? ? title : "##{id}"

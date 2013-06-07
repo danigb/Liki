@@ -3,6 +3,7 @@
 div.node
   h1 = link_to @node.label, @node
   p #{icon('eye-open')} Visitas: #{@node.view_count}
+  p Páginas hijas: #{@node.children_count}
   p Por #{link_to @node.user.name, @node.user} 
   p Creado el #{l @node.created_at, format: :short} 
   p Posición: #{@node.position}
@@ -53,6 +54,10 @@ div.node
     = form.input :reorder_alphabetically, as: :boolean
     = form.submit 'Guardar', name: 'node-admin', 
       class: 'pure-button pure-button-primary'
+
+  h2 Actividad
+  div.activity
+    = render @node.activities
 
 = debug @node
 
