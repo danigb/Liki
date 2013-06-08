@@ -24,8 +24,11 @@ class NodesController < ApplicationController
 
   def admin
     @access_form = AccessFormPresenter.new
-    @node_admin_form = NodeAdminFormPresenter.new
+    @node_admin_form = NodeAdminFormPresenter.new(node_id: node.id)
     @following_form = FollowingFormPresenter.new
+    if request.request_method_symbol == :post
+    NodeAdminFormPresenter.new(params[:node_admin_form_presenter]).save
+    end
     respond_with node
   end
 

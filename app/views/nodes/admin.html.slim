@@ -1,8 +1,12 @@
-- title @node.label
+- title "Admin #{@node.title}"
 
 div.node
-  h1 = link_to @node.label, @node
+  h1 = link_to @node.title, @node
+  p ID: #{@node.id} #{@node.to_param}
   p #{icon('eye-open')} Visitas: #{@node.view_count}
+  p En: #{@node.space.name}
+  - if @node.parent
+    p Hija de #{@node.parent.title}
   p Páginas hijas: #{@node.children_count}
   p Por #{link_to @node.user.name, @node.user} 
   p Creado el #{l @node.created_at, format: :short} 
@@ -46,6 +50,7 @@ div.node
   h2 #{icon('wrench')} Administrar
   p Eres administradora. Usa tus poderes con cuidado.
   = simple_form_for @node_admin_form, url: admin_node_path(@node) do |form|
+    = form.input :node_id
     = form.input :move_to_parent
     = form.input :change_owner
     = form.input :children_role
