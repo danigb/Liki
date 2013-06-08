@@ -3,6 +3,7 @@ class Space < ActiveRecord::Base
   belongs_to :node
   has_many :mentions
   has_many :nodes
+  has_many :photos
   has_many :followings, as: :followed, dependent: :delete_all
   has_many :followers, through: :followings, source: :user, class_name: 'User'
   has_many :activities, -> { order('updated_at DESC') }

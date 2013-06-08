@@ -4,9 +4,10 @@
       = link_to_unless_current node do
         = node.title
 
-    - if node.image?
+    - if node.image_url?
       div class="node-main-image #{node.image_style}"
-        = image_tag(node.image.url, alt: node.title)
+        = image_tag(node.image_url, alt: node.title,
+          class: 'lightbox')
 
     div.node-main-body.hashtags
       = render_body(node)

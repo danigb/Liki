@@ -20,13 +20,13 @@ Liki::Application.routes.draw do
   resources :activities, path: 'a'
   resources :access
   resources :followings, path: 'f', only: [:create, :destroy]
+  resources :photos, path: 'fotos'
 
   resource :inbox, controller: 'inbox', only: [:show,:create]
 
   get 'novedades' => 'nodes#index', as: :recent
   get 'buscar' => 'explorer#search', as: :search
   get 'mapa' => 'explorer#map', as: :map
-  get 'fotos' => 'explorer#photos', as: :photos
 
   resources :sessions, path: 's'
   get 'entrar(/:id)' => 'sessions#new', as: :login

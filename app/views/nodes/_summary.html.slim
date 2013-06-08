@@ -4,6 +4,11 @@
       = node.title
 
     div.node-summary-body.hashtags
+      - if node.image_url?
+        div class="node-summary-image #{node.image_style}"
+          = image_tag node.image_url, alt: node.title, 
+            class: 'lightbox'
+
       - if node.body?
         = render_body(node, length: 400)
         - if node.body.length > 400

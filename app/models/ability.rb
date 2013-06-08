@@ -9,11 +9,9 @@ class Ability
   end
 
   def node_abilities
-    if space.is_open?
-      can :read, Node
-    else
+    space.is_open? ?
+      can(:read, Node) :
       can(:read, Node) { member_required }
-    end
     can([:create, :update, :destroy], Node) { member_required }
   end
 
