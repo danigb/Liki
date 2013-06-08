@@ -9,10 +9,8 @@ class Node < ActiveRecord::Base
     foreign_key: 'parent_id', 
     class_name: 'Node', dependent: :restrict_with_exception
 
-  has_many :photos, 
-    -> { where(role: 'photo').order('created_at DESC') }, 
-    foreign_key: 'parent_id', 
-    class_name: 'Node', dependent: :restrict_with_exception
+  has_many :photo_tags
+  has_many :photos, through: :photo_tags
 
   has_many :taggings, foreign_key: 'tag_id', dependent: :delete_all
   has_many :taggeds, through: :taggings

@@ -27,7 +27,7 @@
           = render 'form_photo', node: Node.new(parent: node, 
             role: 'photo')
         
-    div.node-photos
+    div.photos
       - node.photos.each do |photo|
-        div.node-photo-thumbnail
+        div.photo-thumbnail
           = image_tag photo.image.url, class: 'lightbox'

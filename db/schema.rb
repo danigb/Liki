@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130608212318) do
+ActiveRecord::Schema.define(version: 20130608215910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,17 @@ ActiveRecord::Schema.define(version: 20130608212318) do
   add_index "nodes", ["space_id"], name: "index_nodes_on_space_id", using: :btree
   add_index "nodes", ["user_id"], name: "index_nodes_on_user_id", using: :btree
 
+  create_table "photo_tags", force: true do |t|
+    t.integer  "photo_id"
+    t.integer  "node_id"
+    t.integer  "space_id"
+    t.datetime "created_at"
+  end
+
+  add_index "photo_tags", ["node_id"], name: "index_photo_tags_on_node_id", using: :btree
+  add_index "photo_tags", ["photo_id"], name: "index_photo_tags_on_photo_id", using: :btree
+  add_index "photo_tags", ["space_id"], name: "index_photo_tags_on_space_id", using: :btree
+
   create_table "photos", force: true do |t|
     t.integer  "space_id"
     t.integer  "user_id"
@@ -150,6 +161,7 @@ ActiveRecord::Schema.define(version: 20130608212318) do
     t.string   "background_image"
     t.string   "avatar_image"
     t.boolean  "is_open",                      default: false
+    t.integer  "photos_node_id"
   end
 
   add_index "spaces", ["host"], name: "index_spaces_on_host", using: :btree
