@@ -16,6 +16,9 @@ es:
         email: 'Tu dirección de correo electrónico'
         password: 'Contraseña'
 
+      tag_photo_form_presenter:
+        node_title: 'Añadir a la página:'
+
       node:
         title: 'Título'
         body: 'Texto'
@@ -27,3 +30,6 @@ es:
 
     hints:
       node:
+        image_url: "Busca una imágen en internet. Pulsa sobre ella con el botón derecho y selecciona 'Copiar URL de la imágen'. Pega aquí el resultado"
+      tag_photo_form_presenter:
+        node_title: 'Escribe el nombre de la página a la que quieres asociar esta foto'

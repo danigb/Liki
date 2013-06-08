@@ -24,7 +24,7 @@ class CreatePhotos < ActiveRecord::Migration
         if node.title.blank?
           node.destroy
         else
-          node.update_attributes(image_url: photo.image.url)
+          photo.update_attributes(body: node.to_param)
         end
       end
     end

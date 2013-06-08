@@ -1,9 +1,0 @@
-= title "Fotos #{@photos.count}"
-
-div.photos
-  - @photos.each do |photo|
-    div.photo-thumbnail
-      = image_tag photo.image.url, class: 'lightbox'
-      = photo.id
-      = link_to icon(:trash), photo, method: :delete,
-        data: {confirm: '¿Segura?!' }

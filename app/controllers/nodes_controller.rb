@@ -94,7 +94,7 @@ class NodesController < ApplicationController
     params.require(:node).permit(
       :title, :body, :parent_id,
       :has_children, :has_photos, :children_name,
-      :document, :image, :slug,
+      :document, :image_url, :slug,
       :role, :style, :image_style,
       :remove_image, :remove_document,
       :parent_id, :prevent_slug_creation)

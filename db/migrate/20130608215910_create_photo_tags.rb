@@ -15,9 +15,15 @@ class CreatePhotoTags < ActiveRecord::Migration
     Space.find_each do |space|
       photos = Node.create!(space: space, user: space.user,
                            title: 'Photos', parent: space.node)
-      space.photos_node_id = photos.id
+      space.update_attribute(:photos_node_id, photos.id)
+
       space.photos.each do |photo|
         PhotoTag.create!(node: photos, photo: photo)
+        if photo.body?
+          node = Node.find(photo.body)
+          PhotoTag.create!(node: node, photo: photo)
+          photo.update_attributes(body: nil)
+        end
       end
     end
   end

@@ -1,10 +1,29 @@
 - title 'Foto'
 
+h4 
+  = link_to icon('arrow-right', 'En fotos'), 
+    current_space.photos_node
 = div_for @photo do
   = image_tag @photo.image.url, class: 'main'
 
 h3 Aparece en:
 ul.node-summary-navigation.unstyled
-  - @photo.nodes.each do |n|
-    li = link_to icon('arrow-right', n.title), n
+  - @photo.photo_tags.each do |tag|
+    li 
+      =' link_to icon('arrow-right', tag.node.title), tag.node
+      = link_to 'Quitar', tag, method: :delete,
+        data: { confirm: "¿Quitar de #{tag.node.title}?" },
+        class: 'pure-button pure-button-xsmall'
+
+= simple_form_for TagPhotoFormPresenter.new(photo_id: @photo.id),
+  url: photo_tags_path do |form|
+  = form.input :photo_id, as: :hidden
+  = form.input :node_title, label: false
+  = form.submit 'Añadir', class: 'pure-button pure-button-primary'
+
+div.separator
+  =' link_to icon(:trash, 'Borrar foto'), @photo, method: :delete,
+    data: { confirm: '¿Quieres borrar esta foto?' },
+    class: 'pure-button pure-button-error' 
+  b Esto borrará la foto de la web. No se puede deshacer.
 

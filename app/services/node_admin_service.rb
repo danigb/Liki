@@ -8,7 +8,7 @@ class NodeAdminService
   def move_to_parent(parent)
     return unless parent.present?
     before_parent = node.parent
-    new_parent_id = parent == -1 ? nil : 
+    new_parent_id = parent == '-1' ? nil : 
       @space.nodes.find(parent.parameterize).id
     @node.attributes = { parent_id: new_parent_id, position: 10000 }
     @node.save

@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
   before_filter :require_user, except: [:index, :show]
 
   def index
-    @photos = current_space.photos.order('created_at DESC')
+    redirect_to current_space.photos_node
   end
 
   def show

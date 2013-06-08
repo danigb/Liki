@@ -1,6 +1,7 @@
 class Space < ActiveRecord::Base
   belongs_to :user
   belongs_to :node
+  belongs_to :photos_node, class_name: 'Node'
   has_many :mentions
   has_many :nodes
   has_many :photos

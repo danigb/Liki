@@ -15,9 +15,12 @@
     a data-wysihtml5-command="insertOrderedList" class="pure-button"
       = icon('list-ol', 'Lista')
     a data-wysihtml5-action="change_view" 
-      = icon('bold', 'HTML')
+      = icon('code', 'HTML')
 
   = form.input :body, label: false
+  
+  p Si quieres puedes acompañar el texto con una imágen. 
+  = form.input :image_url, label: false
 
   div.buttons
     =' form.submit 'Guardar', class: 'pure-button pure-button-primary'
@@ -29,6 +32,5 @@
     = form.input :has_children
     = form.input :children_name
     = form.input :has_photos
-    = form.input :image_url
     = form.input :document
     = form.input :remove_document
