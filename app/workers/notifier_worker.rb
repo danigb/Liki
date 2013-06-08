@@ -32,7 +32,7 @@ class NotifierWorker
     node = find_node(node_id)
     if node
       node.space.followers.each do |user|
-        NotifyMailer.space_follower_node_updated(user, node).deliver
+        NotifyMailer.space_follower_node_updated(user, node).deliver unless user == current_user
       end
     end
   end
