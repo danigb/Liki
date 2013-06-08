@@ -13,7 +13,7 @@ describe AccessService do
     end
   end
 
-  describe 'SHOW CLOSED SPACE' do
+  describe 'member required' do
     it "can't view node if not user" do
       access = AccessService.new(nil).show(node)
       access.must_be :denied?

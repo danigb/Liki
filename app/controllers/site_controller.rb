@@ -8,4 +8,8 @@ class SiteController < ApplicationController
     @background = '/lastripas.jpg'
     render 'error500', layout: false
   end
+
+  def access_denied
+
+  end
 end

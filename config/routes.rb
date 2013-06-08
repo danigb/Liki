@@ -37,7 +37,7 @@ Liki::Application.routes.draw do
 
   mount Sidekiq::Web, at: '/sidekiq'
 
-
   get '404' => 'site#error404'
   get '500' => 'site#error500'
+  get 'mmmm', to: 'site#access_denied', as: :access_denied
 end

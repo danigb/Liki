@@ -14,6 +14,7 @@ class NodeService
   end
 
   def create(node, options = {})
+    node.space = current_space
     authorize(:create, node).update_edits
     apply_options(node, options)
     node.space = current_space
