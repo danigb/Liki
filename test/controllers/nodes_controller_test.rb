@@ -1,47 +1,43 @@
 require 'test_helper'
 
 describe NodesController do
+  let(:space) { create(:space) }
+  let(:member) { space.add_member(create(:user)).user }
+  let(:not_member) { create(:user) }
+  let(:node) { create(:node, space: space) }
+
   describe 'Show' do
     it 'shows login if not logged in' do
-      node = create(:node)
       visit node_path(node)
       current_path.must_equal login_path
     end
 
     it 'shows node if logged in' do
-      node = create(:node)
-      node.must_be :present?
-      user = login(create(:user))
-      node.space.add_member(user)
+      login(member)
       visit node_path(node)
       page.body.must_match node.title
     end
 
     it 'shows form if page not found' do
-      create(:space)
-      login(create(:user))
+      login(member)
       visit node_path('something')
       page.find('#node_title').must_be :present?
     end
   end
 
   it 'creates nodes' do
-    space = create(:space)
-    user = login(create(:user))
-    space.add_member(user)
+    login(member)
     visit new_node_path
     fill_in 'node_title', with: 'The title'
     fill_in 'node_body', with: 'The body'
     click_submit
     page.body.must_match 'The title'
     page.body.must_match 'The body'
-    Node.last.followers.must_include user
+    Node.last.followers.must_include member
   end
 
   it 'update metions when updated' do
-    space = create(:space)
-    user = login(create(:user))
-    space.add_member(user)
+    login(member)
     uno = create(:node, title: 'Uno', space: space)
     dos = create(:node, title: 'Dos', space: space)
     visit edit_node_path(dos)
@@ -55,9 +51,7 @@ describe NodesController do
 
   describe 'Node admin' do
     it 'reorder nodes' do
-      space = create(:space)
-      user = login(create(:user, admin: true))
-      space.add_member(user)
+      login(member)
       p = create(:node, space: space)
       b = create(:node, title: 'b', parent: p)
       a = create(:node, title: 'a', parent: p)
@@ -71,7 +65,5 @@ describe NodesController do
       b.reload
       b.position.must_equal 2
     end
-
   end
-
 end

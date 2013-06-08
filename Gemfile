@@ -17,6 +17,7 @@ gem 'dalli'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'mandrill-rails'
+gem "cancan"
 
 # MODELS
 gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'rails4'

@@ -4,41 +4,36 @@ class NodeService
   def initialize(current_user, current_space)
     @current_user = current_user
     @current_space = current_space
-    @access = AccessService.new(current_user)
   end
 
   def show(node)
-    authorize(:show, node).update_views
+    node.access(current_user).try(:update_views)
     node.view_count = node.view_count + 1
     node.save
+    node
   end
 
   def create(node, options = {})
     node.space = current_space
-    authorize(:create, node).update_edits
     apply_options(node, options)
     node.space = current_space
     node.user = current_user
     node.save!
+    node.access(current_user).update_edits
     launch_workers(node, :create)
     node
   end
 
   def update(node, options = {})
-    authorize(:update, node).update_edits
     apply_options(node, options)
     node.save
+    node.access(current_user).update_edits
     node.mentioner.update_mentions
     launch_workers(node, :update)
     node
   end
 
   protected
-  def authorize(action, node)
-    a = @access.send(action, node)
-    a.denied? ? raise(a) : a
-  end
-
   def launch_workers(node, action)
     Following.follow(node, current_user)
     Workers.push(TrackActivityWorker, action.to_s, 'Node', node.id, current_user.id)

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include HasCurrentUser
   include HasCurrentSpace
 
-  rescue_from AccessDenied do |exception|
+  rescue_from CanCan::AccessDenied do |exception|
     if current_user.blank?
       redirect_to login_path(from: request.path), 
         alert: 'Tienes que identificarte antes de continuar'
@@ -15,4 +15,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_ability
+    @current_ability ||= Ability.new(current_user, current_space)
+  end
 end

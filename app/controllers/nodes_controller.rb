@@ -4,6 +4,7 @@ class NodesController < ApplicationController
 
   def root
     @node = current_space.node
+    authorize! :read, node
     service.show(@node)
     render action: 'show'
   end
@@ -14,6 +15,7 @@ class NodesController < ApplicationController
 
   def show
     begin
+      authorize! :read, node
       service.show(node)
       respond_with node
     rescue ActiveRecord::RecordNotFound
@@ -35,36 +37,46 @@ class NodesController < ApplicationController
 
   def new
     parent = current_space.nodes.find(params[:p].parameterize) if params[:p].present?
-    @node = Node.new(title: params[:t], parent: parent)
+    @node = Node.new(
+      title: params[:t], parent: parent, 
+      space: current_space)
+    authorize! :create, @node
   end
 
   def edit
+    authorize! :update, node
     respond_with node
   end
 
   def create
     @node = Node.new(node_params)
+    @node.space = current_space
+    authorize! :create, @node
     @node = service.create(node, {dropbox: params['selected-file']})
     respond_with @node
   end
 
   def update
+    authorize! :update, node
     node.attributes = node_params
     service.update(node, {dropbox: params['selected-file']})
     respond_with node
   end
 
   def destroy
+    authorize! :destroy, node
     node.destroy
     redirect_to node.parent ? node.parent : root_path
   end
 
   def up 
+    authorize! :update, node
     node.move_higher
     redirect_to node.parent
   end 
 
   def down
+    authorize! :update, node
     node.move_lower
     redirect_to node.parent
   end
@@ -72,23 +84,6 @@ class NodesController < ApplicationController
   private
   def node
     @node ||= current_space.nodes.find(params[:id])
-  end
-
-  def access_admin_form
-    @access_admin_actions ||= AccessAdminActions.new(
-      node, current_user)
-    @access_admin_form ||= AccessAdminForm.new(
-      node: node, action: @access_admin_actions)
-  end
-
-  def node_admin_form
-    @node_admin_actions ||= NodeAdminActions.new(node, current_user)
-    @node_admin_form ||= NodeAdminForm.new(
-      node: node, action: @node_admin_actions)
-  end
-
-  def following_admin_form
-    @following_admin_form ||= FollowingFormPresenter.new(node_id: node.id)
   end
 
   def service

@@ -20,7 +20,12 @@ class Access < ActiveRecord::Base
   end
 
   def update_edits
+    set_level(EDITOR)
     update_counter(:edit)
+  end
+
+  def set_level(level)
+    self.edit_level = level if self.edit_level < level
   end
 
   protected
