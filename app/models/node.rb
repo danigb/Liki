@@ -9,7 +9,7 @@ class Node < ActiveRecord::Base
     foreign_key: 'parent_id', 
     class_name: 'Node', dependent: :restrict_with_exception
 
-  has_many :photo_tags, dependent: :delete_all
+  has_many :photo_tags#, dependent: :delete_all
   has_many :photos, through: :photo_tags
 
   has_many :taggings, foreign_key: 'tag_id', dependent: :delete_all
