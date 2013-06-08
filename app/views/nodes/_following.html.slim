@@ -7,7 +7,7 @@ div.followers
       action: 'unfollow' }, class: 'unfollow'
   - else
     =' link_to icon('eye-open', 'Hazte seguidor/a de esta página'), 
-      node_followings_path(node: @node), method: :post,
+      node_followings_path(node_id: @node.id), method: :post,
       class: 'follow' 
     | si quieres recibir emails cuando alguien haga cambios.
 
