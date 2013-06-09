@@ -13,6 +13,11 @@ class FormPresenter
     @attributes
   end
 
+  def self.build(params)
+    name = self.name.underscore
+    self.new(params[name])
+  end
+
   def initialize(attributes={})
     attributes && attributes.each do |name, value|
       send("#{name}=", value) if respond_to? name.to_sym 

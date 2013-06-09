@@ -28,7 +28,7 @@
       class: 'pure-button'
 
   - if current_user.admin?
-    h3 Avanzado
+    h3 Avanzado (id:#{@node.id})
     = form.input :has_children
     = form.input :children_name
     = form.input :has_photos

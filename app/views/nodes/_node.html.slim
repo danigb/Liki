@@ -19,7 +19,13 @@
     div.node-main-actions
       =' link_to 'Editar', [:edit, node],
         class: 'pure-button' 
-        
+      - if @node.has_photos?
+        = link_to 'Subir foto', '#', data: { action: 'add_photo',
+          toggle: 'add_photo'}, class: 'pure-button'
+        div[class='add_form add_photo'
+          style='display: none']
+          = render 'form_photo', node: @node
+
     div.photos
       - node.photos.each do |photo|
         div.photo-thumbnail

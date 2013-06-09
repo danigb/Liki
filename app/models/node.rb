@@ -10,7 +10,8 @@ class Node < ActiveRecord::Base
     class_name: 'Node', dependent: :restrict_with_exception
 
   has_many :photo_tags, dependent: :delete_all
-  has_many :photos, through: :photo_tags
+  has_many :photos, -> { order('created_at DESC') }, 
+    through: :photo_tags
 
   has_many :taggings, foreign_key: 'tag_id', dependent: :delete_all
   has_many :taggeds, through: :taggings

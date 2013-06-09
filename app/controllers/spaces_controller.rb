@@ -44,6 +44,7 @@ class SpacesController < ApplicationController
   def space_params
     params.require(:space).permit(
       :name, :host, :email, 
+      :photos_node_id,
       :is_open, :background_image)
   end
 

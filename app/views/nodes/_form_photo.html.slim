@@ -1,10 +1,10 @@
-= simple_form_for node do |form|
-  = form.input :parent_id, as: :hidden
-  = form.input :role, as: :hidden
-  h3 Sube una imágen desde tu dropbox:
-  input[type="dropbox-chooser" name="selected-file"
+= simple_form_for UploadPhotoFormPresenter.new(node_id: @node.id),
+  url: photos_path do |form|
+  = form.input :node_id, as: :hidden
+  //h3 Sube una imágen desde tu dropbox:
+  //input[type="dropbox-chooser" name="selected-file"
     style="visibility: hidden;" data-link-type="direct"]
-  h3 O desde tu ordenador:
-  = form.input :image, label: false
+  //h3 O desde tu ordenador:
+  = form.input :image, as: :file, label: false
   = form.submit 'Subir foto', 
     class: 'pure-button pure-button-primary'
