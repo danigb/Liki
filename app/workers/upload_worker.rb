@@ -1,5 +1,6 @@
 class UploadWorker 
   include Sidekiq::Worker
+  sidekiq_options retry: false
 
   def perform(id)
     node = Node.where(id: id).first

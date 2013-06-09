@@ -39,7 +39,6 @@ class NodeService
     Workers.push(TrackActivityWorker, action.to_s, 'Node', node.id, current_user.id)
     Workers.push(MentionWorker)
     Workers.push(NotifierWorker, action, 'Node', current_user.id, node.id)
-    Workers.push(UploadWorker, node.id)
   end
 
   def apply_options(node, options)
