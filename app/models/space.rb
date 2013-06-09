@@ -17,24 +17,6 @@ class Space < ActiveRecord::Base
 
   after_create :create_space_node
 
-  def regenerate_counters
-    Space.reset_counters(self.id, :nodes, :mentions, :members)
-    self.nodes.pluck(:id).each do |node_id|
-      Node.reset_counters node_id, :children
-    end
-  end
-
-  def regenerate_mentions
-    Mention.destroy_all
-    self.nodes.find_each do |node|
-      node.mentioner.update_mentions
-    end
-  end
-
-  def label
-    name
-  end
-
   protected
   def create_space_node
     self.node = Node.create(title: self.name, body: self.name,

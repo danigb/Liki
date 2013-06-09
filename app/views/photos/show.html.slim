@@ -1,8 +1,5 @@
 - title 'Foto'
 
-h4 
-  = link_to icon('arrow-right', 'En fotos'), 
-    current_space.photos_node
 = div_for @photo do
   = image_tag @photo.image.url, class: 'main'
 
@@ -11,9 +8,10 @@ ul.node-summary-navigation.unstyled
   - @photo.photo_tags.each do |tag|
     li 
       =' link_to icon('arrow-right', tag.node.title), tag.node
-      = link_to 'Quitar', tag, method: :delete,
-        data: { confirm: "¿Quitar de #{tag.node.title}?" },
-        class: 'pure-button pure-button-xsmall'
+      - unless photos?(tag.node)
+        = link_to 'Quitar', tag, method: :delete,
+          data: { confirm: "¿Quitar de #{tag.node.title}?" },
+          class: 'pure-button pure-button-xsmall'
 
 = simple_form_for TagPhotoFormPresenter.new(photo_id: @photo.id),
   url: photo_tags_path do |form|

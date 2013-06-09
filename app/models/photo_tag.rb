@@ -1,5 +1,5 @@
 class PhotoTag < ActiveRecord::Base
-  belongs_to :photo
+  belongs_to :photo, touch: true
   belongs_to :node
   belongs_to :space
 

@@ -1,14 +1,25 @@
 div.node
   = title 'Bienvenida'
-  p ¡Hola! A este lugar se accede mediante invitación.
-  h3 Usa tu email y contraseña para entrar:
-  = simple_form_for @session_form, url: sessions_path do |form|
-    = hidden_field_tag :from, params[:from]
-    = form.input :email
-    = form.input :password
-    = form.submit 'Entrar', class: 'pure-button pure-button-primary'
+  - unless current_space.is_open?
+    p ¡Hola! A este lugar se accede mediante invitación.
+  div.new-session-form
+    h3 Entra con tu cuenta:
+    = simple_form_for @session_form, url: sessions_path do |form|
+      = hidden_field_tag :from, params[:from]
+      = form.input :email
+      = form.input :password
+      = form.submit 'Entrar', class: 'pure-button pure-button-primary'
 
-  br
+  div.new-user-form
+    - if false && current_space.is_open?
+      h3 O crea una nueva:
+      = simple_form_for User.new do |form|
+        = form.input :email
+        = form.input :password
+        = form.input :password_confirmation
+        = form.submit 'Crear cuenta', class: 'pure-button'
+
+  div.send-token-form
 
   h4 Si no tienes o no recuerdas tu contraseña, escribe
      tu email y recibirás un correo con instrucciones.
@@ -17,6 +28,4 @@ div.node
       label Escribe tu correo electrónico
       = email_field_tag :email, '', required: true
     = submit_tag 'Enviar instrucciones', class: 'pure-button'
-
-  br
 
