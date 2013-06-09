@@ -18,4 +18,9 @@ FactoryGirl.define do
     sequence(:name) {|n| "Space#{n}" }
     email { "#{name}@email.com" }
   end
+
+  factory :photo do
+    user
+    space
+  end
 end

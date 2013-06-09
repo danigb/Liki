@@ -1,0 +1,8 @@
+p ¡Hola #{@recipient.name}!
+p Han añadido una foto a #{@node.title}
+h2 
+  Puedes verla 
+  = link_to 'aquí', node_url(@node)
+
+= render 'follower_info', node: @node
+

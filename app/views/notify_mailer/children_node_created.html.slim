@@ -1,4 +1,5 @@
 p ¡Hola #{@recipient.name}!
-p Han añadido una página a #{@node.parent.label}
+p Han añadido una página a #{@node.parent.title}
 h2 = link_to @node.label, node_url(@node)
 
+= render 'follower_info', node: @node.parent

@@ -1,20 +1,22 @@
 class PhotoTagsController < ApplicationController
+  before_filter :require_user
+
   def create
     form = TagPhotoFormPresenter.build(params)
-    photo = Photo.find form.photo_id
-    begin
-      node = current_space.nodes.find(form.node_title.parameterize)
-      photo.tag(node)
-      flash.notice = 'Foto añadida. ¡Bien!'
-    rescue ActiveRecord::RecordNotFound
-      flash.alert = "No se ha añadido porque la página #{form.node_title} no existe."
-    end
-    redirect_to photo
+    service.create(form) ?
+      flash.notice = t('photo_tags.created') :
+      flash.alert = t('photo_tags.create_failed', title: form.node_title)
+    redirect_to form.photo
   end
 
   def destroy
     photo_tag = PhotoTag.find params[:id]
-    photo_tag.destroy
+    service.destroy(photo_tag)
     redirect_to photo_tag.photo
+  end
+
+  protected
+  def service
+    @service ||= PhotoTagService.new(current_space, current_user)
   end
 end

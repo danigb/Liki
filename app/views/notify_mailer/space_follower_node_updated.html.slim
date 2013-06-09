@@ -2,3 +2,4 @@ p ¡Hola #{@recipient.name}!
 p Han modificado una página de #{@space.name}
 h2 = link_to @node.label, node_url(@node)
 
+= render 'follower_info', node: @node

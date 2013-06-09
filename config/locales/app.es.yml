@@ -1,4 +1,7 @@
 es:
+  photo_tags:
+    created: 'Foto añadida. ¡Bien!'
+    create_failed: 'No se ha añadido porque la página %{title} no existe'
   add_actions:
     photo: 'Subir foto'
     section: 'Añadir sección'

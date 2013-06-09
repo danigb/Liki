@@ -5,14 +5,15 @@ class Ability
   def initialize(user, space)
     @user = user
     @space = space
-    node_abilities
+    basic_abilities
   end
 
-  def node_abilities
+  def basic_abilities
+    models = [Node, Photo, PhotoTag]
     space.is_open? ?
-      can(:read, Node) :
-      can(:read, Node) { member_required }
-    can([:create, :update, :destroy], Node) { member_required }
+      can(:read, models) :
+      can(:read, models) { member_required }
+    can([:create, :update, :destroy], models) { member_required }
   end
 
   protected

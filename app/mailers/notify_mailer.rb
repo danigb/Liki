@@ -2,19 +2,28 @@ class NotifyMailer < ActionMailer::Base
   default from: 'hola@liki.es'
 
   def space_follower_node_created(recipient, node)
-    send_notification "Han añadido una página a #{node.space.name}",
-      node, recipient
+    subject = "Han añadido una página"
+    send_notification subject, node, recipient
   end
 
   def space_follower_node_updated(recipient, node)
-    send_notification "Han modificado una página en #{node.space.name}",
-      node, recipient
+    subject = "Han modificado una página"
+    send_notification subject, node, recipient
   end
 
   def children_node_created(recipient, node)
-    send_notification "Han modificado una página en #{node.space.name}",
-      node, recipient
+    if node.parent
+      subject = "Han añadido una página a #{node.parent.title}"
+      send_notification subject, node, recipient
+    end
   end
+
+  def photo_tag_created(recipient, tag)
+    node = tag.node
+    subject = "Han añadido una foto a #{node.title}"
+    send_notification subject, node, recipient
+  end
+
 
   protected
   def send_notification(subject, node, recipient)
@@ -22,6 +31,8 @@ class NotifyMailer < ActionMailer::Base
     @node = node
     @space = node.space
     UserMailer.default_url_options[:host] = @space.host
-    mail to: @recipient.email, subject: subject, from: @space.email
+
+    mail to: @recipient.email, from: @space.email,
+      subject: "[#{@space.name}] #{subject}"
   end
 end
