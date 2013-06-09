@@ -21,6 +21,12 @@ class PhotosController < ApplicationController
     redirect_to node, notice: 'Imágen subida'
   end
 
+  def destroy
+    photo.destroy
+    redirect_to photos_path, notice: 'Imágen borrada'
+  end
+
+
   protected
   def photo
     @photo ||= Photo.find params[:id]
