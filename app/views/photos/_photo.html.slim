@@ -1,0 +1,8 @@
+= cache photo do 
+  div.photo-thumbnail
+    = link_to image_tag(photo.image.url), photo
+    ul.unstyled
+      - photo.nodes.each do |n|
+        - unless photos?(n)
+          li = link_to(icon('arrow-right', n.title), n)
+

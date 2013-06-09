@@ -27,6 +27,5 @@
           = render 'form_photo', node: @node
 
     div.photos
-      - node.photos.each do |photo|
-        div.photo-thumbnail
-          = link_to image_tag(photo.image.url), photo
+      = render node.photos
+ 
