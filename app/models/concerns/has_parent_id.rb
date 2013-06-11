@@ -1,4 +1,5 @@
 class Concerns::HasParentId
+  extend ActiveSupport::Concern
 
   included do
     belongs_to :parent, class_name: 'Node', counter_cache: :children_count
