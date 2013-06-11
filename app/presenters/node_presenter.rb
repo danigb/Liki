@@ -10,6 +10,12 @@ class NodePresenter < SimpleDelegator
     render @node, node: @node, presenter: self
   end
 
+  def render_photos
+    content_tag :div, class: 'photos' do
+      render @node.photos
+    end
+  end
+
   def render_children
     content_tag :div, class: 'children' do
       render partial: 'summary', 
