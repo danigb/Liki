@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130611120200) do
+ActiveRecord::Schema.define(version: 20130611130426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,22 @@ ActiveRecord::Schema.define(version: 20130611120200) do
   add_index "activities", ["space_id"], name: "index_activities_on_space_id", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.integer  "space_id"
+    t.integer  "node_id"
+    t.integer  "user_id"
+    t.integer  "reply_to_id"
+    t.integer  "position",    default: 0
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["node_id"], name: "index_comments_on_node_id", using: :btree
+  add_index "comments", ["reply_to_id"], name: "index_comments_on_reply_to_id", using: :btree
+  add_index "comments", ["space_id"], name: "index_comments_on_space_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "followings", force: true do |t|
     t.integer  "user_id"
@@ -113,6 +129,7 @@ ActiveRecord::Schema.define(version: 20130611120200) do
     t.string   "image_url"
     t.string   "ancestry"
     t.integer  "prototype_id"
+    t.integer  "comments_count",              default: 0
   end
 
   add_index "nodes", ["ancestry"], name: "index_nodes_on_ancestry", using: :btree

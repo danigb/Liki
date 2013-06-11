@@ -19,6 +19,11 @@ FactoryGirl.define do
     email { "#{name}@email.com" }
   end
 
+  factory :comment do
+    node
+    body { "Comment body #{id}" }
+  end
+
   factory :photo do
     user
     space

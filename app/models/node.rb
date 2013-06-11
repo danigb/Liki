@@ -14,6 +14,7 @@ class Node < ActiveRecord::Base
   include HasActivity
   include HasAccesses
   include HasPrototype
+  include HasComments
 
   validates_presence_of :user_id, :space_id
   validates_presence_of :title
