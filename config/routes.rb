@@ -12,6 +12,7 @@ Liki::Application.routes.draw do
     get :admin, on: :member
     post :admin, on: :member
     resources :followings, path: 'f', only: :index
+    resource :document, path: 'doc'
   end
 
   resources :users, path: 'u'

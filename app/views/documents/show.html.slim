@@ -1,0 +1,11 @@
+= title "PDF"
+h2 En #{@node.title}
+= simple_form_for @node do |form|
+  - if @node.document? 
+    b = icon('download', "PDF: @{node.document_name}")
+  - else
+    = form.input :document
+    =' form.submit 'Guardar PDF', 
+      class: 'pure-button pure-button-primary'
+    = link_to 'Cancelar', @node, class: 'pure-button' 
+
