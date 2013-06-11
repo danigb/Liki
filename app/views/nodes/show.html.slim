@@ -8,16 +8,16 @@
     root_path
 
 = presenter.render_node
+div.separator
+  - if @node.has_children?
+    div.node-add-children
+      = link_to "Añadir #{children_name(@node)} a '#{@node.title}'", 
+        new_node_path(p: @node),
+        class: 'pure-button pure-button-secondary'
 = presenter.render_children
 = presenter.render_mentioned
 
 div.separator
-  - if @node.has_children?
-    div.node-add-children
-      = link_to "Añadir #{children_name(@node)}", 
-        new_node_path(p: @node),
-        class: 'pure-button'
-
-= render 'following'
+  = render 'following'
 
 <script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="97zrc4q9b8q6ilx"></script>  

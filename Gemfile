@@ -27,6 +27,7 @@ gem 'mime-types'
 gem "mini_magick"
 gem 'rinku'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'ancestry'
 #gem 'postrank-uri'
 
 # VIEWS

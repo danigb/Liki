@@ -43,6 +43,8 @@ GEM
     acts_as_list (0.2.0)
       activerecord (>= 3.0)
     addressable (2.3.4)
+    ancestry (2.0.0)
+      activerecord (>= 3.0.0)
     ansi (1.4.3)
     arel (4.0.0)
     atomic (1.1.9)
@@ -244,6 +246,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list
+  ancestry
   bcrypt-ruby (~> 3.0.0)
   bootstrap-sass (~> 2.3.1.2)
   bullet
