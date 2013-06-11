@@ -2,12 +2,6 @@ class Node < ActiveRecord::Base
   belongs_to :user, counter_cache: true
   belongs_to :space, counter_cache: true
 
-  belongs_to :parent, class_name: 'Node', counter_cache: :children_count
-
-  has_many :children, 
-    -> { where("role IS NULL OR role <> 'photo'").order('position ASC') },
-    foreign_key: 'parent_id', 
-    class_name: 'Node', dependent: :restrict_with_exception
 
   has_many :photo_tags, dependent: :delete_all
   has_many :photos, -> { order('created_at DESC') }, 
@@ -15,6 +9,7 @@ class Node < ActiveRecord::Base
 
   has_many :taggings, foreign_key: 'tag_id', dependent: :delete_all
   has_many :taggeds, through: :taggings
+  
 
   include HasMentions
   include HasFollowers
@@ -28,7 +23,8 @@ class Node < ActiveRecord::Base
   validates_presence_of :title
   validates_uniqueness_of :title, scope: :space_id
 
-  acts_as_list scope: [:space_id, :parent_id]
+  has_ancestry
+  acts_as_list scope: [:space_id, :ancestry]
   include FriendlyId
   friendly_id :title, use: :scoped, scope: :space
   mount_uploader :document, DocumentUploader

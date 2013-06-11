@@ -1,0 +1,4 @@
+div.ancestors
+  - node.ancestors.each do |parent|
+    span =' link_to icon('arrow-right', parent.title), parent 
+

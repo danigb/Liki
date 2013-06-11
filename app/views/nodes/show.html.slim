@@ -1,21 +1,26 @@
 - presenter = NodePresenter.new(@node, self)
 - title(@node.title)
 
-- if @node.parent
-  = link_to icon('arrow-up', "En #{@node.parent.title}"), @node.parent
-- elsif current_space.node != @node
-  = link_to icon('arrow-up', "Volver a #{current_space.name}"), 
-    root_path
-
+= render 'node_title', node: @node
 = presenter.render_node
-div.separator
-  - if @node.has_children?
-    div.node-add-children
-      = link_to "Añadir #{children_name(@node)} a '#{@node.title}'", 
-        new_node_path(p: @node),
-        class: 'pure-button pure-button-secondary'
+div.node-main-actions
+  =' link_to 'Editar', [:edit, @node],
+    class: 'pure-button' 
+  - if @node.has_photos?
+    = link_to 'Subir foto', '#', data: { action: 'add_photo',
+      toggle: 'add_photo'}, class: 'pure-button'
+    div[class='add_form add_photo'
+      style='display: none']
+      = render 'form_photo', node: @node
+  = link_to "Añadir #{children_name(@node)}", 
+    new_node_path(p: @node),
+    class: 'pure-button pure-button-secondary'
+
 = presenter.render_children
-= presenter.render_mentioned
+
+- if @node.mentioned_by_nodes.size > 0
+  div.separator
+    = presenter.render_mentioned
 
 div.separator
   = render 'following'

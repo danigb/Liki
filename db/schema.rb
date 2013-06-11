@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130608215910) do
+ActiveRecord::Schema.define(version: 20130611011915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,7 +93,6 @@ ActiveRecord::Schema.define(version: 20130608215910) do
     t.text     "body"
     t.integer  "user_id"
     t.integer  "space_id"
-    t.integer  "parent_id"
     t.integer  "position"
     t.integer  "children_count",              default: 0
     t.datetime "created_at"
@@ -112,12 +111,12 @@ ActiveRecord::Schema.define(version: 20130608215910) do
     t.boolean  "has_photos",                  default: false
     t.string   "children_name",   limit: 30
     t.string   "image_url"
+    t.string   "ancestry"
   end
 
-  add_index "nodes", ["parent_id"], name: "index_nodes_on_parent_id", using: :btree
+  add_index "nodes", ["ancestry"], name: "index_nodes_on_ancestry", using: :btree
   add_index "nodes", ["role"], name: "index_nodes_on_role", using: :btree
   add_index "nodes", ["slug"], name: "index_nodes_on_slug", using: :btree
-  add_index "nodes", ["space_id", "parent_id"], name: "index_nodes_on_space_id_and_parent_id", using: :btree
   add_index "nodes", ["space_id"], name: "index_nodes_on_space_id", using: :btree
   add_index "nodes", ["user_id"], name: "index_nodes_on_user_id", using: :btree
 
