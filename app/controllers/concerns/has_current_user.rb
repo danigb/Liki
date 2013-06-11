@@ -13,6 +13,13 @@ module HasCurrentUser
     end
   end
 
+  def require_owner_or_admin
+    unless current_user && (current_user.admin? || current_user == user)
+      member = current_space.member(current_user)
+      redirect_to member ? member.node : root_path
+    end
+  end
+
   def current_user=(id)
     @current_user = nil
     session[:current_user_level] = nil

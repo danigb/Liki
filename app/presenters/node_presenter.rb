@@ -17,9 +17,10 @@ class NodePresenter < SimpleDelegator
   end
 
   def render_children
+    children = @node.proto.order(@node.children)
     content_tag :div, class: 'children' do
       render partial: 'summary', 
-        collection: @node.children, as: :node
+        collection: children, as: :node
     end
   end
 

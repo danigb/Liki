@@ -22,6 +22,7 @@ Liki::Application.routes.draw do
   resources :followings, path: 'f', only: [:create, :destroy]
   resources :photos, path: 'fotos'
   resources :photo_tags, path: 'ptag'
+  resources :prototypes, path: 'proto'
 
   resource :inbox, controller: 'inbox', only: [:show,:create]
 

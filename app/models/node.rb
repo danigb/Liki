@@ -2,22 +2,18 @@ class Node < ActiveRecord::Base
   belongs_to :user, counter_cache: true
   belongs_to :space, counter_cache: true
 
-
   has_many :photo_tags, dependent: :delete_all
   has_many :photos, -> { order('created_at DESC') }, 
     through: :photo_tags
 
   has_many :taggings, foreign_key: 'tag_id', dependent: :delete_all
   has_many :taggeds, through: :taggings
-  
 
   include HasMentions
   include HasFollowers
   include HasActivity
   include HasAccesses
-
-  scope :imaged, -> { where("image <> '' OR dropbox_image_url <>''") }
-  scope :slugged, -> { where("slug <> ''") }
+  include HasPrototype
 
   validates_presence_of :user_id, :space_id
   validates_presence_of :title

@@ -49,11 +49,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :name, :email, :admin, :slug, :password)
   end
-
-  def require_owner_or_admin
-    unless current_user && (current_user.admin? || current_user == user)
-      member = current_space.member(current_user)
-      redirect_to member ? member.node : root_path
-    end
-  end
 end

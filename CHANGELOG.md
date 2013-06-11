@@ -1,11 +1,9 @@
 # CHANGELOG
 
 # TODO
-- Se crea un slug cuando el nodo no tiene título
 - Mostrar los vídeos http://dimsemenov.com/plugins/magnific-popup
 - Mover los items con javascript
 - Añadir un usuario a un espacio
-- User leves?
 - Menos clicks para subir imágen
 - Cuando añades una página, vuelve a la página madre
 - Nodos anidados?

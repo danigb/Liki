@@ -8,6 +8,7 @@ class Space < ActiveRecord::Base
   has_many :followings, as: :followed, dependent: :delete_all
   has_many :followers, through: :followings, source: :user, class_name: 'User'
   has_many :activities, -> { order('updated_at DESC') }
+  has_many :prototypes, -> { order('name ASC') }
 
   include HasMembers
 
