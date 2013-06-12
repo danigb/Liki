@@ -12,9 +12,10 @@ div.node-main-actions
   =' link_to "Añadir #{children_name(@node)}", 
     new_node_path(p: @node),
     class: 'pure-button'
-  //=' link_to "Añadir foto",
-  //  new_photo_path(n: @node.id),
-  //  class: 'pure-button'
+  - if @node.photos.count > 0
+    =' link_to "Añadir foto",
+      new_photo_path(n: @node.id),
+      class: 'pure-button'
   =' link_to "Añadir PDF",
     node_document_path(@node),
     class: 'pure-button'

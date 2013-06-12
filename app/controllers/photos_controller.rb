@@ -10,6 +10,11 @@ class PhotosController < ApplicationController
     respond_with photo
   end
 
+  def new
+    @form = UploadPhotoFormPresenter.new(node_id: params[:n])
+    respond_with @form
+  end
+
   def create
     form = UploadPhotoFormPresenter.build(params)
     node = current_space.nodes.find(form.node_id)
