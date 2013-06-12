@@ -92,7 +92,7 @@ class NodesController < ApplicationController
 
   def node_params
     params.require(:node).permit(
-      :title, :body, :parent_id,
+      :title, :body, :parent_id, :prototype_id,
       :has_children, :has_photos, :children_name,
       :document, :image_url, :slug,
       :role, :style, :image_style,

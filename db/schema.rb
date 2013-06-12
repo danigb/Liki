@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130611130426) do
+ActiveRecord::Schema.define(version: 20130611212810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(version: 20130611130426) do
     t.string   "children_names", limit: 100
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "nodes_count",                default: 0
   end
 
   add_index "prototypes", ["slug"], name: "index_prototypes_on_slug", using: :btree

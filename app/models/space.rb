@@ -18,6 +18,11 @@ class Space < ActiveRecord::Base
 
   after_create :create_space_node
 
+  def default_prototype
+    @proto = prototypes.first ? prototypes.first :
+      prototypes.create(name: 'Página')
+  end
+
   protected
   def create_space_node
     self.node = Node.create(title: self.name, body: self.name,

@@ -1,6 +1,15 @@
 = simple_form_for @node do |form|
   = form.input :parent_id, as: :hidden
+  - if @node.parent
+    h3 
+      span En '#{@node.parent.title}' 
+      //small = link_to 'Cambiar', '#', 
+      //  class: 'pure-button pure-button-xsmall'
+  - if @node.prototype
+     h4 #{@node.prototype.name}:
+    
   = form.input :title, label: false
+
   div id="wysihtml5-toolbar" style="display: none;"
     a[data-wysihtml5-command="formatBlock" 
       data-wysihtml5-command-value="h4"
@@ -29,6 +38,7 @@
 
   - if current_user.admin?
     h3 Avanzado (id:#{@node.id})
+    = form.input :prototype_id, collection: current_space.prototypes
     = form.input :has_children
     = form.input :children_name
     = form.input :has_photos

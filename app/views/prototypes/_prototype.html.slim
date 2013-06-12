@@ -1,4 +1,12 @@
 = div_for prototype do
-  b =' link_to prototype.name, [:edit, prototype]
-  span  > #{prototype.children_names} 
-  span | #{prototype.order_options}
+  h4 
+    = link_to prototype.name, [:edit, prototype]
+  span Nodos: #{prototype.nodes_count}
+  small > #{prototype.children_names} 
+  small | #{prototype.order_options}
+  div
+    =' link_to 'Editar', [:edit, prototype],
+      class: 'pure-button pure-button-xsmall'
+    = link_to 'Borrar', prototype, method: :delete, 
+      data: { confirm: '¿Seguro?'}, 
+      class: 'pure-button pure-button-xsmall'

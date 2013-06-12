@@ -2,8 +2,8 @@ class CreatePrototypes < ActiveRecord::Migration
   def change
     create_table :prototypes do |t|
       t.integer :space_id
-      t.string :name, limit: 40
-      t.string :slug, limit: 30
+      t.string :name, limit: 100 
+      t.string :slug, limit: 100
       t.text :body
       t.string :order_options, limit: 30
       t.string :children_names, limit: 100

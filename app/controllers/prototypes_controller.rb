@@ -31,6 +31,11 @@ class PrototypesController < ApplicationController
     respond_with prototype
   end
 
+  def destroy
+    prototype.destroy
+    respond_with prototype
+  end
+
   protected
   def prototype
     @prototype ||= Prototype.find params[:id]
