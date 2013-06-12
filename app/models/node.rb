@@ -28,12 +28,12 @@ class Node < ActiveRecord::Base
 
   before_validation :set_space_id
 
-  def label
-    title? ? title : "##{id}"
-  end
-
   def profile?
     space.member(self.user).try(:node_id) == self.id
+  end
+
+  def ordered_children
+    self.proto.order(self.children)
   end
 
   protected

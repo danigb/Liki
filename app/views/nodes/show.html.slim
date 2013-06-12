@@ -16,9 +16,8 @@ div.node-main-actions
     =' link_to "Añadir foto",
       new_photo_path(n: @node.id),
       class: 'pure-button'
-  =' link_to "Añadir PDF",
-    node_document_path(@node),
-    class: 'pure-button'
+  =' link_to icon(:upload, "PDF"),
+    node_document_path(@node)
 
 //- cache 'photos', @node do
 = presenter.render_photos

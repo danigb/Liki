@@ -18,11 +18,13 @@ class PhotosController < ApplicationController
   def create
     form = UploadPhotoFormPresenter.build(params)
     node = current_space.nodes.find(form.node_id)
-    photo = Photo.create!(
-      space: current_space, user: current_user,
-      image: form.image)
-    photo.tag(current_space.photos_node)
-    photo.tag(node)
+    if form.image.present?
+      photo = Photo.create!(
+        space: current_space, user: current_user,
+        image: form.image)
+      photo.tag(current_space.photos_node)
+      photo.tag(node)
+    end
     redirect_to node, notice: 'Imágen subida'
   end
 

@@ -25,5 +25,5 @@
       = render 'nodes/document', node: node
 
     ul.node-summary-navigation.unstyled
-      - node.children.each do |n|
+      - node.ordered_children.each do |n|
         li = link_to icon('arrow-right', n.title), n

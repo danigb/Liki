@@ -5,5 +5,7 @@
     style="visibility: hidden;" data-link-type="direct"]
   //h3 O desde tu ordenador:
   = form.input :image, as: :file, label: false
-  = form.submit 'Subir foto', 
+  =' form.submit 'Subir foto', 
     class: 'pure-button pure-button-primary'
+  - if @form.node_id.present?
+    = link_to 'Cancelar', @form.node, class: 'pure-button'
