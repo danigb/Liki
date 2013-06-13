@@ -7,8 +7,10 @@
 .node-main-image {
   & {
     width: 33%;
-    margin-right: 1em;
+    margin: 0 1em 1em 0;
     float: left;
+
+    img { width: 100%; }
   }
 }
 

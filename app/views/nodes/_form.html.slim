@@ -42,8 +42,3 @@
   - if current_user.admin?
     h3 Avanzado (id:#{@node.id})
     = form.input :prototype_id, collection: current_space.prototypes
-    = form.input :has_children
-    = form.input :children_name
-    = form.input :has_photos
-    = form.input :document
-    = form.input :remove_document
