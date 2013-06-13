@@ -29,7 +29,7 @@ class NodesController < ApplicationController
     @node_admin_form = NodeAdminFormPresenter.new(node_id: node.id)
     @following_form = FollowingFormPresenter.new
     if request.request_method_symbol == :post
-    NodeAdminFormPresenter.new(params[:node_admin_form_presenter]).save
+      NodeAdminFormPresenter.new(params[:node_admin_form_presenter]).save
     end
     respond_with node
   end
@@ -37,7 +37,9 @@ class NodesController < ApplicationController
 
   def new
     parent = current_space.nodes.find(params[:p].parameterize) if params[:p].present?
-    proto = current_space.prototypes.find(params[:proto]) if params[:proto]
+    proto = params[:proto].present? ?
+      current_space.prototypes.find(params[:proto]) :
+      current_space.default_prototype
     @node = Node.new(
       title: params[:t], parent: parent, 
       space: current_space, prototype: proto)
