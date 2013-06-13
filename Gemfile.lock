@@ -102,6 +102,7 @@ GEM
     garb (0.9.1)
       activesupport (>= 2.2.0)
       crack (>= 0.1.6)
+    gmaps4rails (1.5.6)
     highline (1.6.19)
     hike (1.2.3)
     hirb (0.7.1)
@@ -262,6 +263,7 @@ DEPENDENCIES
   font-awesome-sass-rails
   friendly_id!
   garb
+  gmaps4rails
   hirb
   html_truncator
   jbuilder (~> 1.4.1)

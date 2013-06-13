@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130613073213) do
+ActiveRecord::Schema.define(version: 20130613113620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,10 @@ ActiveRecord::Schema.define(version: 20130613073213) do
     t.integer  "comments_count",              default: 0
     t.integer  "task_level",                  default: 0
     t.integer  "task_priority",               default: 0
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "map_address"
+    t.boolean  "geocoded",                    default: false
   end
 
   add_index "nodes", ["ancestry"], name: "index_nodes_on_ancestry", using: :btree

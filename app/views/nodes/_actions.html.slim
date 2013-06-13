@@ -5,16 +5,20 @@ div.node-main-actions
     =' link_to "Añadir #{children_name(node)}", 
       new_node_path(p: node, proto: node.proto.children_id),
       class: 'pure-button pure-button-secondary'
-  - if node.photos.count > 0 || node.proto.photos?
+  - if has_photos?(node)
     =' link_to icon(:picture, 'Fotos'),
       new_photo_path(n: node.id),
       class: 'pure-button' 
-  - if node.proto.tasks?
+  - if has_tasks?(node)
     =' link_to icon('circle-blank', 'Tarea'),
         node_task_path(node),
         class: 'pure-button' 
-  - if node.proto.document?
+  - if has_document?(node)
     =' link_to icon('upload', 'PDF'),
        node_document_path(node),
        class: 'pure-button' 
+  - if has_address?(node)
+    =' link_to icon('map-marker', 'Mapa'),
+        node_map_path(node),
+        class: 'pure-button'
 

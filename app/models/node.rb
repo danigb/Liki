@@ -25,6 +25,7 @@ class Node < ActiveRecord::Base
   include FriendlyId
   friendly_id :title, use: :scoped, scope: :space
   mount_uploader :document, DocumentUploader
+  acts_as_gmappable process_geocoding: :geocode?, checker: :geocoded
 
   before_validation :set_space_id
 
@@ -38,6 +39,14 @@ class Node < ActiveRecord::Base
 
   def document_title
     File.basename(document.url)
+  end
+
+  def gmaps4rails_address
+    "#{self.map_address}, spain"
+  end
+
+  def geocode?
+    self.map_address.present?
   end
 
   protected

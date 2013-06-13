@@ -1,7 +1,7 @@
 - presenter = NodePresenter.new(@node, self)
 - title(@node.title)
 
-= render 'node_title', node: @node
+= render 'ancestors', node: @node
 = presenter.render_node
 = render 'actions', node: @node
 

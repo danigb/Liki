@@ -14,6 +14,7 @@ Liki::Application.routes.draw do
     resources :followings, path: 'f', only: :index
     resource :document, path: 'doc'
     resource :task, path: 'tarea'
+    resource :map, path: 'mapa'
     resources :comments, path: 'comentarios'
   end
 

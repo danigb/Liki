@@ -1,0 +1,5 @@
+= simple_form_for @node, url: node_map_path(@node) do |form|
+  = form.input :latitude
+  = form.input :longitude
+  = form.input :map_address
+  = form.submit 'Guardar', class: 'pure-button pure-button-primary'

@@ -29,6 +29,7 @@ gem 'rinku'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'ancestry'
 #gem 'postrank-uri'
+gem 'gmaps4rails'
 
 # VIEWS
 gem 'slim', '>= 1.3.8'
