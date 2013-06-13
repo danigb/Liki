@@ -1,20 +1,24 @@
 - cal = CalendarPresenter.new(self, @events, 
   year: @year, month: @month)
 
+div.calendar-navigation
+  - 1.upto(12).each do |month|
+    - if month == cal.month
+      span =' month_name(month)
+    - else
+      =' link_to month_name(month), 
+        calendar_path(year: cal.year, month: month)
+
 = title cal.title
+p.info Pulsa sobre el número en el calendario para crear un evento ese día
 
 = render 'calendar', cal: cal
 
-= toggle_link 'Añadir evento', 'event-form'
-
-div.event-form style="display:none"
-  h4 Añadir evento
-  = render 'form', event: Event.new
 
 div.separator
   - cal.render_calendar do |current, events|
     - if events.size > 0
-      h4 = l(current)
+      h4 = day_label(current)
       - events.each do |event|
         div = link_to icon('arrow-right', event.name), [:edit, event]
 

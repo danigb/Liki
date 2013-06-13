@@ -1,7 +1,8 @@
 class CalendarPresenter < SimpleDelegator
   attr_reader :options
-  attr_reader :first, :last
+  attr_reader :first, :last, :today
   attr_reader :events
+  attr_reader :prev, :next
 
   def initialize(view, events, opts)
     super(view)
@@ -12,9 +13,19 @@ class CalendarPresenter < SimpleDelegator
     @options = defaults.merge(opts)
     @events = events
 
-    @first = Date.civil(options[:year], options[:month], 1)
-    @last = Date.civil(options[:year], options[:month], -1)
+    @first = Date.civil(year, month, 1)
+    @last = Date.civil(year, month, -1)
     @today = Time.zone.now.to_date
+    @prev = @first - 1.day
+    @next = @last + 1.day
+  end
+
+  def month
+    @options[:month]
+  end
+
+  def year
+    @options[:year]
   end
 
   def render_calendar

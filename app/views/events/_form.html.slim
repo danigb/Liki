@@ -1,6 +1,9 @@
 = simple_form_for event do |form|
   = form.input :name, label: false
-  = form.input :date, label: false
+  - if event.date.present?
+    = form.input :date, as: :hidden
+  - else
+    = form.input :date, label: false
   = form.input :time, label: false
   = form.submit 'Añadir', 
   class: 'pure-button pure-button-primary'

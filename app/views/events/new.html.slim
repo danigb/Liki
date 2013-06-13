@@ -1,0 +1,5 @@
+= title 'Añadir evento'
+- if @event.date
+  h3 = day_label(@event.date)
+
+= render 'form', event: @event

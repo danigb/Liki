@@ -9,6 +9,11 @@ class EventsController < ApplicationController
     @events = Event.month_scope(current_space.events, @year, @month)
   end
 
+  def new
+    @event = Event.new(date: params_date)
+    respond_with @event
+  end
+
   def edit
     respond_with event
   end
@@ -33,6 +38,15 @@ class EventsController < ApplicationController
   end
 
   protected
+  def params_date
+    begin
+      Date.civil(params[:y].try(:to_i), 
+                 params[:m].try(:to_i), 
+                 params[:d].try(:to_i))
+    rescue Exception
+    end
+  end
+
   def event
     @event ||= current_space.events.find params[:id]
   end
