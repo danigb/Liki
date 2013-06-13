@@ -6,7 +6,7 @@
       //small = link_to 'Cambiar', '#', 
       //  class: 'pure-button pure-button-xsmall'
   - if @node.prototype
-     h4 #{@node.prototype.name}:
+     h4 Es una #{@node.prototype.name}:
     
   = form.input :title, label: false
 
@@ -33,8 +33,11 @@
 
   div.buttons
     =' form.submit 'Guardar', class: 'pure-button pure-button-primary'
-    = link_to 'Cancelar', cancel_form_node_path(@node), 
+    =' link_to 'Cancelar', cancel_form_node_path(@node), 
       class: 'pure-button'
+    - if current_user.admin? && @node.prototype
+      = link_to "Editar #{@node.prototype.name}", 
+        [:edit, @node.prototype], class: 'pure-button'
 
   - if current_user.admin?
     h3 Avanzado (id:#{@node.id})

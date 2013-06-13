@@ -23,7 +23,7 @@ module NodeHelper
   end
 
   def children_name(node)
-    node.children_name? ? node.children_name : 'página'
+    node.proto.children.try(:name)
   end
 
   def cancel_form_node_path(node)

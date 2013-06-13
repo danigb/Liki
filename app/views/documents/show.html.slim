@@ -1,11 +1,18 @@
+h2 #{@node.title}
 = title "PDF"
-h2 En #{@node.title}
 = simple_form_for @node do |form|
   - if @node.document? 
-    b = icon('download', "PDF: @{node.document_name}")
+    b = icon('download', "PDF: #{@node.document_title}")
+    div.actions.separator
+      =' link_to 'Borrar', node_document_path(@node), 
+        method: :delete, data: { action: 'delete', 
+        confirm: '¿Seguro?' }, 
+        class: 'pure-button pure-button-error'
+      = link_to 'Cancelar', @node, class: 'pure-button' 
   - else
     = form.input :document
-    =' form.submit 'Guardar PDF', 
-      class: 'pure-button pure-button-primary'
-    = link_to 'Cancelar', @node, class: 'pure-button' 
+    div.actions.separator
+      =' form.submit 'Subir PDF', 
+        class: 'pure-button pure-button-primary'
+      = link_to 'Cancelar', @node, class: 'pure-button' 
 

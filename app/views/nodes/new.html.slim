@@ -1,5 +1,5 @@
-- if @node.parent
-  = title "Añadir #{children_name(@node.parent)}" 
+- if @node.prototype
+  = title "Añadir #{@node.prototype.name}" 
 - else
   = title 'Añadir página'
 

@@ -6,7 +6,7 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    redirect_to prototypes_path
+    respond_with prototype
   end
 
   def new
@@ -43,6 +43,8 @@ class PrototypesController < ApplicationController
 
   def prototype_params
     params.require(:prototype).permit(
-      :name, :body, :order_options, :children_names)
+      :name, :body, :order_options, :children_id,
+      :photos, :tasks, :comments, :document,
+      :show_map, :map_marker, :event)
   end
 end

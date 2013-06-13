@@ -1,5 +1,7 @@
 class Prototype < ActiveRecord::Base
   belongs_to :space
+  belongs_to :children, class_name: 'Prototype'
+  has_many :nodes
   
   attr_accessor :node
 

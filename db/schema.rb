@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130611212810) do
+ActiveRecord::Schema.define(version: 20130613073213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,8 @@ ActiveRecord::Schema.define(version: 20130611212810) do
     t.string   "ancestry"
     t.integer  "prototype_id"
     t.integer  "comments_count",              default: 0
+    t.integer  "task_level",                  default: 0
+    t.integer  "task_priority",               default: 0
   end
 
   add_index "nodes", ["ancestry"], name: "index_nodes_on_ancestry", using: :btree
@@ -166,14 +168,21 @@ ActiveRecord::Schema.define(version: 20130611212810) do
 
   create_table "prototypes", force: true do |t|
     t.integer  "space_id"
-    t.string   "name",           limit: 40
-    t.string   "slug",           limit: 30
+    t.string   "name",          limit: 40
+    t.string   "slug",          limit: 30
     t.text     "body"
-    t.string   "order_options",  limit: 30
-    t.string   "children_names", limit: 100
+    t.string   "order_options", limit: 30
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "nodes_count",                default: 0
+    t.integer  "nodes_count",              default: 0
+    t.boolean  "photos",                   default: false
+    t.boolean  "tasks",                    default: false
+    t.boolean  "comments",                 default: false
+    t.boolean  "document",                 default: false
+    t.boolean  "show_map",                 default: false
+    t.boolean  "map_marker",               default: false
+    t.boolean  "event",                    default: false
+    t.integer  "children_id"
   end
 
   add_index "prototypes", ["slug"], name: "index_prototypes_on_slug", using: :btree

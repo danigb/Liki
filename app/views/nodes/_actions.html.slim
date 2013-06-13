@@ -1,0 +1,20 @@
+div.node-main-actions
+  =' link_to 'Editar', [:edit, node],
+    class: 'pure-button' 
+  - if node.proto.children
+    =' link_to "Añadir #{children_name(node)}", 
+      new_node_path(p: node, proto: node.proto.children_id),
+      class: 'pure-button pure-button-secondary'
+  - if node.photos.count > 0 || node.proto.photos?
+    =' link_to icon(:picture, 'Fotos'),
+      new_photo_path(n: node.id),
+      class: 'pure-button' 
+  - if node.proto.tasks?
+    =' link_to icon('circle-blank', 'Tarea'),
+        node_task_path(node),
+        class: 'pure-button' 
+  - if node.proto.document?
+    =' link_to icon('upload', 'PDF'),
+       node_document_path(node),
+       class: 'pure-button' 
+

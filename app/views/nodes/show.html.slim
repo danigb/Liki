@@ -3,21 +3,9 @@
 
 = render 'node_title', node: @node
 = presenter.render_node
-div.node-main-actions
-  =' link_to 'Editar', [:edit, @node],
-    class: 'pure-button' 
-  //=' link_to icon(:comment, 'Comentar'), 
-  //  new_node_path(p: @node),
-  //  class: 'pure-button pure-button-secondary'
-  =' link_to "Añadir #{children_name(@node)}", 
-    new_node_path(p: @node),
-    class: 'pure-button'
-  - if @node.photos.count > 0
-    =' link_to "Añadir foto",
-      new_photo_path(n: @node.id),
-      class: 'pure-button'
-  =' link_to icon(:upload, "PDF"),
-    node_document_path(@node)
+= render 'actions', node: @node
+
+//= render 'comments/comments', node: @node
 
 //- cache 'photos', @node do
 = presenter.render_photos

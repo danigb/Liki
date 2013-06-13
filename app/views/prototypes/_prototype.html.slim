@@ -1,9 +1,6 @@
 = div_for prototype do
   h4 
-    = link_to prototype.name, [:edit, prototype]
-  span Nodos: #{prototype.nodes_count}
-  small > #{prototype.children_names} 
-  small | #{prototype.order_options}
+    = link_to prototype.name, prototype
   div
     =' link_to 'Editar', [:edit, prototype],
       class: 'pure-button pure-button-xsmall'

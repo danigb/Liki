@@ -1,0 +1,16 @@
+= link_to icon('arrow-up', 'Tipos'), prototypes_path
+= title @prototype.name.camelcase
+
+div.properties
+  - if @prototype.children
+    span 
+      | Contiene 
+      = link_to @prototype.children.name, @prototype.children
+
+div.actions 
+  = link_to 'Editar', [:edit, @prototype],
+    class: 'pure-button pure-button-primary'
+
+div.separator
+  = render 'nodes/navigation', nodes: @prototype.nodes
+  

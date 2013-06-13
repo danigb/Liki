@@ -36,6 +36,10 @@ class Node < ActiveRecord::Base
     self.proto.order(self.children)
   end
 
+  def document_title
+    File.basename(document.url)
+  end
+
   protected
   def set_space_id
     self.space_id = self.parent.space_id if self.parent

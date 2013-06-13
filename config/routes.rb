@@ -13,6 +13,8 @@ Liki::Application.routes.draw do
     post :admin, on: :member
     resources :followings, path: 'f', only: :index
     resource :document, path: 'doc'
+    resource :task, path: 'tarea'
+    resources :comments, path: 'comentarios'
   end
 
   resources :users, path: 'u'

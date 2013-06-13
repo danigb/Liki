@@ -1,3 +1,9 @@
+.comments {
+  div.input { margin: 0; }
+  textarea { height: 2em; transition: all 0.3s ease; }
+  textarea:focus { height: 8em; }
+}
+
 .new-session-form, .new-user-form {
   float: left;
   width: 50%;
