@@ -1,13 +1,16 @@
 class CalendarPresenter < SimpleDelegator
   attr_reader :options
   attr_reader :first, :last
-  def initialize(view, opts)
+  attr_reader :events
+
+  def initialize(view, events, opts)
     super(view)
 
     defaults = {
       first_day_of_week: 1
     }
     @options = defaults.merge(opts)
+    @events = events
 
     @first = Date.civil(options[:year], options[:month], 1)
     @last = Date.civil(options[:year], options[:month], -1)
@@ -16,8 +19,10 @@ class CalendarPresenter < SimpleDelegator
 
   def render_calendar
     begin_of_week = beginning_of_week(first, options[:first_day_of_week])
+    all = events.to_a.dup
     begin_of_week.upto(last) do |current|
-      yield current
+      events = events_for(all, current)
+      yield current, events
     end
   end
 
@@ -35,6 +40,14 @@ class CalendarPresenter < SimpleDelegator
   end
 
   protected
+  def events_for(all, current)
+    events = []
+    while all.first.try(:date) == current
+      events << all.shift
+    end
+    events
+  end
+
   def beginning_of_week(date, start = 1)
     days_to_beg = days_between(start, date.wday)
     date - days_to_beg

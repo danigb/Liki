@@ -4,26 +4,6 @@
   textarea:focus { height: 8em; }
 }
 
-.calendar {
-  width: 100%; 
-  overflow: hidden;
-
-  .day { 
-    display: inline-block;
-    vertical-align: top;
-    width: 12%;
-    padding: 4px 1%;
-    min-height: 80px;
-  }
-  .day-number { 
-    font-weight: 300;
-    font-size: 1.5em; 
-    color: #333; 
-  }
-  .day-today {
-    background-color: #fff7cd;
-  }
-}
 
 .new-session-form, .new-user-form {
   float: left;

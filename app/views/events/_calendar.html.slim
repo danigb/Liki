@@ -1,5 +1,7 @@
 div.calendar
-  - cal.render_calendar do |current|
+  - cal.render_calendar do |current, events|
     div class="day #{cal.day_class(current)}"
       - if cal.display?(current)
         span.day-number = current.day
+        - events.each do |event|
+          span.day-event = event.name

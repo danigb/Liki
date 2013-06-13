@@ -9,6 +9,7 @@ class Space < ActiveRecord::Base
   has_many :followers, through: :followings, source: :user, class_name: 'User'
   has_many :activities, -> { order('updated_at DESC') }
   has_many :prototypes, -> { order('name ASC') }
+  has_many :events, -> { order('date ASC') }
 
   include HasMembers
 

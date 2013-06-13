@@ -20,4 +20,9 @@ module ApplicationHelper
     name == :notice ? 'success' : 'error'
   end
 
+  def toggle_link(name, css_class)
+    link_to name, '#', data: { toggle: css_class }, 
+       class: 'pure-button pure-button-primary'
+  end
+
 end
