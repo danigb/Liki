@@ -1,0 +1,5 @@
+div.calendar
+  - cal.render_calendar do |current|
+    div class="day #{cal.day_class(current)}"
+      - if cal.display?(current)
+        span.day-number = current.day

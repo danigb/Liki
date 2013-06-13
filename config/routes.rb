@@ -27,6 +27,9 @@ Liki::Application.routes.draw do
   resources :photos, path: 'fotos'
   resources :photo_tags, path: 'ptag'
   resources :prototypes, path: 'tipos'
+  get '/calendario(/:year(/:month))' => 'events#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+  resources :events, path: 'calendario', except: [:index]
+
 
   resource :inbox, controller: 'inbox', only: [:show,:create]
 

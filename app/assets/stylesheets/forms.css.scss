@@ -12,6 +12,10 @@ form {
     .hint { font-size: 11px; }
   }
 
+  div.date, div.time {
+    select { width: 25%; }
+  }
+
   div.buttons { margin-top: 20px; }
 
   input[type=text], input[type=url], 

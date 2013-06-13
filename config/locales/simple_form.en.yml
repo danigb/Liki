@@ -1,35 +1,26 @@
-es:
+en:
   simple_form:
-    "yes": 'Sí'
+    "yes": 'Yes'
     "no": 'No'
     required:
-      text: 'necesario'
+      text: 'required'
       mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: "Some errors were found, please take a look:"
+      default_message: "Please review the problems below:"
+    # Labels and hints examples
+    # labels:
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
 
-    labels:
-      defaults:
-        email: 'Tu dirección de correo electrónico'
-        password: 'Contraseña'
-
-      tag_photo_form_presenter:
-        node_title: 'Añadir a la página:'
-
-      node:
-        title: 'Título'
-        body: 'Texto'
-        parent_id: 'En...'
-        image: 'Subir una imágen'
-        document: 'Subir un PDF'
-        remove_image: 'Borrar imágen actual'
-        remove_document: 'Borrar el documento actual'
-
-    hints:
-      node:
-        image_url: "Busca una imágen en internet. Pulsa sobre ella con el botón derecho y selecciona 'Copiar URL de la imágen'. Pega aquí el resultado"
-      tag_photo_form_presenter:
-        node_title: 'Escribe el nombre de la página a la que quieres asociar esta foto'

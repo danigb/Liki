@@ -28,4 +28,11 @@ FactoryGirl.define do
     user
     space
   end
+
+  factory :event do
+    user
+    space
+    sequence(:name) {|n| "Event #{n}" }
+    date { Date.civil(2000, 1) }
+  end
 end

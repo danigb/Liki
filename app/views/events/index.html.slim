@@ -1,0 +1,11 @@
+- cal = CalendarPresenter.new(self, year: @year, month: @month)
+= title cal.title
+
+= render 'calendar', cal: cal
+
+div.separator
+  = render @events
+
+div.separator
+  h4 Añadir evento
+  = render 'form', event: Event.new
