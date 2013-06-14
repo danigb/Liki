@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def title(title)
-    content_for(:title) { title }
+    content_for(:title) { "#{title} :: #{current_space.name}" }
     content_tag :h1, title
   end
 
