@@ -5,10 +5,6 @@
 - Mover los items con javascript
 - Añadir un usuario a un espacio
 - Menos clicks para subir imágen
-- Cuando añades una página, vuelve a la página madre
-- Nodos anidados?
-- Poner un + en el título
-- Popups
 
 # CHANGELOG
 
