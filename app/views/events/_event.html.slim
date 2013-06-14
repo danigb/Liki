@@ -4,5 +4,5 @@
       ' #{event.name}.
       =' event.time if event.time?
     - if event.node
-       = link_to arrow(event.node.title), event.node,
+       div = link_to arrow(event.node.title), event.node,
           class: 'event-node-title'
