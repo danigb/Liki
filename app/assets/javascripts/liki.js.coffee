@@ -41,4 +41,7 @@ init = ->
 $(document).ready init
 $(window).bind 'page:load', init
 
+$(window).bind 'page:load', ->
+  if $('.gmaps4rails_map').length > 0
+    Gmaps.loadMaps()
 
