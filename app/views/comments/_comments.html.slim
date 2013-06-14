@@ -1,5 +1,9 @@
-div.comments
- div.comments-new-comment
+div.comments.separator
+  h4 Comentarios
+  = render @node.comments
+  span = 'Sé la primera en comentar:' if @node.comments.size == 0
+ 
+  div.comments-new-comment
     = simple_form_for [node, Comment.new] do |form|
       = form.input :body, label: false
       = form.submit 'Comentar', 

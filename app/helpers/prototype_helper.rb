@@ -1,4 +1,8 @@
 module PrototypeHelper
+  def has_comments?(node)
+    node.comments.count > 0 || node.proto.comments?
+  end
+
   def has_photos?(node)
     node.photos.count > 0 || node.proto.photos?
   end

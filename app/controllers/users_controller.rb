@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   respond_to :html
-  before_filter :require_owner_or_admin
+  before_filter :require_admin, only: :index
 
   def index
     @users = User.order('name ASC')
@@ -43,6 +43,8 @@ class UsersController < ApplicationController
   protected
   def user
     @user ||= User.find params[:id]
+    @member ||= current_space.member(@user)
+    @user
   end
 
   def user_params

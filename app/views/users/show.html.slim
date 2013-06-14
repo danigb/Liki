@@ -1,8 +1,15 @@
 h3 En #{link_to current_space.name, root_path}
 = title @user.name
 h4 = @user.email
-= link_to 'Cerrar sesión', logout_path, 
-  class: 'pure-button pure-button-primary'
+= "##{@user.id}" if current_user.admin?
+
+div.actions
+  - if @member
+    =' link_to "Ver mi perfil", 
+      @member.node, class: 'pure-button pure-button-primary'
+  =' link_to 'Cerrar sesión', logout_path, 
+    class: 'pure-button'
+
 div.user-followings
   h4 Sigues #{@followings.count} páginas:
   = render @followings

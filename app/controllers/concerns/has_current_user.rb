@@ -13,8 +13,8 @@ module HasCurrentUser
     end
   end
 
-  def require_owner_or_admin
-    unless current_user && (current_user.admin? || current_user == user)
+  def require_admin
+    unless current_user && current_user.admin?
       member = current_space.member(current_user)
       redirect_to member ? member.node : root_path
     end

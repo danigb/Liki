@@ -4,13 +4,14 @@
 = render 'ancestors', node: @node
 = presenter.render_node
 = render 'actions', node: @node
-
-//= render 'comments/comments', node: @node
+- if has_comments?(@node)
+  = render 'comments/comments', node: @node
 
 //- cache 'photos', @node do
 = presenter.render_photos
 
-= presenter.render_children
+div.separator
+  = presenter.render_children
 
 - if @node.mentioned_by_nodes.size > 0
   div.separator

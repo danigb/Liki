@@ -1,6 +1,6 @@
 class PrototypesController < ApplicationController
   respond_to :html
-  before_filter :require_owner_or_admin
+  before_filter :require_admin
 
   def index
   end
