@@ -15,7 +15,7 @@ Liki::Application.routes.draw do
     resource :document, path: 'doc'
     resource :task, path: 'tarea'
     resource :map, path: 'mapa'
-    resource :event, path: 'evento', controller: 'node_events'
+    resource :event, path: 'evento', only: [:show, :new]
     resources :comments, path: 'comentarios'
   end
 

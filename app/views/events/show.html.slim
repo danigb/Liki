@@ -1,2 +1,18 @@
-= render 'show', event: @event
+- title @event.name
+= cache ['show', @event]
+  = div_for @event do
+    div.event-header
+      - if @event.node
+        h2 Evento de '#{link_to @event.node.title, @event.node}'
+      - else
+        h2 Evento
+      h3 = @event.name
+      h4 
+        =' icon 'calendar', day_label(@event.date)
+        = icon('time', @event.time) if @event.time?
+    div.event-body = @event.body
+    =' link_to 'Volver al calendario',
+      calendar_path(y: @event.date.year, m: @event.date.month),
+      class: 'pure-button pure-button-primary'
+    = link_to 'Editar evento', [:edit, @event], class: 'pure-button'
 

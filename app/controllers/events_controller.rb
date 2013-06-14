@@ -14,7 +14,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new(date: params_date)
+    @event = Event.new(date: params_date, node_id: params[:node_id])
     respond_with @event
   end
 
@@ -33,12 +33,12 @@ class EventsController < ApplicationController
   def update
     event.attributes = event_params
     flash.notice = 'Evento guardado.' if event.save
-    redirect_to events_path
+    redirect_to event_path(event)
   end
 
   def destroy
     flash.notice = 'Evento borrado.' if event.destroy
-    redirect_to events_path
+    redirect_to event_path(event)
   end
 
   protected
@@ -52,7 +52,12 @@ class EventsController < ApplicationController
   end
 
   def event
-    @event ||= current_space.events.find params[:id]
+    if params[:node_id]
+      @node ||= current_space.nodes.find params[:node_id]
+      @event ||= @node.event
+    else
+      @event ||= current_space.events.find params[:id]
+    end
   end
 
   def event_params

@@ -16,6 +16,6 @@ module PrototypeHelper
   end
 
   def has_event?(node)
-    node.event.present?
+    node.event.present? || node.proto.event?
   end
 end
