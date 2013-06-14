@@ -2,6 +2,11 @@
   = div_for node, class: 'node-summary' do
     h3 = link_to node do
       = node.title
+    - if node.event
+      div.node-summary-event
+        = link_to calendar_path(y: node.event.date.year, m: node.event.date.month) do
+          =' icon('calendar', l(node.event.date))
+          = icon('time', node.event.time) if node.event.time?
 
     div.node-summary-body.hashtags
       - if node.image_url?

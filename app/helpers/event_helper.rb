@@ -1,4 +1,12 @@
 module EventHelper
+  def view_event_path(event)
+    if event.node
+      node_event_path(event.node)
+    else
+      event_path(event)
+    end
+  end
+
   def month_name(month)
     I18n.t("date.month_names")[month].camelcase
   end

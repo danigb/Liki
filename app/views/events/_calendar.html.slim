@@ -6,4 +6,7 @@ div.calendar
           new_event_path(y: current.year, m: current.month,
           d: current.day)
         - events.each do |event|
-          span.day-event = link_to event.name, event
+          span.day-event 
+            = link_to view_event_path(event) do
+              =' event.name
+              = event.time if event.time?

@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :space
   belongs_to :user
-  has_many :nodes, dependent: :nullify
+  has_one :node, dependent: :nullify
   attr_accessor :node_id
 
   validates_presence_of :space_id, :user_id, :name, :date

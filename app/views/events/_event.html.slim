@@ -1,4 +1,5 @@
-= div_for event do 
-  =' link_to icon('arrow-right', event.name), event
-  = icon('time', event.time) if event.time?
-  
+= cache event
+  = div_for event do 
+    =' link_to icon('arrow-right', event.name),
+      view_event_path(event) 
+    = icon('time', event.time) if event.time?
