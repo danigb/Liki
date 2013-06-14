@@ -1,12 +1,10 @@
 div.calendar
+  - %w(L M X J V S D).each do |d|
+    div.day.day-head: span.day-name = d
   - cal.render_calendar do |current, events|
     div class="day #{cal.day_class(current)}"
       - if cal.display?(current)
         span.day-number = link_to "#{current.day}",
           new_event_path(y: current.year, m: current.month,
           d: current.day)
-        - events.each do |event|
-          span.day-event 
-            = link_to view_event_path(event) do
-              =' event.name
-              = event.time if event.time?
+        = render events

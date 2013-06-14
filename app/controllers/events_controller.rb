@@ -56,7 +56,8 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :date, :time, :node_id)
+    params.require(:event).permit(
+      :name, :date, :body, :time, :node_id)
   end
 
   def event_path(event)

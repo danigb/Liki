@@ -3,6 +3,7 @@
     h1
       = link_to_unless_current node do
         = node.title
+    = render('nodes/event', event: node.event) if node.event
 
     - if node.image_url?
       div class="node-main-image #{node.image_style}"

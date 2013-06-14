@@ -1,0 +1,5 @@
+div.separator
+  - cal.render_calendar do |current, events|
+    - if events.size > 0
+      h4 = day_label(current)
+      = render events

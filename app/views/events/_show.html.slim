@@ -1,11 +1,10 @@
 = cache ['show', event]
   = div_for event do
     div.event-header
-      - if event.node
-        h4 El evento de '#{link_to event.node.title, event.node}'
-      h2 = day_label(event.date)
-      = title event.name
-      h4 = icon('time', event.time) if event.time?
+      h3 = event.name
+      h4 
+        =' icon 'calendar', day_label(event.date)
+        = icon('time', event.time) if event.time?
     div.event-body = event.body
     =' link_to 'Volver al calendario',
       calendar_path(y: event.date.year, m: event.date.month),

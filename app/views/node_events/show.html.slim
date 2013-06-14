@@ -1,4 +1,6 @@
 = render 'nodes/ancestors', node: @node
+- title @node.title
+h1 = link_to @node.title, @node
 
 - if @node.event
   = render 'events/show', event: @node.event

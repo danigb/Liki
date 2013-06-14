@@ -10,6 +10,10 @@ module ApplicationHelper
     raw("<i class='icon-#{icon}'></i>&nbsp;#{label}")
   end
 
+  def arrow(label)
+    icon('arrow-right', label)
+  end
+
   def boolean_input(name, label)
     content_tag :div, class: 'input boolean' do
       check_box_tag(name) + content_tag(:label, label)

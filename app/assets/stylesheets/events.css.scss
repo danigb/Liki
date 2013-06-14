@@ -17,15 +17,22 @@
     padding: 2px 0;
     min-height: 80px;
   }
-  .day-number { 
+  .day-head { min-height: 2em; color: #999; }
+  .day-number, .day-name { 
     display: block;
     padding: 0 4px;
     font-weight: 300;
     font-size: 1.5em; 
+  }
+  .day-number { 
     color: #333; 
   }
 
-  .day-event {
+  .day-today {
+    background-color: #fff7cd;
+  }
+
+  .event {
     font-weight: 300;
     display: block;
     overflow: hidden;
@@ -36,8 +43,10 @@
     border-radius: 1px;
     a { color: white; }
   }
-  .day-today {
-    background-color: #fff7cd;
+  a.event-node-title {
+    font-size: 80%;
+    color: #EFEFEF;
   }
 }
+
 

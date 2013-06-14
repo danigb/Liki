@@ -1,0 +1,6 @@
+= cache ['summary', event] do
+  div.node-event
+    = link_to calendar_path(y: event.date.year, m: event.date.month) do
+      =' icon('calendar', l(event.date))
+      = icon('time', event.time) if event.time?
+

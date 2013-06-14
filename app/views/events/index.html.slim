@@ -10,14 +10,10 @@ div.calendar-navigation
         calendar_path(y: cal.year, m: month)
 
 = title cal.title
-p.info Pulsa sobre el número en el calendario para crear un evento ese día
 
 = render 'calendar', cal: cal
+h5 
+  ' Añadir evento: 
+  small pulsa sobre el número en el calendario para crear un evento ese día
 
-
-div.separator
-  - cal.render_calendar do |current, events|
-    - if events.size > 0
-      h4 = day_label(current)
-      = render events
-
+//= render 'list', cal: cal
