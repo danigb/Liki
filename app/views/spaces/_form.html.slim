@@ -5,6 +5,9 @@
   = form.input :is_open
   = form.input :background_image
   = form.input :photos_node_id
+  - [:wiki, :calendar, :photos, :map].each do |service|
+    = form.input "has_#{service}"
+
 
   = boolean_input(:regenerate_counters, 'Regenerar estadísticas')
   = boolean_input(:regenerate_mentions, 'Regenerar menciones')

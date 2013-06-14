@@ -6,7 +6,7 @@ div.node-main-actions
       new_node_path(p: node, proto: node.proto.children_id),
       class: 'pure-button pure-button-secondary'
   - if has_photos?(node)
-    =' link_to icon(:picture, 'Fotos'),
+    =' link_to icon(:picture, 'Subir fotos'),
       new_photo_path(n: node.id),
       class: 'pure-button' 
   - if has_tasks?(node)

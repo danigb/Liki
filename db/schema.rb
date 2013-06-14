@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130613234213) do
+ActiveRecord::Schema.define(version: 20130614114313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,6 +217,10 @@ ActiveRecord::Schema.define(version: 20130613234213) do
     t.string   "avatar_image"
     t.boolean  "is_open",                      default: false
     t.integer  "photos_node_id"
+    t.boolean  "has_wiki",                     default: false
+    t.boolean  "has_calendar",                 default: false
+    t.boolean  "has_photos",                   default: false
+    t.boolean  "has_map",                      default: false
   end
 
   add_index "spaces", ["host"], name: "index_spaces_on_host", using: :btree

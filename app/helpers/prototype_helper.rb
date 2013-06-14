@@ -4,7 +4,7 @@ module PrototypeHelper
   end
 
   def has_tasks?(node)
-    node.proto.tasks?
+    false && node.proto.tasks?
   end
 
   def has_document?(node)

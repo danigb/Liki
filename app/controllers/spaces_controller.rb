@@ -45,7 +45,8 @@ class SpacesController < ApplicationController
     params.require(:space).permit(
       :name, :host, :email, 
       :photos_node_id,
-      :is_open, :background_image)
+      :is_open, :background_image,
+      :has_wiki, :has_calendar, :has_photos, :has_map)
   end
 
   def require_super

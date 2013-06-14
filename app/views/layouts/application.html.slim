@@ -18,8 +18,12 @@ href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300'
     header.no-print
       = link_to current_space.name, root_path, class: 'current space'
       div.links
-        = link_to arrow('Wiki'), root_path
-        = link_to icon('calendar', 'Calendario'), calendar_path
+        - if current_space.has_wiki?
+          = link_to arrow('Wiki'), root_path
+        - if current_space.has_photos?
+          = link_to icon('picture', 'Fotos'), photos_path
+        - if current_space.has_calendar?
+          = link_to icon('calendar', 'Calendario'), calendar_path
       - if current_user
         = link_to current_user.name, current_user, class: 'current user'
 
