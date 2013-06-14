@@ -6,12 +6,12 @@ class CalendarPresenter < SimpleDelegator
 
   def initialize(view, events, opts)
     super(view)
+    @events = events
 
     defaults = {
       first_day_of_week: 1
     }
     @options = defaults.merge(opts)
-    @events = events
 
     @first = Date.civil(year, month, 1)
     @last = Date.civil(year, month, -1)

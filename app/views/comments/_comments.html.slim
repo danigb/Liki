@@ -1,5 +1,5 @@
 div.comments.separator
-  h4 Comentarios
+  h4 Comentarios a '#{@node.title}'
   = render @node.comments
   span = 'Sé la primera en comentar:' if @node.comments.size == 0
  
