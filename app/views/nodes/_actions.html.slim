@@ -19,9 +19,8 @@ div.node-main-actions
        class: 'pure-button' 
   - if has_event?(node)
     - if node.event
-      =' link_to icon('calendar', l(node.event.date)),
-          calendar_path(y: node.event.date.year,
-          m: node.event.date.month),
+      =' link_to icon('calendar', 'Editar evento'),
+          edit_event_path(node.event),
           class: 'pure-button'
     - else
       =' link_to icon('calendar', 'Añadir al calendario'),

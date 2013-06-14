@@ -10,11 +10,15 @@ class EventsController < ApplicationController
   end
 
   def show
-    respond_with event
+    if event
+      respond_with event
+    else
+      redirect_to [:new, @node, :event]
+    end
   end
 
   def new
-    @event = Event.new(date: params_date, node_id: params[:node_id])
+    @event = Event.new(date: params_date, node: node)
     respond_with @event
   end
 
@@ -51,10 +55,15 @@ class EventsController < ApplicationController
     end
   end
 
-  def event
+  def node
     if params[:node_id]
       @node ||= current_space.nodes.find params[:node_id]
-      @event ||= @node.event
+    end
+  end
+
+  def event
+    if node
+      @event ||= node.event
     else
       @event ||= current_space.events.find params[:id]
     end

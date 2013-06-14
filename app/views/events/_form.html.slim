@@ -1,7 +1,7 @@
 = simple_form_for event do |form|
   = form.input :node_id, as: :hidden
   = form.input :name, label: false
-  - if event.date?
+  - if event.new_record? && event.date?
     = form.input :date, as: :hidden
   - else
     = form.input :date, label: false

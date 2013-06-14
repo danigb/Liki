@@ -2,7 +2,17 @@
 - if @event.date
   h3 = day_label(@event.date)
 
-- if @event.node_id
-  h4 Añadir evento a '#{link_to @node.title, @node}'
+- if @event.node
+  h4 Añadir evento a '#{link_to @event.node.title, @event.node}'
 
+  h3 Puedes asociar a un evento que ya existe:
+  - current_space.events.unlinked.each do |event|
+    =' link_to icon(:link, 'Enlazar'), 
+      event_path(event, 'event[node_id]' => @node.id),
+      method: :patch, class: 'pure-button pure-button-small'
+    | #{arrow(@node.title)} 
+    | con #{icon('calendar', event.name)} el #{day_label(event.date)}
+    br : br
+
+h3 Nuevo evento
 = render 'form', event: @event

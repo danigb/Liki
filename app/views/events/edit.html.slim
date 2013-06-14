@@ -1,6 +1,8 @@
 = title 'Editar evento'
 
-= render 'show', event: @event
+h4 
+  =' icon 'calendar', day_label(@event.date)
+  = icon('time', @event.time) if @event.time?
 = render 'form', event: @event
 
 div.separator

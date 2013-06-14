@@ -3,7 +3,7 @@
   = div_for @event do
     div.event-header
       - if @event.node
-        h2 Evento de '#{link_to @event.node.title, @event.node}'
+        h2 Evento de '#{link_to arrow(@event.node.title), @event.node}'
       - else
         h2 Evento
       h3 = @event.name

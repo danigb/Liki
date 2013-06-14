@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
 
   validates_presence_of :space_id, :user_id, :name, :date
 
+  scope :unlinked, -> { where('node_id IS NULL').order('date DESC') }
+
   def self.month_scope(relation, year, month)
     first_day = Date.civil(year, month, 1)
     last_day = Date.civil(year, month + 1) - 1.day
