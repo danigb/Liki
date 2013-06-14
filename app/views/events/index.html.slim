@@ -7,7 +7,7 @@ div.calendar-navigation
       span =' month_name(month)
     - else
       =' link_to month_name(month), 
-        calendar_path(year: cal.year, month: month)
+        calendar_path(y: cal.year, m: month)
 
 = title cal.title
 p.info Pulsa sobre el número en el calendario para crear un evento ese día
@@ -19,6 +19,5 @@ div.separator
   - cal.render_calendar do |current, events|
     - if events.size > 0
       h4 = day_label(current)
-      - events.each do |event|
-        div = link_to icon('arrow-right', event.name), [:edit, event]
+      = render events
 

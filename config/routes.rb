@@ -15,6 +15,7 @@ Liki::Application.routes.draw do
     resource :document, path: 'doc'
     resource :task, path: 'tarea'
     resource :map, path: 'mapa'
+    resource :event, path: 'evento', controller: 'node_events'
     resources :comments, path: 'comentarios'
   end
 
@@ -27,7 +28,9 @@ Liki::Application.routes.draw do
   resources :photos, path: 'fotos'
   resources :photo_tags, path: 'ptag'
   resources :prototypes, path: 'tipos'
-  get '/calendario(/:year(/:month))' => 'events#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+
+  get '/calendario(/:y(/:m))' => 'events#index', as: :calendar,
+    constraints: {y: /\d{4}/, m: /\d{1,2}/}
   resources :events, path: 'calendario', except: [:index]
 
 

@@ -1,10 +1,17 @@
 = simple_form_for event do |form|
+  = form.input :node_id, as: :hidden
   = form.input :name, label: false
-  - if event.date.present?
+  - if event.date?
     = form.input :date, as: :hidden
   - else
     = form.input :date, label: false
-  = form.input :time, label: false
-  = form.submit 'Añadir', 
-  class: 'pure-button pure-button-primary'
+  = form.input :time
+  = form.input :body
+  =' form.submit 'Guardar', 
+    class: 'pure-button pure-button-primary'
+  - if event.date?
+    = link_to 'Cancelar', 
+      calendar_path(y: event.date.year, m: event.date.month), 
+      class: 'pure-button'
+
 

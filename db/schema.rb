@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130613144836) do
+ActiveRecord::Schema.define(version: 20130613234213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,12 +68,12 @@ ActiveRecord::Schema.define(version: 20130613144836) do
   create_table "events", force: true do |t|
     t.integer  "user_id"
     t.integer  "space_id"
-    t.integer  "node_id"
     t.string   "name"
     t.date     "date"
-    t.time     "time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "time"
+    t.text     "body"
   end
 
   create_table "followings", force: true do |t|
@@ -144,9 +144,11 @@ ActiveRecord::Schema.define(version: 20130613144836) do
     t.float    "longitude"
     t.string   "map_address"
     t.boolean  "geocoded",                    default: false
+    t.integer  "event_id"
   end
 
   add_index "nodes", ["ancestry"], name: "index_nodes_on_ancestry", using: :btree
+  add_index "nodes", ["event_id"], name: "index_nodes_on_event_id", using: :btree
   add_index "nodes", ["prototype_id"], name: "index_nodes_on_prototype_id", using: :btree
   add_index "nodes", ["role"], name: "index_nodes_on_role", using: :btree
   add_index "nodes", ["slug"], name: "index_nodes_on_slug", using: :btree

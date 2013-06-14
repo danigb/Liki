@@ -14,4 +14,8 @@ module PrototypeHelper
   def has_address?(node)
     node.map_address.present? || node.proto.map_marker?
   end
+
+  def has_event?(node)
+    node.event.present?
+  end
 end

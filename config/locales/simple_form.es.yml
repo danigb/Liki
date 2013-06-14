@@ -1,5 +1,14 @@
 es:
   simple_form:
+    labels:
+      event:
+        body: 'Más información...'
+        time: Horario
+
+    hints:
+      event: 
+        time: "Por ejemplo 'De 10h a 12h'"
+
     "yes": 'Sí'
     "no": 'No'
     required:
@@ -10,7 +19,4 @@ es:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Some errors were found, please take a look:"
-
-  default:
-    title: 'Título'
 

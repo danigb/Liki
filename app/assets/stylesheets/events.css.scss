@@ -28,13 +28,13 @@
   .day-event {
     font-weight: 300;
     display: block;
-    height: 1.2em;
     overflow: hidden;
     padding: 1px 2px 2px 2px;
     margin: 1px 2px;
     background-color: #0078e7;
     color: white;
     border-radius: 1px;
+    a { color: white; }
   }
   .day-today {
     background-color: #fff7cd;

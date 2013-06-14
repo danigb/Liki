@@ -2,4 +2,8 @@
 - if @event.date
   h3 = day_label(@event.date)
 
+- if @event.node_id
+  - node = current_space.nodes.find @event.node_id
+  h4 Añadir evento a '#{node.title}'
+
 = render 'form', event: @event

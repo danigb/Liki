@@ -9,6 +9,8 @@ class Node < ActiveRecord::Base
   has_many :taggings, foreign_key: 'tag_id', dependent: :delete_all
   has_many :taggeds, through: :taggings
 
+  belongs_to :event
+
   include HasMentions
   include HasFollowers
   include HasActivity

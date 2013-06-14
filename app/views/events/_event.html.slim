@@ -1,4 +1,4 @@
 = div_for event do 
-  h4 
-    = event.name
-    small = l(event.date)
+  =' link_to icon('arrow-right', event.name), event
+  = icon('time', event.time) if event.time?
+  

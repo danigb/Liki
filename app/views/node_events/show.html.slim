@@ -1,0 +1,6 @@
+= render 'nodes/ancestors', node: @node
+= title @node.title
+
+- if @node.event
+- else
+  = render 'events/form', event: Event.new(node_id: @node.id)

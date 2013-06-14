@@ -3,10 +3,14 @@ class EventsController < ApplicationController
   before_filter :require_user
 
   def index
-    @month = (params[:month] || Time.zone.now.month).to_i
-    @year = (params[:year] || Time.zone.now.year).to_i
+    @month = (params[:m] || Time.zone.now.month).to_i
+    @year = (params[:y] || Time.zone.now.year).to_i
     @shown_month = Date.civil(@year, @month)
     @events = Event.month_scope(current_space.events, @year, @month)
+  end
+
+  def show
+    respond_with event
   end
 
   def new
@@ -19,11 +23,11 @@ class EventsController < ApplicationController
   end
 
   def create
-    event = Event.new(event_params)
-    event.space = current_space
-    event.user = current_user
-    event.save
-    redirect_to events_path
+    @event = Event.new(event_params)
+    @event.space = current_space
+    @event.user = current_user
+    @event.save
+    respond_with @event, location: event_path(@event)
   end
 
   def update
@@ -52,6 +56,14 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :date, :time)
+    params.require(:event).permit(:name, :date, :time, :node_id)
+  end
+
+  def event_path(event)
+    if event && event.date
+      calendar_path(y: event.date.year, m: event.date.month)
+    else
+      calendar_path
+    end
   end
 end

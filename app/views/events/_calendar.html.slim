@@ -6,4 +6,4 @@ div.calendar
           new_event_path(y: current.year, m: current.month,
           d: current.day)
         - events.each do |event|
-          span.day-event = event.name
+          span.day-event = link_to event.name, event

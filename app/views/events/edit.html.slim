@@ -6,4 +6,4 @@ div.separator
   =' link_to icon(:trash,'Borrar'), @event, method: :delete,
   data: { action: 'delete', confirm: '¿Estás segura?'},
   class: 'pure-button pure-button-error'
-  b No se puede deshacer
+  span = icon('warning-sign', 'No se puede deshacer')

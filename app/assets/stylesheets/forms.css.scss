@@ -1,3 +1,4 @@
+$c-gray: rgb(222, 220, 215);
 form {
   width: 100%;
 
@@ -22,21 +23,24 @@ form {
   textarea {
     width: 100%;
     padding: 4px 2px;
-    border: 1px solid rgb(222, 220, 215);
+    border: 1px solid $c-gray;
     box-shadow: none;
   }
 
-  span.hint { margin-top: -10px; }
+  span.hint, .help-block { margin-top: -10px; color: $c-gray; }
   
   textarea {
     font-size: 12px;
-    height: 40em; 
+    height: 8em; 
   }
+  textarea#node_body { height: 40em; }
   .hidden_input { display: none; }
 }
 
 form {
-  .node_title input { font-size: 2em; height: 1.2em; }
+  .node_title, .event_name {
+    input { font-size: 2em; height: 1.2em; }
+  }
 }
 
 #wysihtml5-toolbar a { background-color: white; }
