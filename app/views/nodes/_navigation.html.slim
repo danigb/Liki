@@ -1,4 +1,13 @@
 ul.navigation.unstyled
   - nodes.each do |n|
-    li = link_to icon('arrow-right', n.title), n
+    = cache ['nodenav', n] do
+      li.nodenav
+        span.nodenav-title =' link_to icon('arrow-right', n.title), n
+        - if n.event
+          span.nodenav-event 
+            = icon('calendar')
+            = l(n.event.date)
+            = n.event.time if n.event.time?
+        - if n.map_address?
+          span.nodenav-address = icon('map-marker', n.map_address)
 

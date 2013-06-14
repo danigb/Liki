@@ -1,11 +1,12 @@
 = link_to icon('arrow-up', 'Tipos'), prototypes_path
 = title @prototype.name.camelcase
 
-div.properties
-  - if @prototype.children
-    span 
-      | Contiene 
-      = link_to @prototype.children.name, @prototype.children
+= @prototype.body
+
+- if @prototype.children
+  span 
+    | Contiene 
+    = link_to @prototype.children.name, @prototype.children
 
 div.actions 
   = link_to 'Editar', [:edit, @prototype],

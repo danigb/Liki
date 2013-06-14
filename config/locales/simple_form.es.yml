@@ -5,6 +5,9 @@ es:
         body: 'Más información...'
         time: Horario
 
+      node:
+        map_address: 'Dirección'
+
     hints:
       event: 
         time: "Por ejemplo 'De 10h a 12h'"

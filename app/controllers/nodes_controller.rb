@@ -37,12 +37,15 @@ class NodesController < ApplicationController
 
   def new
     parent = current_space.nodes.find(params[:p].parameterize) if params[:p].present?
+    
     proto = params[:proto].present? ?
       current_space.prototypes.find(params[:proto]) :
       current_space.default_prototype
+
     @node = Node.new(
       title: params[:t], parent: parent, 
-      space: current_space, prototype: proto)
+      space: current_space, prototype: proto,
+      body: proto.body)
     authorize! :create, @node
   end
 

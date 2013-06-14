@@ -10,8 +10,7 @@
 - if has_comments?(@node)
   = render 'comments/comments', node: @node
 
-div.separator
-  = presenter.render_children
+= presenter.render_children
 
 - if @node.mentioned_by_nodes.size > 0
   div.separator

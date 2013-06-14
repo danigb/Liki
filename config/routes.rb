@@ -32,13 +32,13 @@ Liki::Application.routes.draw do
   get '/calendario(/:y(/:m))' => 'events#index', as: :calendar,
     constraints: {y: /\d{4}/, m: /\d{1,2}/}
   resources :events, path: 'calendario', except: [:index]
+  get 'mapa' => 'maps#index', as: :map
 
 
   resource :inbox, controller: 'inbox', only: [:show,:create]
 
   get 'novedades' => 'nodes#index', as: :recent
   get 'buscar' => 'explorer#search', as: :search
-  get 'mapa' => 'explorer#map', as: :map
 
   resources :sessions, path: 's'
   get 'entrar(/:id)' => 'sessions#new', as: :login

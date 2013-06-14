@@ -18,9 +18,11 @@ class NodePresenter < SimpleDelegator
 
   def render_children
     children = @node.ordered_children
-    content_tag :div, class: 'children' do
-      render partial: 'summary', 
-        collection: children, as: :node
+    if children.size > 0
+      content_tag :div, class: 'children separator' do
+        render partial: 'summary', 
+          collection: children, as: :node
+      end
     end
   end
 

@@ -2,6 +2,12 @@ class MapsController < ApplicationController
   respond_to :html
   before_filter :require_user
 
+  def index
+    @nodes = current_space.nodes.
+      where("map_address <> ''")
+    @map_data = @nodes.to_gmaps4rails
+  end
+
   def show
     @map_data = node.to_gmaps4rails
     respond_with node
@@ -10,7 +16,7 @@ class MapsController < ApplicationController
   def update
     node.attributes = node_params
     flash.notice = 'Mapa guardado' if node.save
-    redirect_to node_map_path(node)
+    respond_with node
   end
 
   protected

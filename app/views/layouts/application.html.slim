@@ -12,6 +12,7 @@ href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300'
     = javascript_include_tag 'application', 
       'data-turbolinks-track' => true
     = csrf_meta_tags
+    = yield :scripts
 
   body[class="user-level-#{current_user_level}"
     data-backimage="#{current_space.background_image.url}"]
@@ -24,6 +25,9 @@ href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300'
           = link_to icon('picture', 'Fotos'), photos_path
         - if current_space.has_calendar?
           = link_to icon('calendar', 'Calendario'), calendar_path
+        - if current_space.has_map?
+          = link_to icon('map-marker', 'Mapa'), map_path,
+            data: { 'no-turbolink' =>  true }
       - if current_user
         = link_to current_user.name, current_user, class: 'current user'
 
@@ -43,4 +47,3 @@ href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300'
 
     div#lightbox
       a
-  = yield :scripts
