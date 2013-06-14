@@ -37,8 +37,11 @@ class PrototypesController < ApplicationController
   end
 
   protected
+  def prototypes
+    @prototypes ||= current_space.prototypes
+  end
   def prototype
-    @prototype ||= Prototype.find params[:id]
+    @prototype ||= prototypes.find params[:id]
   end
 
   def prototype_params
