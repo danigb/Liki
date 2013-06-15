@@ -2,9 +2,12 @@ module NodeHelper
   def render_body(node, options = {})
     return unless node.body.present?
     text = options[:length] ?
-      # Truncato.truncate(node.body, max_length: options[:length]) : 
       HTML_Truncator.truncate(node.body, 40) :
       node.body
+
+    text = Linkify.links(text) do |tag, name, param|
+      link_to(name, node_path(param), class: 'linkify')
+    end
 
     Rinku.auto_link(
       text, :urls, 'target="_blank" rel="nofollow"').html_safe

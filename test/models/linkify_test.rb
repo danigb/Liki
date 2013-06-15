@@ -1,7 +1,7 @@
 require 'test_helper'
 
 describe Linkify do
-  let(:l) { Linkify.new }
+  let(:l) { Linkify }
 
   it 'replaces links' do
     r= l.links('Hi #Cruel-world') do |tag, name, param|
@@ -19,6 +19,7 @@ describe Linkify do
     l.links('#several-words').must_include '#several-words'
     l.links('#with9number').must_include '#with9number'
     l.links('#with-9-number').must_include '#with-9-number'
+    l.links('\n\r#with-break').must_include '#with-break'
   end
 
   it 'extracts several links' do

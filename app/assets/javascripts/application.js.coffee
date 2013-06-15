@@ -5,7 +5,5 @@
 //= require wysihtml5
 //= require accents
 //= require liki
-//= require linkify
 //= require map
 //= require lightbox
-  

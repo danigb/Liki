@@ -4,7 +4,7 @@
       = node.title
     = render('nodes/event', event: node.event) if node.event
 
-    div.node-summary-body.hashtags
+    div.node-summary-body
       - if node.image_url?
         div class="node-summary-image #{node.image_style}"
           = image_tag node.image_url, alt: node.title, 

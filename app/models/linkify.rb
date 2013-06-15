@@ -1,5 +1,5 @@
-class Linkify
-  MENTIONS = /(?:^|\s)(?:#)[^\s^:^.^,^<^"^(^)]+/
+module Linkify
+  MENTIONS = /(?:$|^|\s|\r|\n)*(?:#)[^\s^:^.^,^<^"^(^)]+/
 
   def links(text)
     return [] if text.blank?
@@ -27,4 +27,6 @@ class Linkify
       parameterize.
       gsub(/_/, '-')
   end
+
+  extend self
 end
