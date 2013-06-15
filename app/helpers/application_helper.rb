@@ -29,4 +29,10 @@ module ApplicationHelper
        class: 'pure-button pure-button-primary'
   end
 
+  # Translate Collection
+  def tc(prefix, collection)
+    collection.map do |item|
+      [I18n.t("#{prefix}.#{item}"), item]
+    end
+  end
 end

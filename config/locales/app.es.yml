@@ -12,3 +12,10 @@ es:
       create: 'creado'
       update: 'modificado'
       destroy: 'borrado'
+
+  prototype:
+    order:
+      alphabetically: 'Por orden alfabético'
+      inserted: 'En orden de llegada (el primero arriba)'
+      last_first: 'En orden de llegada inverso (el último arriba)'
+      position: 'Posición fija'

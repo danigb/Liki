@@ -13,17 +13,18 @@
       - if node.body?
         = render_body(node, length: 400)
         - if node.body.length > 400
-          div = link_to 'Leer más...', node
+          div.read-more = link_to 'Leer más...', node
 
     div.photos
       - node.photos.limit(8).each do |photo|
         div.photo-thumbnail
           = image_tag photo.image.url, class: 'lightbox'
       - if node.photos.count > 8
-        = link_to "Y #{node.photos.count - 8} más...", node
+        div.read-more = link_to "Y #{node.photos.count - 8} más...", node
 
     div.node-summary-document
       = render 'nodes/document', node: node
 
-    = render 'nodes/navigation', nodes: node.ordered_children
+    div.node-summary-navigation
+      = render 'nodes/navigation', nodes: node.ordered_children
 

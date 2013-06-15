@@ -1,4 +1,5 @@
-div.ancestors
-  - node.ancestors.each do |parent|
-    span =' link_to icon('arrow-right', parent.title), parent 
+- if node.ancestors.size > 0
+  div.node-ancestors
+    - node.ancestors.each do |parent|
+      span =' link_to icon('arrow-right', parent.title), parent 
 
