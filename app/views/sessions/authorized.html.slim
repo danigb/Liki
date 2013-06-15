@@ -7,9 +7,16 @@ h4 ¿Quieres añadir o cambiar tu contraseña?
   = form.input :password, label: false
   = form.submit 'Cambiar contraseña', class: 'pure-button'
 
-h4 También puedes <a href="/">continuar &rarr;</a>
+br
+br
+h4 También puedes seguir sin contraseña
+p Necesitarás el enlace del email para entrar.
+= link_to 'Continuar', root_path,
+  class: 'pure-button'
 
 
+br
+br
 br
 b Esta web sólo funciona con navegadores html5, te recomendamos Firefox o Chrome.
 
