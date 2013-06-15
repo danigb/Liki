@@ -4,8 +4,5 @@ div.comments.separator
   span = 'Sé la primera en comentar:' if @node.comments.size == 0
  
   div.comments-new-comment
-    = simple_form_for [node, Comment.new] do |form|
-      = form.input :body, label: false
-      = form.submit 'Comentar', 
-        class: 'pure-button pure-button-secondary'
+    = render 'comments/form', comment: Comment.new(node: @node)
 

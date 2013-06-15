@@ -35,4 +35,11 @@ module ApplicationHelper
       [I18n.t("#{prefix}.#{item}"), item]
     end
   end
+
+  def delete_button(body, url, options = {})
+    options.reverse_merge!(
+      method: :delete, class: 'pure-button',
+      data: { confirm: '¿Estás segura?' })
+    link_to body, url, options
+  end
 end

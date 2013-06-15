@@ -6,6 +6,7 @@ class Ability
     @user = user
     @space = space
     basic_abilities
+    admin_abilities
   end
 
   def basic_abilities
@@ -14,6 +15,11 @@ class Ability
       can(:read, models) :
       can(:read, models) { member_required }
     can([:create, :update, :destroy], models) { member_required }
+    can [:edit, :destroy], Comment, user_id: user.id
+  end
+
+  def admin_abilities
+    can :manage, Comment
   end
 
   protected

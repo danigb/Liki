@@ -3,6 +3,23 @@
   textarea { height: 2em; transition: all 0.3s ease; }
   textarea:focus { height: 8em; }
 }
+.comment {
+  width: 100%;
+  overflow: hidden;
+}
+
+.comment-user {
+  float: left;
+  font-weight: bold;
+  margin-right: 0.2em;
+}
+
+.comment-edit, .comment-delete {
+  display: block;
+  font-size: 12px;
+  float: right;
+  margin-left: 1em;
+}
 
 
 .new-session-form, .new-user-form {
