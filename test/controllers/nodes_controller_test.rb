@@ -43,10 +43,7 @@ describe NodesController do
     visit edit_node_path(dos)
     fill_in 'node_body', with: '#Uno linkeado'
     click_submit
-    page.body.must_match 'Uno linkeado'
-
-    visit node_path(uno)
-    page.find('.node-mentioned').text.must_match 'Dos'
+    uno.mentions.must_include dos
   end
 
   describe 'Node admin' do

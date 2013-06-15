@@ -2,7 +2,7 @@
   = form.input :parent_id, as: :hidden
   - if @node.parent
     h3 
-      span En '#{@node.parent.title}' 
+      span En '#{link_to arrow(@node.parent.title), @node.parent}' 
       //small = link_to 'Cambiar', '#', 
       //  class: 'pure-button pure-button-xsmall'
   - if @node.prototype

@@ -1,17 +1,15 @@
-= title "Hola #{current_user.name}"
-h4 Bienvenida a #{current_space.name}
+= title "Hola #{current_user.name}, "
+h3 Bienvenida a #{current_space.name}
 br
 
-h4 Lo mejor es que, si no tienes o la has olvidado,
-   te pongas una nueva contraseña.
+h4 ¿Quieres añadir o cambiar tu contraseña?
 = simple_form_for current_user do |form|
-  = form.input :password
+  = form.input :password, label: false
   = form.submit 'Cambiar contraseña', class: 'pure-button'
 
-p Aunque si lo deseas puedes <a href="/">continuar &rarr;</a>
+h4 También puedes <a href="/">continuar &rarr;</a>
+
 
 br
-p Te advertimos, también, que esta web sólo funciona
-  con navegadores modernos, te recomendamos Firefox o Chrome.
-
+b Esta web sólo funciona con navegadores html5, te recomendamos Firefox o Chrome.
 

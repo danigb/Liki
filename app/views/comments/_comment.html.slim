@@ -1,8 +1,7 @@
 = div_for comment do
-  - if current_user && (current_user == comment.user || current_user.admin?)
-    = delete_button icon(:trash), [comment.node, comment],
-      class: 'comment-delete'
-    = link_to icon(:pencil), [:edit, comment.node, comment],
-      class: 'comment-edit'
+  = delete_button icon(:trash), [comment.node, comment],
+    class: 'comment-delete' if can?(:destroy, comment)
+  = link_to icon(:pencil), [:edit, comment.node, comment],
+    class: 'comment-edit' if can?(:edit, comment)
   span.comment-user #{comment.user.name}:
   = simple_format comment.body

@@ -11,6 +11,7 @@ Liki::Application.routes.draw do
   resources :nodes, concerns: :position, path: 'p' do
     get :admin, on: :member
     post :admin, on: :member
+    resources :nodes, path: 'p', only: :new
     resources :followings, path: 'f', only: :index
     resource :document, path: 'doc'
     resource :task, path: 'tarea'

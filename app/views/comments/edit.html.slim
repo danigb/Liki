@@ -1,4 +1,4 @@
 = title 'Editar comentario'
-h3 En #{link_to(arrow(@node.title), @node)}
+h3 En #{link_to(arrow(@comment.node.title), @comment.node)}
 
 = render 'form', comment: @comment

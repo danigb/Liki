@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   def update
     user.attributes = user_params
     user.save
-    respond_with user
+    respond_with user, location: root_path
   end
 
   def create

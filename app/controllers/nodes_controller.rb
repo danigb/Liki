@@ -3,9 +3,8 @@ class NodesController < ApplicationController
   respond_to :html
 
   def root
-    @node = current_space.node
-    authorize! :read, node
-    service.show(@node)
+    service.show(current_space.node_id)
+    @node = service.node
     render action: 'show'
   end
 
@@ -15,13 +14,39 @@ class NodesController < ApplicationController
 
   def show
     begin
-      authorize! :read, node
-      service.show(node)
-      respond_with node
+      service.show(params[:id])
+      respond_with @node = service.node
     rescue ActiveRecord::RecordNotFound
       title = params[:id].camelcase.gsub(/-/, ' ')
       redirect_to new_node_path(t: title, p: params[:p])
     end
+  end
+
+
+  def new
+    parent_id = params[:node_id] || params[:p]
+    @node = service.new(params[:t], parent_id, params[:proto])
+    respond_with @node = service.node
+  end
+
+  def edit
+    service.edit(params[:id])
+    respond_with @node = service.node
+  end
+
+  def create
+    service.create(node_params)
+    respond_with @node = service.node
+  end
+
+  def update
+    service.update(params[:id], node_params)
+    respond_with @node = service.node
+  end
+
+  def destroy
+    service.destroy(params[:id])
+    redirect_to (service.node.try(:parent) || root_path)
   end
 
   def admin
@@ -32,47 +57,6 @@ class NodesController < ApplicationController
       NodeAdminFormPresenter.new(params[:node_admin_form_presenter]).save
     end
     respond_with node
-  end
-
-
-  def new
-    parent = current_space.nodes.find(params[:p].parameterize) if params[:p].present?
-    
-    proto = params[:proto].present? ?
-      current_space.prototypes.find(params[:proto]) :
-      current_space.default_prototype
-
-    @node = Node.new(
-      title: params[:t], parent: parent, 
-      space: current_space, prototype: proto,
-      body: proto.body)
-    authorize! :create, @node
-  end
-
-  def edit
-    authorize! :update, node
-    respond_with node
-  end
-
-  def create
-    @node = Node.new(node_params)
-    @node.space = current_space
-    authorize! :create, @node
-    @node = service.create(node, {dropbox: params['selected-file']})
-    respond_with @node
-  end
-
-  def update
-    authorize! :update, node
-    node.attributes = node_params
-    service.update(node, {dropbox: params['selected-file']})
-    respond_with node
-  end
-
-  def destroy
-    authorize! :destroy, node
-    node.destroy
-    redirect_to node.parent ? node.parent : root_path
   end
 
   def up 
@@ -98,11 +82,6 @@ class NodesController < ApplicationController
 
   def node_params
     params.require(:node).permit(
-      :title, :body, :parent_id, :prototype_id,
-      :has_children, :has_photos, :children_name,
-      :document, :image_url, :slug,
-      :role, :style, :image_style,
-      :remove_image, :remove_document,
-      :parent_id, :prevent_slug_creation)
+      :parent_id, :title, :body, :prototype_id, :image_url)
   end
 end

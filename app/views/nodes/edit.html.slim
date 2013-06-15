@@ -5,6 +5,6 @@
 div.delete_node.separator
   =' link_to icon(:trash, 'Borrar'), @node, method: :delete,
     data: { confirm: "¿Quieres borrar '#{@node.title}'?" },
-    class: 'pure-button danger'
+    class: 'pure-button pure-button-error'
   | Puedes borrar esta página, pero espero que
     sea por un buen motivo
