@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130616125623) do
+ActiveRecord::Schema.define(version: 20130616180610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 20130616125623) do
     t.string   "email"
     t.string   "move_commonts"
     t.date     "begin_date"
+    t.date     "end_date"
   end
 
   add_index "nodes", ["ancestry"], name: "index_nodes_on_ancestry", using: :btree
@@ -190,7 +191,7 @@ ActiveRecord::Schema.define(version: 20130616125623) do
     t.integer  "space_id"
     t.string   "name",          limit: 40
     t.string   "slug",          limit: 30
-    t.text     "body"
+    t.text     "body_content"
     t.string   "order_options", limit: 30
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -200,9 +201,12 @@ ActiveRecord::Schema.define(version: 20130616125623) do
     t.boolean  "comments",                 default: false
     t.boolean  "document",                 default: false
     t.boolean  "show_map",                 default: false
-    t.boolean  "map_marker",               default: false
+    t.boolean  "contact",                  default: false
     t.boolean  "event",                    default: false
     t.integer  "children_id"
+    t.boolean  "url",                      default: false
+    t.boolean  "body",                     default: true
+    t.string   "dates",         limit: 40
   end
 
   add_index "prototypes", ["slug"], name: "index_prototypes_on_slug", using: :btree

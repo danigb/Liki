@@ -3,10 +3,10 @@
   = form.input :children_id, collection: current_space.prototypes
   = form.input :order_options, 
     collection: tc('prototype.order', Prototype::ORDERS.keys)
-  - [:photos, :tasks, :comments, :document, :show_map,
-    :map_marker, :event]. each do |item|
+  - [:body, :url, :contact, :event, :comments, 
+    :photos, :tasks, :document]. each do |item|
     = form.input item
-  = form.input :body
+  = form.input :body_content
   =' form.submit 'Guardar', 
     class: 'pure-button pure-button-primary'
   = link_to 'Cancelar', prototypes_path,

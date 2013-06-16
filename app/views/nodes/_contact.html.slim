@@ -1,0 +1,14 @@
+- if node.email?
+  b  = icon('envelope', 'Email: ')
+  span = node.email
+  br
+- if node.telephone?
+  b  = icon('phone', 'Teléfono: ')
+  span = node.telephone
+  br
+- if node.map_address?
+  b = icon('map-marker', 'Mapa: ')
+  span = link_to node.map_address, map_path,
+    data: {'no-turbolink' => true }
+
+

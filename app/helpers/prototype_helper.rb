@@ -1,4 +1,16 @@
 module PrototypeHelper
+  def has_url?(node)
+    node.url? || node.proto.url?
+  end
+
+  def has_body?(node)
+    node.body? || node.proto.body?
+  end
+
+  def has_contact?(node)
+    node.proto.contact?
+  end
+
   def has_comments?(node)
     node.comments.count > 0 || node.proto.comments?
   end
@@ -13,10 +25,6 @@ module PrototypeHelper
 
   def has_document?(node)
     node.document.present? || node.proto.document?
-  end
-
-  def has_address?(node)
-    node.map_address.present? || node.proto.map_marker?
   end
 
   def has_event?(node)

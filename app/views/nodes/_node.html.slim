@@ -12,15 +12,14 @@
         = image_tag(node.image_url, alt: node.title,
           class: 'lightbox')
 
-    div.node-main-body
-      = render_body(node)
+    - if has_body?(node)
+      div.node-main-body
+        = render_body(node)
 
     div.node-main-document
       = presenter.render_document
 
     div.node-main-map
-      //- if node.proto.show_map?
-        //= render 'maps/map', node: node
-      = render 'maps/address', node: node
+      = render 'nodes/contact', node: node
 
     

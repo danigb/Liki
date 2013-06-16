@@ -12,7 +12,21 @@ class ExplorerController < ApplicationController
     end
   end
 
-  def map
+  def map 
+    @nodes = current_space.nodes.
+      where("map_address <> ''")
+    @map_options = { 
+      detect_location: true, center_on_user: true, zoom: 4, type: 'HYBRID'}
+    @map_data = @nodes.to_gmaps4rails do |node, marker|
+      marker.infowindow render_to_string(
+        partial: "/nodes/summary", locals: { node: node })
+      marker.title node.title
+      marker.json(id: node.id)
+    end
+  end
+
+
+  def site_map
     all = current_space.nodes.where('title IS NOT NULL')
     mentions = current_space.mentions
     ms = mentions.map do |mention|
@@ -20,7 +34,7 @@ class ExplorerController < ApplicationController
       [mention.from.title, mention.to.title, {color: '#EDC951'}] 
       end
     end.compact()
-    titles = all.map &:title
+    titles = all.map(&:title)
     all.each do |node|
       ms << [node.parent.title, node.title, {color: '#CC333F'}] if node.parent
     end

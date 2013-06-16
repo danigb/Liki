@@ -25,10 +25,6 @@ div.node-main-actions
     - else
       =' link_to icon('calendar', 'Añadir al calendario'),
         new_node_event_path(node), class: 'pure-button'
-  - if has_address?(node)
-    =' link_to icon('map-marker', 'Mapa'),
-        node_map_path(node),
-        class: 'pure-button'
   - if current_user && current_user.admin?
     =' link_to icon('magic', "Editar '#{node.proto.name}'"),
       [:edit, node.proto], class: 'pure-button'

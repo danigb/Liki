@@ -3,33 +3,28 @@
   - if @node.parent
     h3 
       span En '#{link_to arrow(@node.parent.title), @node.parent}' 
-      //small = link_to 'Cambiar', '#', 
-      //  class: 'pure-button pure-button-xsmall'
   - if @node.prototype
-     h4 Es una #{@node.prototype.name}:
+      h5 Es #{@node.prototype.name}
     
+  h4 Título
   = form.input :title, label: false
 
-  div id="wysihtml5-toolbar" style="display: none;"
-    a[data-wysihtml5-command="formatBlock" 
-      data-wysihtml5-command-value="h4"
-      class="pure-button"]
-      = icon('text-width', 'H1')
-    a data-wysihtml5-command="bold" class="pure-button" 
-      = icon :bold
-    a data-wysihtml5-command="italic" class="pure-button"
-      = icon :italic
-    a data-wysihtml5-command="underline" class="pure-button"
-      = icon :underline
-    a data-wysihtml5-command="insertOrderedList" class="pure-button"
-      = icon('list-ol', 'Lista')
-    a data-wysihtml5-action="change_view" 
-      = icon('code', 'HTML')
+  - if has_url?(node)
+    h4 Página web
+    = form.input :url, label: false
 
-  = form.input :body, label: false
-  
-  p Si quieres puedes acompañar el texto con una imágen. 
-  = form.input :image_url, label: false
+  - if has_contact?(node)
+    h4 Datos de contacto
+    = form.input :email
+    = form.input :telephone
+    = form.input :map_address
+
+  - if has_body?(node)
+    h4 CONTENIDO
+    = render 'toolbar'
+    = form.input :body, label: false
+    p Si quieres puedes acompañar el texto con una imágen. 
+    = form.input :image_url, label: false
 
   div.buttons
     =' form.submit 'Guardar', class: 'pure-button pure-button-primary'

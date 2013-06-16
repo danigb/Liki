@@ -46,8 +46,8 @@ class PrototypesController < ApplicationController
 
   def prototype_params
     params.require(:prototype).permit(
-      :name, :body, :order_options, :children_id,
-      :photos, :tasks, :comments, :document,
-      :show_map, :map_marker, :event)
+      :name, :body_content, :order_options, :children_id,
+      :photos, :tasks, :comments, :document, :body, :url, 
+      :contact, :event)
   end
 end

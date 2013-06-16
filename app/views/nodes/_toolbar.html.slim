@@ -1,0 +1,16 @@
+div id="wysihtml5-toolbar" style="display: none;"
+  a[data-wysihtml5-command="formatBlock" 
+    data-wysihtml5-command-value="h4"
+    class="pure-button"]
+    = icon('text-width', 'H1')
+  a data-wysihtml5-command="bold" class="pure-button" 
+    = icon :bold
+  a data-wysihtml5-command="italic" class="pure-button"
+    = icon :italic
+  a data-wysihtml5-command="underline" class="pure-button"
+    = icon :underline
+  a data-wysihtml5-command="insertOrderedList" class="pure-button"
+    = icon('list-ol', 'Lista')
+  a data-wysihtml5-action="change_view" 
+    = icon('code', 'HTML')
+

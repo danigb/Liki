@@ -15,7 +15,6 @@ Liki::Application.routes.draw do
     resources :followings, path: 'f', only: :index
     resource :document, path: 'doc'
     resource :task, path: 'tarea'
-    resource :map, path: 'mapa'
     resource :event, path: 'evento', only: [:show, :new]
     resources :comments, path: 'comentarios'
   end
@@ -33,7 +32,7 @@ Liki::Application.routes.draw do
   get '/calendario(/:y(/:m))' => 'events#index', as: :calendar,
     constraints: {y: /\d{4}/, m: /\d{1,2}/}
   resources :events, path: 'calendario', except: [:index]
-  get 'mapa' => 'maps#index', as: :map
+  get 'mapa' => 'explorer#map', as: :map
 
 
   resource :inbox, controller: 'inbox', only: [:show,:create]

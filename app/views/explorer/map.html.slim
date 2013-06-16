@@ -1,7 +1,7 @@
-- title 'Mapa'
-div.node
-  h1 = icon('map-marker', 'Mapa')
+= title 'Mapa'
 
-canvas id="springy" width="640" height="600" style="margin: 0 auto;"
-pre#map-data
-  == @data
+= gmaps "map_options" => @map_options, "markers" => { "data" => @map_data}
+
+div
+  h3 En el mapa:
+  = render 'nodes/navigation', nodes: @nodes
