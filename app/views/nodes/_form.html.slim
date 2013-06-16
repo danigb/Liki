@@ -9,17 +9,17 @@
   h4 Título
   = form.input :title, label: false
 
-  - if has_url?(node)
+  - if has_url?(@node)
     h4 Página web
     = form.input :url, label: false
 
-  - if has_contact?(node)
+  - if has_contact?(@node)
     h4 Datos de contacto
     = form.input :email
     = form.input :telephone
     = form.input :map_address
 
-  - if has_body?(node)
+  - if has_body?(@node)
     h4 CONTENIDO
     = render 'toolbar'
     = form.input :body, label: false
