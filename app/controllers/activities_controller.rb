@@ -5,6 +5,6 @@ class ActivitiesController < ApplicationController
     @activities = current_space.activities.
       where(action: 'create').
       order('created_at DESC').
-      limit(50)
+      limit(50).includes(:trackable)
   end
 end

@@ -4,6 +4,8 @@
       = link_to_unless_current node do
         = node.title
     = render('nodes/event', event: node.event) if node.event
+    - if node.url?
+      h4.url = link_to node.url, node.url, target: '_blank'
 
     - if node.image_url?
       div class="node-main-image #{node.image_style}"

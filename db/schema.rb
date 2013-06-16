@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130614123707) do
+ActiveRecord::Schema.define(version: 20130616125623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,11 @@ ActiveRecord::Schema.define(version: 20130614123707) do
     t.float    "longitude"
     t.string   "map_address"
     t.boolean  "geocoded",                    default: false
+    t.string   "url"
+    t.string   "telephone"
+    t.string   "email"
+    t.string   "move_commonts"
+    t.date     "begin_date"
   end
 
   add_index "nodes", ["ancestry"], name: "index_nodes_on_ancestry", using: :btree

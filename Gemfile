@@ -29,7 +29,9 @@ gem 'rinku'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'ancestry'
 #gem 'postrank-uri'
-gem 'gmaps4rails'
+#gem 'gmaps4rails'
+gem 'gmaps4rails', '>= 2.0.0.pre', git: 'https://github.com/fiedl/Google-Maps-for-Rails.git'
+
 
 # VIEWS
 gem 'slim', '>= 1.3.8'

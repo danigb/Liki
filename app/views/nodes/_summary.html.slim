@@ -1,7 +1,10 @@
 = cache ['summary', node]
   = div_for node, class: 'node-summary' do
     h3 = link_to node do
-      = node.title
+      =' node.title
+      - if node.url?
+        small.url = link_to node.url, node.url, target: '_blank'
+      
     = render('nodes/event', event: node.event) if node.event
 
     div.node-summary-body

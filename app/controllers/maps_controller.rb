@@ -37,7 +37,7 @@ class MapsController < ApplicationController
 
   def node_params
     params.require(:node).permit(
-      :latitude, :longitude, :map_address)
+      :url, :email, :telephone, :map_address)
   end
 
   def service

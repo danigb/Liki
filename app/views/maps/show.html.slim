@@ -1,6 +1,6 @@
-- title 'Mapa'
+- title 'Contacto'
 = render 'nodes/ancestors', node: @node
 h2 = link_to icon('arrow-right', @node.title), @node
+h4 Datos de contacto
 
-= gmaps "map_options" => @map_options, "markers" => { "data" => @map_data}
 = render 'form'

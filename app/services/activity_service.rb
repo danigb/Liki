@@ -1,0 +1,2 @@
+class ActivityService < ApplicationService
+end

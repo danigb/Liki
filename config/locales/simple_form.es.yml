@@ -6,6 +6,9 @@ es:
         time: Horario
 
       node:
+        url: 'Enlace a página web'
+        email: 'Email'
+        telephone: 'Teléfono'
         map_address: 'Dirección'
 
     hints:
