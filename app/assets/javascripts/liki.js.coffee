@@ -7,7 +7,6 @@ $(document). on 'click', 'a[data-toggle]', ->
 tags = 
   br: 1
   span: 1
-  div: 1
   p: 1
   ol: 1
   ul: 1
@@ -21,10 +20,6 @@ tags =
   a:
     check_attributes:
       href: 'url'
-    set_attributes:
-      rel: 'nofollow'
-      target: '_blank'
-
 
 init = ->
   image = $('body').data('backimage')

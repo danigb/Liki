@@ -1,6 +1,4 @@
 = div_for activity do
-  =' link_to activity.user.name, activity.user 
-  ' ha #{t("activity.actions.#{activity.action}")} 
   - if activity.trackable
     = link_to activity.trackable.title, activity.trackable
   - else

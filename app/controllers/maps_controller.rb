@@ -17,6 +17,8 @@ class MapsController < ApplicationController
 
   def show
     authorize! :read, node
+    @map_options = { 
+      detect_location: true, center_on_user: true, zoom: 7, auto_zoom: false, type: 'HYBRID'}
     @map_data = node.to_gmaps4rails
     respond_with node
   end
