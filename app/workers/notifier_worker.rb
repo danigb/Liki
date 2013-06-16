@@ -10,7 +10,8 @@ class NotifierWorker
     @current_user = User.find(current_user_id)
 
     action = action.to_s.sub(/e?$/, "ed")
-    self.send("#{class_name.underscore}_#{action}", model_id, options)
+    method_name = "#{class_name.underscore}_#{action}"
+    self.send(method_name, model_id, options) if self.respond_to?(method_name)
   end
 
   protected
@@ -28,7 +29,7 @@ class NotifierWorker
     node = find_node(node_id)
     if node 
       node.space.followers.each do |user|
-        NotifyMailer.space_follower_node_created(user, node).deliver
+        NotifyMailer.space_follower_node_created(user, node).deliver unless user == current_user
       end
 
       if node.parent
@@ -39,7 +40,7 @@ class NotifierWorker
     end
   end
 
-  def node_updated(node_id, options) 
+  def no_node_updated(node_id, options) 
     node = find_node(node_id)
     if node
       node.space.followers.each do |user|

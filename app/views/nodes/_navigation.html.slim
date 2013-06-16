@@ -6,7 +6,7 @@ ul.navigation.unstyled
         - if n.event
           span.nodenav-event 
             = icon('calendar')
-            = link_to l(n.event.date), event_calendar_path(n.event)
+            =' link_to l(n.event.date), event_calendar_path(n.event)
             = n.event.time if n.event.time?
         - if n.email?
           span <i class='icon-envelope'></i>#{n.email} 
