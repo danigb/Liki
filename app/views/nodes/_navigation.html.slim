@@ -6,8 +6,11 @@ ul.navigation.unstyled
         - if n.event
           span.nodenav-event 
             = icon('calendar')
-            = l(n.event.date)
+            = link_to l(n.event.date), event_calendar_path(n.event)
             = n.event.time if n.event.time?
         - if n.map_address?
-          span.nodenav-address = icon('map-marker', n.map_address)
+          span.nodenav-address 
+            = icon('map-marker')
+            = link_to n.map_address, map_path,
+              data: {'no-turbolink' => true }
 

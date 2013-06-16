@@ -1,4 +1,8 @@
 module EventHelper
+  def event_calendar_path(event)
+    calendar_path(y: event.date.year, m: event.date.month)
+  end
+
   def view_event_path(event)
     if event.node
       node_event_path(event.node)

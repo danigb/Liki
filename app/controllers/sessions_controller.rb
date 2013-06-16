@@ -28,7 +28,8 @@ class SessionsController < ApplicationController
   end
 
   def visit
-    session[:space_id] = params[:id]
+    space = Space.where(name: params[:id]).first
+    session[:space_id] = space.id
     redirect_to root_path
   end
 

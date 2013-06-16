@@ -5,7 +5,12 @@ class MapsController < ApplicationController
   def index
     @nodes = current_space.nodes.
       where("map_address <> ''")
-    @map_data = @nodes.to_gmaps4rails
+    @map_data = @nodes.to_gmaps4rails do |node, marker|
+      marker.infowindow render_to_string(
+        partial: "/nodes/summary", locals: { node: node })
+      marker.title node.title
+      marker.json(id: node.id)
+    end
   end
 
   def show
