@@ -65,7 +65,7 @@ class NodeService < ApplicationService
   end
 
   def update_mentions
-    node.mentioner.update_mentions
+    MentionService.update_mentions(node)
     Workers.push(MentionWorker)
   end
 
@@ -73,4 +73,5 @@ class NodeService < ApplicationService
     Workers.push(TrackActivityWorker, action.to_s, 'Node', node.id, current_user.id)
     Workers.push(NotifierWorker, action, 'Node', current_user.id, node.id)
   end
+
 end

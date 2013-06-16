@@ -1,6 +1,5 @@
-div.node-mentioned
+div.node-mentioned.separator
   h4 Sobre #{node.title}, ver también:
-  ul.unstyled
-    - node.mentioned_by_nodes.each do |n|
-      li = link_to icon('arrow-right', n.title), n
+  = render 'nodes/navigation', nodes: node.mentioned_by_nodes
+  = render 'nodes/navigation', nodes: node.mentioned_nodes
 

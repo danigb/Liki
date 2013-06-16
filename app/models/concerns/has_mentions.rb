@@ -14,8 +14,4 @@ module HasMentions
       class_name: 'Node', through: :mentioned,
       source: :from
   end
-
-  def mentioner
-    @mentioner ||= Mentioner.new(self)
-  end
 end

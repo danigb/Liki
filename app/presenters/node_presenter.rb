@@ -31,7 +31,7 @@ class NodePresenter < SimpleDelegator
   end
 
   def render_mentioned
-    if node.mentioned_by_nodes.size > 0
+    if node.mentioned_by_nodes.size > 0 || node.mentioned_nodes.size > 0
       render 'mentioned', node: node
     end
   end

@@ -7,14 +7,13 @@
 
 = presenter.render_photos
 
+
 - if has_comments?(@node)
   = render 'comments/comments', node: @node
 
 = presenter.render_children
+= presenter.render_mentioned
 
-- if @node.mentioned_by_nodes.size > 0
-  div.separator
-    = presenter.render_mentioned
 
 //div.separator
 //  = render 'following'

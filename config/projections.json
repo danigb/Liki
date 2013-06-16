@@ -15,7 +15,7 @@
   },
  
   "app/services/*_service.rb": {
-    "command": "service",
+    "command": "srv",
     "affinity": "model",
     "alternate": ["test/services/%s_service_test.rb"],
     "related": "app/models/%s.rb",

@@ -1,6 +1,6 @@
 class SpacesController < ApplicationController
   respond_to :html
-  before_filter :require_user, :require_super
+  before_filter :require_admin
 
   def index
     @spaces = Space.order('name ASC')
@@ -27,8 +27,8 @@ class SpacesController < ApplicationController
   def update
     space.attributes = space_params
     space.save
-    space.regenerate_counters if params[:regenerate_counters].present?
-    space.regenerate_mentions if params[:regenerate_mentions].present?
+    service.regenerate_counters if params[:regenerate_counters].present?
+    service.regenerate_mentions if params[:regenerate_mentions].present?
     respond_with space, location: spaces_path
   end
 
@@ -49,9 +49,8 @@ class SpacesController < ApplicationController
       :has_wiki, :has_calendar, :has_photos, :has_map)
   end
 
-  def require_super
-    unless current_user.admin?
-      redirect_to root_path
-    end
+  def service
+    @service ||= SpaceService.new(current_space)
   end
+
 end
