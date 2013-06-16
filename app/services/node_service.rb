@@ -32,13 +32,13 @@ class NodeService < ApplicationService
     @node.space = current_space
     @node.user = current_user
     authorize! :create, @node
-    save_node
+    save_node(:create)
   end
 
   def update(node_id, node_params)
     authorize! :update, load_node(node_id)
     @node.attributes = node_params
-    save_node
+    save_node(:update)
   end
 
   def destroy(node_id)
@@ -51,11 +51,11 @@ class NodeService < ApplicationService
     @node = current_space.nodes.find(node_id)
   end
 
-  def save_node
+  def save_node(action)
     save(@node) do
       update_edits
       update_mentions
-      track_activity(node, :create)
+      track_activity(@node, action)
     end
   end
 
