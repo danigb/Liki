@@ -5,6 +5,8 @@ class MapsController < ApplicationController
   def index
     @nodes = current_space.nodes.
       where("map_address <> ''")
+    @map_options = { 
+      detect_location: true, center_on_user: true, zoom: 4, type: 'HYBRID'}
     @map_data = @nodes.to_gmaps4rails do |node, marker|
       marker.infowindow render_to_string(
         partial: "/nodes/summary", locals: { node: node })

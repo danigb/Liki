@@ -1,6 +1,6 @@
 = title 'Mapa'
 
-= gmaps4rails(@map_data)
+= gmaps "map_options" => @map_options, "markers" => { "data" => @map_data}
 
 div
   h3 En el mapa:
