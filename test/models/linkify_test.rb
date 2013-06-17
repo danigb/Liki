@@ -22,6 +22,12 @@ describe Linkify do
     l.links('\n\r#with-break').must_include '#with-break'
   end
 
+  it 'quoted links' do
+    l.links('#"Hello world"').must_include '#"Hello world"'
+    l.to_param('#"Hello world"').must_equal 'hello-world'
+    l.to_name('#"Hello world"').must_equal '"Hello world"'
+  end
+
   it 'extracts several links' do
     links = l.links('#uno, #dos, #tres')
     links.must_include '#uno'

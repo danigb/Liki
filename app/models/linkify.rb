@@ -1,5 +1,10 @@
 module Linkify
-  MENTIONS = /(?:$|^|\s|\r|\n)*(?:#)[^\s^:^.^,^<^"^(^)]+/
+  PREFIX = /(?:$|^|\s|\r|\n)*/
+  HASHTAG = /(?:#)/
+  HASHTAG_CUOTE = /(?:#")/
+  NOSPACES = /[^\s^:^.^,^<"^(^)]+/
+  NOQUOTE= /[^"]+"/
+  MENTIONS = /#{PREFIX}#{HASHTAG_CUOTE}#{NOQUOTE}|#{PREFIX}#{HASHTAG}#{NOSPACES}/
 
   def links(text)
     return [] if text.blank?
@@ -9,7 +14,7 @@ module Linkify
         " #{yield(tag, to_name(tag), to_param(tag))}"
       end
     else
-    text.scan(MENTIONS).map(&:lstrip)
+      text.scan(MENTIONS).map(&:lstrip)
     end
   end
 
@@ -17,6 +22,7 @@ module Linkify
     hashtag[1..-1].
       gsub(/-/, ' ').
       gsub(/([A-Z])/, ' \1').
+      gsub(/"\s/, '"').
       lstrip
   end
 
