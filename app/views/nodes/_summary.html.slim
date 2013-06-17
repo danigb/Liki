@@ -23,7 +23,7 @@
         div.photo-thumbnail
           = image_tag photo.image.url, class: 'lightbox'
       - if node.photos.count > 8
-        div.read-more = link_to "Y #{node.photos.count - 8} más...", node
+        div.read-more = link_to "Y #{node.photos.count - 8} fotos más...", node
 
     div.node-summary-document
       = render 'nodes/document', node: node
