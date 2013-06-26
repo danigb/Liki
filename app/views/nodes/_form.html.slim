@@ -37,3 +37,5 @@
   - if current_user.admin?
     h3 Avanzado (id:#{@node.id})
     = form.input :prototype_id, collection: current_space.prototypes
+  - else
+    = form.input :prototype_id, as: :hidden

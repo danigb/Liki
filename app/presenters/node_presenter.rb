@@ -26,10 +26,6 @@ class NodePresenter < SimpleDelegator
     end
   end
 
-  def render_document
-    render 'nodes/document', node: node
-  end
-
   def render_mentioned
     if node.mentioned_by_nodes.size > 0 || node.mentioned_nodes.size > 0
       render 'mentioned', node: node

@@ -17,7 +17,7 @@
         = render_body(node)
 
     div.node-main-document
-      = presenter.render_document
+      = render 'nodes/document', node: node
 
     div.node-main-map
       = render 'nodes/contact', node: node

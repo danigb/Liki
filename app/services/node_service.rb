@@ -22,7 +22,7 @@ class NodeService < ApplicationService
     @node = Node.new(
       title: title, parent: parent,
       space: current_space, prototype: proto,
-      body: proto.body)
+      body: '')
 
     authorize! :create, @node
   end

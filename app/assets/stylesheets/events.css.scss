@@ -36,16 +36,15 @@
     font-weight: 300;
     display: block;
     overflow: hidden;
-    padding: 1px 2px 2px 2px;
+    padding: 1px 2px 12px 2px;
     margin: 1px 2px;
-    background-color: #0078e7;
-    color: white;
+    color: #333;
     border-radius: 1px;
-    a { color: white; }
+    a { color: #333; }
   }
   a.event-node-title {
     font-size: 80%;
-    color: #EFEFEF;
+    color: #000;
   }
 }
 

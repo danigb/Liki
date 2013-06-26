@@ -2,7 +2,7 @@ ul.navigation.unstyled
   - nodes.each do |n|
     = cache ['nodenav', n] do
       li.nodenav
-        span.nodenav-title =' link_to icon('arrow-right', n.title), n
+        span.nodenav-title =' link_to arrow(n.title), n
         - if n.event
           span.nodenav-event 
             = icon('calendar')
@@ -16,4 +16,5 @@ ul.navigation.unstyled
           span.nodenav-address 
             = icon('map-marker')
             = link_to n.map_address, map_path
+        = render 'nodes/document', node: n
 

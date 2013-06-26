@@ -7,11 +7,16 @@ module ApplicationHelper
 
   def icon(icon, label = nil)
     label = label.present? ? h("#{label}") : ''
-    raw("<i class='icon-#{icon}'></i>&nbsp;#{label}")
+    raw("#{h_icon(icon)}&nbsp;#{label}")
+  end
+
+  def h_icon(icon)
+    "<i class='icon-#{icon}'></i>"
   end
 
   def arrow(label)
     icon('arrow-right', label)
+    #raw "#{h_icon('arrow-right')}#{h_icon('file')} #{label}"
   end
 
   def boolean_input(name, label)
@@ -26,7 +31,7 @@ module ApplicationHelper
 
   def toggle_link(name, css_class)
     link_to name, '#', data: { toggle: css_class }, 
-       class: 'pure-button pure-button-primary'
+      class: 'pure-button pure-button-primary'
   end
 
   # Translate Collection

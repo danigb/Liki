@@ -1,4 +1,3 @@
 - if node.document?
-  b = icon('download', 'Descargar PDF: ')
-  = link_to node.document_title, node.document.url
+  b = link_to icon('download', 'Descargar PDF'), node.document.url
 
