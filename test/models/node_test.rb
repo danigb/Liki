@@ -57,9 +57,7 @@ describe Node do
       create(:node, parent: p)
       p.reload
       p.children.size.must_equal 1
-      proc { p.destroy }.must_raise ActiveRecord::DeleteRestrictionError
-      # TODO: arreglar esto
-      # p.destroyed?.must_equal false
+      proc { p.destroy }.must_raise AncestryException
     end
   end
 

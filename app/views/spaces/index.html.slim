@@ -5,7 +5,7 @@
     h2 
       =' space.name 
       small = icon(space.is_open? ? 'unlock' : 'lock')
-    h4 = space.host
+    h4 = link_to space.host, Rails.env.production? ? 'space.host' : visit_path(id: space.name)
     p
       ' Páginas: #{space.nodes_count} 
       ' / Menciones: #{space.mentions_count}

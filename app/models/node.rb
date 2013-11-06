@@ -22,7 +22,7 @@ class Node < ActiveRecord::Base
   validates_presence_of :title
   validates_uniqueness_of :title, scope: :space_id
 
-  has_ancestry
+  has_ancestry orphan_strategy: :restrict
   acts_as_list scope: [:space_id, :ancestry]
   include FriendlyId
   friendly_id :title, use: :scoped, scope: :space
