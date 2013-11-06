@@ -20,7 +20,8 @@ class Node < ActiveRecord::Base
 
   validates_presence_of :user_id, :space_id
   validates_presence_of :title
-  validates_uniqueness_of :title, scope: :space_id
+  validates_uniqueness_of :title, scope: :space_id, 
+    case_sensitive: false
 
   has_ancestry orphan_strategy: :restrict
   acts_as_list scope: [:space_id, :ancestry]
